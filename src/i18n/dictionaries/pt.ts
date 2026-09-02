@@ -21,8 +21,8 @@ export const pt: Dictionary = {
     line1: 'Boa noite,',
     line2: 'viajante.',
     paragraph:
-      'senta um pouco perto do fogo. aqui eu guardo o que construo, o que ando aprendendo e as coisas aleatórias que acho boas demais pra deixar morrer numa aba aberta.',
-    scroll: 'role pra baixo',
+      'bem vindo ao meu cantinho. aqui eu compartilho o que construo, o que ando aprendendo e quaisquer outras coisas que eu ache interessante.',
+    scroll: 'Sintasse a vontade',
   },
 
   sections: {
@@ -36,9 +36,9 @@ export const pt: Dictionary = {
 
   about: {
     paragraphs: [
-      'sou desenvolvedor, mexo principalmente com web — backend em node, front em react, banco em postgres. ultimamente ando cavando rust por curiosidade e porque compilador gritando comigo é uma forma decente de aprender.',
-      'gosto de coisa pequena e bem feita: cli que resolve um problema só, terminal configurado do jeito certo, ascii art onde não precisava ter ascii art.',
-      'esse site é uma fogueira. um lugar pra deixar registro antes de seguir andando.',
+      'sou desenvolvedor fullstack, mexo principalmente com programação web, backend em node, front em react e banco em postgres (Não MySQL 🤢). ultimamente venho aprendendo rust por curiosidade e demandas relacionadas no trabalho.',
+      'minha base na programação foi fundada antes da atual era da IA, então não, não sou dependente de IA para criar código, mas, atualmente uso cli (Claude) no trabalho para desenvolver projetos.',
+      'gosto de compartilhar experiências e conhecimentos, sinta-se à vontade para entrar em contato.',
     ],
     timelineLabel: 'TRAJETÓRIA',
   },

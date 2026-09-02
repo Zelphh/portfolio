@@ -41,7 +41,6 @@ export function SiteHeader({
   const tabRefs = useRef<Array<HTMLAnchorElement | null>>([])
   const [rects, setRects] = useState<TabRect[] | null>(null)
   const [hovered, setHovered] = useState<number | null>(null)
-
   const measure = useCallback(() => {
     const measured = tabRefs.current.map((tab) =>
       tab ? { x: tab.offsetLeft, width: tab.offsetWidth } : null,
@@ -66,7 +65,7 @@ export function SiteHeader({
 
   const activeIndex = Math.max(SECTION_IDS.indexOf(active), 0)
   const shown = hovered ?? activeIndex
-  const highlight = rects?.[shown]
+  const highlight = rects?.[activeIndex]
 
   return (
     <header

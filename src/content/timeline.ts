@@ -8,7 +8,7 @@ export const TIMELINE: readonly TimelineEntry[] = [
   },
   {
     company: 'hsp software',
-    role: { pt: 'estágio full stack', en: 'full stack internship' },
+    role: { pt: 'estagiário full stack', en: 'full stack internship' },
     current: false,
   },
   {
