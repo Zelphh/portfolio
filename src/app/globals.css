@@ -1,0 +1,173 @@
+@import 'tailwindcss';
+
+/*
+ * Design tokens. Every colour in the site resolves to one of these, so a
+ * palette change is a one-file edit instead of a grep across components.
+ */
+@theme {
+  /* Surfaces, from the page background inward. */
+  --color-ink: #141414;
+  --color-panel: #111210;
+  --color-surface: #171814;
+  --color-surface-raised: #1b1c18;
+  --color-surface-hover: #1a1d18;
+  --color-dock: #16170f;
+
+  /* Hairlines. `line` is the dashed rule that separates sections. */
+  --color-line: #2a2c26;
+  --color-line-soft: #22241f;
+  --color-line-strong: #2f322b;
+  --color-line-bright: #3c4136;
+
+  /* Accents. */
+  --color-accent: #e7e74a;
+  --color-moss: #484e3d;
+  --color-moss-light: #8fa072;
+  --color-moss-dim: #4a5340;
+  --color-warn: #c9744a;
+
+  /* Foreground ramp, brightest to faintest. */
+  --color-fg: #f2f2ec;
+  --color-fg-strong: #e8e8e2;
+  --color-fg-muted: #b4b7ab;
+  --color-fg-dim: #9b9e93;
+  --color-fg-subtle: #8a8d82;
+  --color-fg-faint: #7c8073;
+  --color-fg-fainter: #6d7065;
+  --color-fg-ghost: #5d6057;
+
+  /* Contribution heatmap levels 0-4. */
+  --color-heat-0: #1a1d18;
+  --color-heat-1: #2f3627;
+  --color-heat-2: #454f37;
+  --color-heat-3: #5c6a49;
+  --color-heat-4: #77885d;
+
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo,
+    Consolas, 'Liberation Mono', monospace;
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+
+  /* The one easing curve the whole site uses. */
+  --ease-out-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-out-spring: cubic-bezier(0.22, 1, 0.28, 1);
+
+  --animate-blink: blink 1.1s steps(1, end) infinite;
+  --animate-rise: rise 0.28s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-marquee: marquee 32s linear infinite;
+}
+
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@layer base {
+  :root {
+    /* Approximate sticky-header height; the hero sizes itself against it. */
+    --header-height: 74px;
+  }
+
+  html {
+    background-color: var(--color-ink);
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: #c9c9c4;
+    font-family: var(--font-mono);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ::selection {
+    background: var(--color-moss);
+    color: #fff;
+  }
+
+  /* Scroll targets clear the sticky header instead of hiding under it. */
+  [id] {
+    scroll-margin-top: 80px;
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  /*
+   * Honour the OS setting globally. The animated ASCII components also check
+   * this in JS so they can skip the render loop entirely rather than run it
+   * invisibly, but this covers every CSS transition in one rule.
+   */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@utility section-rule {
+  /* The long ──── filler that trails every section label. */
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  color: var(--color-line-strong);
+  font-size: 13px;
+}
+
+@utility fade-y {
+  mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    #000 22%,
+    #000 78%,
+    transparent 100%
+  );
+}
+
+@utility fade-x {
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 12%,
+    #000 88%,
+    transparent 100%
+  );
+}
