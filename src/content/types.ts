@@ -21,7 +21,8 @@ export interface Skill {
   /** Small icon used by the marquee, which never renders ASCII. */
   readonly marqueeIcon: string
   readonly note: Localized<string>
-  readonly blurb: Localized<string>
+  /** Bullet points. A single entry renders as a plain line, several as a list. */
+  readonly blurb: Localized<readonly string[]>
 }
 
 export interface Project {
