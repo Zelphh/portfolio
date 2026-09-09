@@ -25,11 +25,33 @@ export interface Skill {
   readonly blurb: Localized<readonly string[]>
 }
 
+/**
+ * Card and dialog artwork.
+ *
+ * `logo` and `image` differ in how they are framed, not in file type: a logo
+ * is transparent art that should float on the card's own surface, while an
+ * image is an opaque screenshot that wants a dark backdrop behind its
+ * letterbox bars. Screen recordings are served as-is and play muted, so they
+ * never need controls or a soundtrack.
+ */
+export type ProjectCover =
+  | { kind: 'logo'; src: string }
+  | { kind: 'image'; src: string }
+  | { kind: 'video'; src: string }
+
 export interface Project {
   readonly id: string
   readonly year: string
   readonly stack: string
   readonly url: string
+  /** Card artwork. Absent while a project has none, which draws a placeholder. */
+  readonly cover?: ProjectCover
+  /**
+   * Dialog artwork, for when the wide hero wants a different shot than the
+   * card does — an app icon on the card, a full screen inside. Falls back to
+   * `cover`.
+   */
+  readonly hero?: ProjectCover
   readonly name: Localized<string>
   readonly summary: Localized<string>
   /** Long write-up. Paragraphs are separate entries, not `\n\n` in a string. */
@@ -57,6 +79,14 @@ export interface ContactChannel {
 export interface TimelineEntry {
   readonly company: string | null
   readonly role: Localized<string>
+  /**
+   * When the stint started and ended, printed in the gutter to the left of
+   * the rule. `null` on the open-ended last entry, which has no dates.
+   */
+  readonly period: {
+    readonly start: Localized<string>
+    readonly end: Localized<string>
+  } | null
   /** The open-ended last entry, drawn with an arrow and a blinking cursor. */
   readonly current: boolean
 }

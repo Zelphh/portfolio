@@ -2,6 +2,7 @@
 
 import type { Project } from '@/content/types'
 import type { Locale } from '@/i18n/config'
+import { ProjectCover } from './project-cover'
 
 interface ProjectCardProps {
   project: Project
@@ -41,9 +42,13 @@ export function ProjectCard({
         opacity: hidden ? 0 : Math.max(1 - distance * 0.42, 0.1),
       }}
     >
-      <div className="m-6 mb-0 grid place-items-center border border-dashed border-line-strong text-[11px] tracking-[0.24em] text-[#4a4d44]">
-        SCREENSHOT
-      </div>
+      <ProjectCover
+        cover={project.cover}
+        alt={project.name[locale]}
+        placeholder="SCREENSHOT"
+        active={distance < 0.5}
+        className="m-6 mb-0 rounded-[6px] border border-dashed border-line-strong"
+      />
 
       <div className="grid gap-3.5 p-7">
         <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-fg-fainter">

@@ -17,6 +17,14 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
+        // Artwork is replaced in place under a stable name, so it must never be
+        // marked immutable: a swapped cover has to reach browsers that already
+        // hold the old one. Revalidating keeps that correct while still serving
+        // a 304 for the common case where the file has not changed.
+        source: '/projects/:path*',
+        headers: [{ key: 'Cache-Control', value: 'public, no-cache' }],
+      },
+      {
         // Fonts and icons are content-addressed or immutable — cache them hard.
         source: '/icons/:path*',
         headers: [

@@ -5,6 +5,7 @@ import type { Project } from '@/content/types'
 import { useEscapeKey } from '@/hooks/use-escape-key'
 import type { Locale } from '@/i18n/config'
 import type { Dictionary } from '@/i18n/types'
+import { ProjectCover } from './project-cover'
 
 interface ProjectDialogProps {
   project: Project
@@ -57,9 +58,13 @@ export function ProjectDialog({
         className="relative max-h-full w-[min(760px,100%)] cursor-default overflow-y-auto overscroll-contain rounded-[15px] border border-line-strong bg-surface"
       >
         <div className="relative h-[clamp(200px,42vh,420px)] flex-none overflow-hidden border-b border-line-soft bg-surface-raised">
-          <div className="absolute inset-0 grid place-items-center text-[11px] tracking-[0.26em] text-[#4a4d44]">
-            PREVIEW
-          </div>
+          <ProjectCover
+            cover={project.hero ?? project.cover}
+            alt=""
+            placeholder="PREVIEW"
+            active
+            className="h-full w-full"
+          />
           <div
             aria-hidden
             className="absolute inset-x-0 bottom-0 h-[120px] bg-gradient-to-b from-transparent to-[rgba(20,20,20,0.7)]"
