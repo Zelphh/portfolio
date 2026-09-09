@@ -2,6 +2,7 @@
 
 import type { Project } from '@/content/types'
 import type { Locale } from '@/i18n/config'
+import { ProjectBadges } from './project-badges'
 import { ProjectCover } from './project-cover'
 
 interface ProjectCardProps {
@@ -46,8 +47,8 @@ export function ProjectCard({
         cover={project.cover}
         alt={project.name[locale]}
         placeholder="SCREENSHOT"
-        active={distance < 0.5}
-        className="m-6 mb-0 rounded-[6px] border border-dashed border-line-strong"
+        active={!hidden}
+        className="m-6 mb-0 rounded-[6px]"
       />
 
       <div className="grid gap-3.5 p-7">
@@ -55,6 +56,9 @@ export function ProjectCard({
           <span>{project.year}</span>
           <span className="text-line-strong">·</span>
           <span>{project.stack}</span>
+          {project.badges && (
+            <ProjectBadges labels={project.badges[locale]} className="ml-auto" />
+          )}
         </div>
 
         <span className="font-display text-[30px] font-extrabold leading-[1.05] tracking-[-0.02em] text-fg">

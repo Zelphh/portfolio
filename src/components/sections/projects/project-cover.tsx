@@ -10,7 +10,7 @@ interface ProjectCoverProps {
   alt: string
   /** Word drawn in the frame while a project has no artwork yet. */
   placeholder: string
-  /** Videos only mount and play while the cover is the one being looked at. */
+  /** Videos mount and play only while the cover is on screen at all. */
   active: boolean
   /**
    * Sizes the frame. Use box classes, not positioning ones: the frame owns
@@ -30,7 +30,9 @@ interface ProjectCoverProps {
  *
  * Video covers are deliberately lazy: the element mounts on first activation
  * and stays mounted afterwards, so a card scrolled out and back into the
- * carousel resumes instead of refetching the file.
+ * carousel resumes instead of refetching the file. They keep playing while
+ * merely off-centre, since a carousel of stills that only animates on the
+ * focused card reads as broken rather than as restraint.
  */
 export function ProjectCover({
   cover,
@@ -66,7 +68,7 @@ export function ProjectCover({
   if (!cover) {
     return (
       <div
-        className={`grid place-items-center text-[11px] tracking-[0.24em] text-[#4a4d44] ${className ?? ''}`}
+        className={`grid place-items-center border border-dashed border-line-strong text-[11px] tracking-[0.24em] text-[#4a4d44] ${className ?? ''}`}
       >
         {placeholder}
       </div>

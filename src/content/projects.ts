@@ -33,6 +33,7 @@ export const PROJECTS: readonly Project[] = [
     stack: 'python · pygame',
     url: 'https://github.com/Zelphh/conway-s-game',
     cover: { kind: 'video', src: '/projects/conways-game.mp4' },
+    badges: { pt: ['sem ia com cli'], en: ['no ai with cli'] },
     name: { pt: "conway's game of life", en: "conway's game of life" },
     summary: {
       pt: 'autômato celular em pygame com o tabuleiro editável enquanto roda.',
@@ -58,6 +59,7 @@ export const PROJECTS: readonly Project[] = [
     stack: 'java · spring boot · jwt',
     url: 'https://github.com/Zelphh/dscommerce',
     cover: { kind: 'image', src: '/projects/dscommerce.png' },
+    badges: { pt: ['sem ia'], en: ['no ai'] },
     name: { pt: 'dscommerce', en: 'dscommerce' },
     summary: {
       pt: 'api rest de e-commerce com login jwt, papéis e um front pra demonstrar.',
@@ -82,6 +84,7 @@ export const PROJECTS: readonly Project[] = [
     stack: 'c',
     url: 'https://github.com/Zelphh/cs50',
     cover: { kind: 'image', src: '/projects/filter-edges.png' },
+    badges: { pt: ['sem ia'], en: ['no ai'] },
     name: { pt: 'filter', en: 'filter' },
     summary: {
       pt: 'filtros de imagem em c, do cinza ao sobel, pixel a pixel.',

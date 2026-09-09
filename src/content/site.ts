@@ -1,7 +1,7 @@
 /** Single source of truth for identity, URLs and analytics-free metadata. */
 export const SITE = {
   name: 'zelph',
-  email: 'ola@exemplo.dev',
+  email: 'matheus.tartari@gmail.com',
   /** Absolute origin, used for canonical URLs and Open Graph tags. */
   url: 'https://zelph.dev',
   location: 'joinville — sc',

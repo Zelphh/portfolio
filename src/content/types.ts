@@ -52,6 +52,8 @@ export interface Project {
    * `cover`.
    */
   readonly hero?: ProjectCover
+  /** Short claims about how it was built, drawn as pills on the card. */
+  readonly badges?: Localized<readonly string[]>
   readonly name: Localized<string>
   readonly summary: Localized<string>
   /** Long write-up. Paragraphs are separate entries, not `\n\n` in a string. */

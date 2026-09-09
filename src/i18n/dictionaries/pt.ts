@@ -72,7 +72,7 @@ export const pt: Dictionary = {
 
   contributions: {
     commitsInYear: 'commits no último ano',
-    streak: '@zelph · sequência atual {days} dias',
+    streak: '@Zelphh · sequência atual {days} dias',
     lastTwelveMonths: 'últimos 12 meses',
     less: 'menos',
     more: 'mais',
@@ -116,16 +116,16 @@ export const pt: Dictionary = {
     skillsTierSecondaryList: '  rust · java · python · spring boot · c',
     projectsHint: 'use `goto projetos` para ver os cards com detalhes.',
     contactLines: [
-      'email    ola@exemplo.dev',
-      'github   github.com/zelph',
-      'linkedin linkedin.com/in/zelph',
+      'email    matheus.tartari@gmail.com',
+      'github   github.com/Zelphh',
+      'linkedin linkedin.com/in/matheusmtar',
     ],
     goingTo: 'indo para #{section}...',
     unknownSection:
       'seção desconhecida. use: sobre, skills, projetos, certificados, contato',
     notFound: 'comando não encontrado: {command} — tente `help`',
     cvUnavailable:
-      'currículo ainda não publicado. peça a versão atual em ola@exemplo.dev',
+      'currículo ainda não publicado. peça a versão atual em matheus.tartari@gmail.com',
   },
 
   footer: {

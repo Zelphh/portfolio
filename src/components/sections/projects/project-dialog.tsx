@@ -5,6 +5,7 @@ import type { Project } from '@/content/types'
 import { useEscapeKey } from '@/hooks/use-escape-key'
 import type { Locale } from '@/i18n/config'
 import type { Dictionary } from '@/i18n/types'
+import { ProjectBadges } from './project-badges'
 import { ProjectCover } from './project-cover'
 
 interface ProjectDialogProps {
@@ -70,10 +71,11 @@ export function ProjectDialog({
             className="absolute inset-x-0 bottom-0 h-[120px] bg-gradient-to-b from-transparent to-[rgba(20,20,20,0.7)]"
           />
 
-          <div className="absolute bottom-0 left-0 bg-surface px-5 py-3">
+          <div className="absolute bottom-0 left-0 flex items-center gap-3 bg-surface px-5 py-3">
             <span className="text-[11px] uppercase tracking-[0.22em] text-fg-fainter">
               {project.stack}
             </span>
+            {project.badges && <ProjectBadges labels={project.badges[locale]} />}
           </div>
 
           <div className="absolute right-0 top-0 rounded-[10px] bg-accent px-4 py-2.5 text-[13px] font-bold text-ink">
