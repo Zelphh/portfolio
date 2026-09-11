@@ -35,7 +35,7 @@ export function ProjectCard({
       onClick={onOpen}
       aria-hidden={hidden}
       tabIndex={hidden ? -1 : 0}
-      className="absolute left-1/2 top-0 grid h-[520px] w-[600px] max-w-[calc(100vw-48px)] grid-rows-[1fr_auto] rounded-[25px] border border-line-soft bg-surface text-left transition-[transform,opacity] duration-[550ms] ease-[var(--ease-out-soft)]"
+      className="absolute left-1/2 top-0 grid h-[520px] w-[600px] max-w-[calc(100vw-48px)] grid-rows-[1fr_auto] cursor-pointer rounded-[25px] border border-line-soft bg-surface text-left transition-[transform,opacity] duration-[550ms] ease-[var(--ease-out-soft)]"
       style={{
         // `-50%` centres whatever width the card ended up at, so the capped
         // mobile width stays centred instead of drifting off the viewport.
