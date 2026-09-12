@@ -23,7 +23,7 @@ export const en: Dictionary = {
       afternoon: 'Good afternoon,',
       evening: 'Good evening,',
     },
-    line2: 'traveler.',
+    line2: 'traveler!',
     paragraph:
       "sit by the fire for a bit. this is where i keep what i build, what i'm learning and the random things i think are too good to die in an open tab.",
     scroll: 'scroll down',

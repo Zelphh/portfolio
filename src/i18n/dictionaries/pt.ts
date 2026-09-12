@@ -23,7 +23,7 @@ export const pt: Dictionary = {
       afternoon: 'Boa tarde,',
       evening: 'Boa noite,',
     },
-    line2: 'viajante.',
+    line2: 'viajante!',
     paragraph:
       'bem vindo ao meu cantinho. aqui eu compartilho o que construo, o que ando aprendendo e quaisquer outras coisas que eu ache interessante.',
     scroll: 'Sintasse a vontade',

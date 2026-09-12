@@ -28,7 +28,7 @@ export function HeroGreeting({ greetings, line2 }: HeroGreetingProps) {
 
   return (
     <>
-      <span>{greetings[period]}</span>
+      {greetings[period]}
       <br />
       <span className="text-accent">{line2}</span>
     </>
