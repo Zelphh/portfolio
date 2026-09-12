@@ -66,6 +66,10 @@ export interface Certificate {
   readonly year: string
   readonly hours: string
   readonly url: string
+  /** Scan of the certificate itself. Falls back to a "PDF" placeholder when absent. */
+  readonly image?: string
+  /** `image`'s intrinsic `width / height`, e.g. `'1600 / 1131'` — keeps the stack sheet uncropped. */
+  readonly imageAspect?: string
   readonly name: Localized<string>
   readonly description: Localized<string>
 }

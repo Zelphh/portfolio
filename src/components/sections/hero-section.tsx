@@ -1,5 +1,6 @@
 import { BonfireArt } from '@/components/ascii'
 import type { Dictionary } from '@/i18n/types'
+import { HeroGreeting } from './hero-greeting'
 
 interface HeroSectionProps {
   copy: Dictionary['hero']
@@ -19,9 +20,7 @@ export function HeroSection({ copy, bonfireLabel }: HeroSectionProps) {
         </p>
 
         <h1 className="m-0 text-balance font-display text-[clamp(60px,9.6vw,168px)] font-extrabold leading-[0.9] tracking-[-0.035em] text-fg">
-          {copy.line1}
-          <br />
-          <span className="text-accent">{copy.line2}</span>
+          <HeroGreeting greetings={copy.greetings} line2={copy.line2} />
         </h1>
 
         <p className="mt-9 max-w-[44ch] text-[19px] leading-[1.8] text-fg-dim">

@@ -19,7 +19,8 @@ export interface Dictionary {
 
   hero: {
     welcome: string
-    line1: string
+    /** Keyed by time of day — read client-side from the visitor's own clock. */
+    greetings: Readonly<{ morning: string; afternoon: string; evening: string }>
     line2: string
     paragraph: string
     scroll: string
@@ -58,6 +59,9 @@ export interface Dictionary {
     previous: string
     next: string
     counter: string
+    /** Aria-label for the click-to-zoom sheet and the lightbox's close button. */
+    enlarge: string
+    close: string
   }
 
   contributions: {

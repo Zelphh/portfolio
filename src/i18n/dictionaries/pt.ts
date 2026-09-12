@@ -18,7 +18,11 @@ export const pt: Dictionary = {
 
   hero: {
     welcome: '~/ bem-vindo',
-    line1: 'Boa noite,',
+    greetings: {
+      morning: 'Bom dia,',
+      afternoon: 'Boa tarde,',
+      evening: 'Boa noite,',
+    },
     line2: 'viajante.',
     paragraph:
       'bem vindo ao meu cantinho. aqui eu compartilho o que construo, o que ando aprendendo e quaisquer outras coisas que eu ache interessante.',
@@ -64,7 +68,9 @@ export const pt: Dictionary = {
 
   certificates: {
     openPdf: '[ abrir pdf ]',
-    dragHint: 'arraste o card',
+    dragHint: 'arraste o certificado',
+    enlarge: 'ampliar certificado',
+    close: 'fechar',
     previous: 'certificado anterior',
     next: 'próximo certificado',
     counter: '{current} / {total}',

@@ -18,7 +18,11 @@ export const en: Dictionary = {
 
   hero: {
     welcome: '~/ welcome',
-    line1: 'Good evening,',
+    greetings: {
+      morning: 'Good morning,',
+      afternoon: 'Good afternoon,',
+      evening: 'Good evening,',
+    },
     line2: 'traveler.',
     paragraph:
       "sit by the fire for a bit. this is where i keep what i build, what i'm learning and the random things i think are too good to die in an open tab.",
@@ -64,7 +68,9 @@ export const en: Dictionary = {
 
   certificates: {
     openPdf: '[ open pdf ]',
-    dragHint: 'drag the card',
+    dragHint: 'drag the certificate',
+    enlarge: 'enlarge certificate',
+    close: 'close',
     previous: 'previous certificate',
     next: 'next certificate',
     counter: '{current} / {total}',

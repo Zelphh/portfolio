@@ -9,10 +9,37 @@ import type { Locale } from '@/i18n/config'
 import { format } from '@/i18n/format'
 import type { Dictionary } from '@/i18n/types'
 import { pad2 } from '@/lib/utils'
+import { CertificateLightbox } from './certificate-lightbox'
 import { CertificateStack } from './certificate-stack'
 
 /** How long the discarded card is animated off screen. */
 const FLY_MS = 260
+/** Pointer travel, in pixels, past which a tap counts as a drag instead of a click. */
+const CLICK_SLOP = 6
+
+/**
+ * A hand mid-grab, wiggling left and right below the stack. The sheets
+ * themselves lost their card frame, so nothing else on screen reads as
+ * "grab here" — this is the only cue that the artwork is the drag target.
+ */
+function DragHandIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
+      <path d="M8 13.5V6a1.2 1.2 0 0 1 2.4 0v6" />
+      <path d="M10.4 12V4.8a1.2 1.2 0 0 1 2.4 0V12" />
+      <path d="M12.8 12V6a1.2 1.2 0 0 1 2.4 0v7" />
+      <path d="M15.2 13V9a1.2 1.2 0 0 1 2.4 0v5.5c0 3.6-2.1 6-5.6 6h-.8c-2 0-3.1-.5-4.2-2.1l-2-3c-.6-.9.5-2 1.5-1.3l1.1.9" />
+    </svg>
+  )
+}
 
 interface CertificatesSectionProps {
   locale: Locale
@@ -52,6 +79,52 @@ export function CertificatesSection({
 
   const { drag, handlers } = useDragSwipe(flip)
   const certificate = CERTIFICATES[carousel.index] as (typeof CERTIFICATES)[number]
+
+  const [zoomed, setZoomed] = useState(false)
+  const pointerOriginRef = useRef<{ x: number; y: number } | null>(null)
+  const draggedRef = useRef(false)
+
+  const openZoom = useCallback(() => {
+    if (certificate.image) setZoomed(true)
+  }, [certificate.image])
+
+  const onPointerDown = useCallback(
+    (event: React.PointerEvent<HTMLDivElement>) => {
+      pointerOriginRef.current = { x: event.clientX, y: event.clientY }
+      draggedRef.current = false
+      handlers.onPointerDown(event)
+    },
+    [handlers],
+  )
+
+  const onPointerMove = useCallback(
+    (event: React.PointerEvent<HTMLDivElement>) => {
+      const origin = pointerOriginRef.current
+      if (origin && !draggedRef.current) {
+        const travelled = Math.hypot(
+          event.clientX - origin.x,
+          event.clientY - origin.y,
+        )
+        if (travelled > CLICK_SLOP) draggedRef.current = true
+      }
+      handlers.onPointerMove(event)
+    },
+    [handlers],
+  )
+
+  const onClick = useCallback(() => {
+    if (!draggedRef.current) openZoom()
+  }, [openZoom])
+
+  const onKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLDivElement>) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault()
+        openZoom()
+      }
+    },
+    [openZoom],
+  )
 
   return (
     <section
@@ -118,19 +191,41 @@ export function CertificatesSection({
 
           <div
             {...handlers}
+            onPointerDown={onPointerDown}
+            onPointerMove={onPointerMove}
+            onClick={onClick}
+            onKeyDown={onKeyDown}
+            role="button"
+            tabIndex={0}
+            aria-label={copy.enlarge}
             className="relative h-[420px] cursor-grab touch-pan-y select-none active:cursor-grabbing"
           >
             <CertificateStack
               certificates={CERTIFICATES}
-              locale={locale}
               activeIndex={carousel.index}
               drag={drag}
               flick={flick}
               flying={flying}
             />
+
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 bottom-3 flex justify-center"
+            >
+              <DragHandIcon className="h-5 w-5 animate-drag-hint text-fg-fainter" />
+            </div>
           </div>
         </div>
       </div>
+
+      {zoomed && certificate.image && (
+        <CertificateLightbox
+          certificate={{ ...certificate, image: certificate.image }}
+          locale={locale}
+          closeLabel={copy.close}
+          onClose={() => setZoomed(false)}
+        />
+      )}
     </section>
   )
 }
