@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { SectionHeading } from '@/components/ui/section-heading'
+import { useConsoleSignal } from '@/components/widgets/console-bus'
 import { CERTIFICATES } from '@/content/certificates'
 import { useDragSwipe } from '@/hooks/use-drag-swipe'
 import { useRingCarousel } from '@/hooks/use-ring-carousel'
@@ -125,6 +126,13 @@ export function CertificatesSection({
     },
     [openZoom],
   )
+
+  // `cert <id>` in the console. A sheet with no scan has nothing to enlarge,
+  // so that one only gets dealt to the top of the stack.
+  useConsoleSignal('openCertificate', ({ index }) => {
+    carousel.goTo(index)
+    if (CERTIFICATES[index]?.image) setZoomed(true)
+  })
 
   return (
     <section

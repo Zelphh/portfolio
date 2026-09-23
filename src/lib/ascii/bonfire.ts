@@ -63,6 +63,9 @@ const MOUND = [
 const EMBER_CHARS = ['.', "'", '`', ',', '*'] as const
 const MAX_EMBERS = 26
 
+/** Frames a `flare()` takes to die back down — about six seconds at 10fps. */
+const FLARE_FRAMES = 60
+
 /** The sword leans, so its centre column shifts one step every two rows. */
 const swordAxis = (row: number) => TIP_COL + Math.floor((TIP_ROW - row) / 2)
 
@@ -85,16 +88,34 @@ export class BonfireSimulation {
   private readonly colors = new Array<string | null>(WIDTH * HEIGHT).fill(null)
   private readonly embers: Ember[] = []
   private time = 0
+  private flareFrames = 0
 
   /** Burns in a plausible fire so the first painted frame is not a cold grid. */
   constructor(warmupFrames = 90) {
     for (let i = 0; i < warmupFrames; i++) this.step()
   }
 
+  /**
+   * Throws the fire up for a few seconds, then lets it settle.
+   *
+   * Driven by the console's `bonfire` command, which is why it is a nudge to
+   * the simulation rather than a separate animation: the flare has to start
+   * from whatever the fire is doing at that instant and decay back into it.
+   */
+  flare(): void {
+    this.flareFrames = FLARE_FRAMES
+  }
+
+  /** `1` the instant a flare starts, easing to `0` as it burns out. */
+  private get flareStrength(): number {
+    return this.flareFrames / FLARE_FRAMES
+  }
+
   step(): void {
     this.diffuseHeat(this.time)
     this.updateEmbers()
     this.time += 16
+    if (this.flareFrames > 0) this.flareFrames--
   }
 
   toHtml(): string {
@@ -103,9 +124,12 @@ export class BonfireSimulation {
   }
 
   private diffuseHeat(time: number): void {
-    const { heat } = this
+    const { heat, flareStrength } = this
 
     // Base row: a bell curve across the fire's width, flickering over time.
+    // A flare multiplies it, which saturates the middle and so shows up as
+    // the shoulders of the curve catching rather than the centre getting
+    // brighter than white.
     for (let x = 0; x < WIDTH; x++) {
       const distance = Math.abs(x - CENTER_X + 0.5) / HALF_WIDTH
       const shape =
@@ -115,7 +139,11 @@ export class BonfireSimulation {
         0.12 * Math.sin(time * 0.009 + x * 0.6) +
         0.1 * Math.sin(time * 0.021 - x * 1.3) +
         Math.random() * 0.16
-      heat[BASE_ROW * WIDTH + x] = clamp(shape * flicker, 0, 1)
+      heat[BASE_ROW * WIDTH + x] = clamp(
+        shape * flicker * (1 + 0.5 * flareStrength),
+        0,
+        1,
+      )
     }
 
     const wind = Math.sin(time * 0.0013) * 0.8 + Math.sin(time * 0.0037) * 0.4
@@ -138,11 +166,13 @@ export class BonfireSimulation {
           0.5 +
           0.5 * Math.sin(x * 0.85 + time * 0.0042) +
           0.3 * Math.sin(x * 0.31 - time * 0.0026)
+        // Cooling slows during a flare, which is what makes it climb.
         const decay = Math.max(
-          0.036 +
+          (0.036 +
             0.075 * distance * distance +
             Math.random() * 0.05 -
-            0.014 * tongue,
+            0.014 * tongue) *
+            (1 - 0.45 * flareStrength),
           0.01,
         )
         const value = (heat[below + source] as number) - decay
@@ -168,9 +198,10 @@ export class BonfireSimulation {
       if (dead) embers.splice(i, 1)
     }
 
-    if (embers.length >= MAX_EMBERS) return
+    const { flareStrength } = this
+    if (embers.length >= MAX_EMBERS * (1 + flareStrength)) return
 
-    for (let n = 0; n < 2; n++) {
+    for (let n = 0; n < 2 + Math.round(flareStrength * 4); n++) {
       const x = CENTER_X + (Math.random() * 2 - 1) * HALF_WIDTH * 0.45
       const column = Math.round(clamp(x, 0, WIDTH - 1))
 

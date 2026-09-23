@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { SectionHeading } from '@/components/ui/section-heading'
+import { useConsoleSignal } from '@/components/widgets/console-bus'
 import { PROJECTS } from '@/content/projects'
 import { useRingCarousel } from '@/hooks/use-ring-carousel'
 import type { Locale } from '@/i18n/config'
@@ -24,6 +25,13 @@ export function ProjectsSection({ locale, label, copy }: ProjectsSectionProps) {
   const carousel = useRingCarousel(PROJECTS.length)
   const [openIndex, setOpenIndex] = useState<number | null>(null)
   const openProject = openIndex === null ? null : PROJECTS[openIndex]
+
+  // `open <id>` in the console. The carousel moves too, so closing the dialog
+  // leaves the right card facing front rather than whichever one was there.
+  useConsoleSignal('openProject', ({ index }) => {
+    carousel.goTo(index)
+    setOpenIndex(index)
+  })
 
   return (
     <section

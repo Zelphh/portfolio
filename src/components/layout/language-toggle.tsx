@@ -1,10 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import { LOCALE_COOKIE, LOCALES, type Locale } from '@/i18n/config'
+import { LOCALES, type Locale } from '@/i18n/config'
+import { rememberLocale } from '@/lib/locale-cookie'
 import { cn } from '@/lib/utils'
-
-const ONE_YEAR = 60 * 60 * 24 * 365
 
 interface LanguageToggleProps {
   current: Locale
@@ -28,14 +27,10 @@ export function LanguageToggle({
 }: LanguageToggleProps) {
   const target: Locale = current === 'pt' ? 'en' : 'pt'
 
-  const remember = () => {
-    document.cookie = `${LOCALE_COOKIE}=${target}; path=/; max-age=${ONE_YEAR}; samesite=lax`
-  }
-
   return (
     <Link
       href={`/${target}`}
-      onClick={remember}
+      onClick={() => rememberLocale(target)}
       aria-label={switchLabel.replace('{language}', otherLanguageName)}
       className="flex items-center gap-2 rounded-full border border-line-strong px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-fg-subtle transition-colors hover:border-moss hover:text-accent"
     >

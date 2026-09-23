@@ -1,4 +1,5 @@
 import type { SectionId } from '@/content/navigation'
+import type { ListedCommand } from '@/lib/terminal/names'
 
 /**
  * The full UI copy contract. Both dictionaries are typed against it, so a
@@ -26,7 +27,7 @@ export interface Dictionary {
     scroll: string
   }
 
-  sections: Readonly<Record<SectionId, string>> & { github: string }
+  sections: Readonly<Record<SectionId, string>>
 
   about: {
     paragraphs: readonly [string, string, string]
@@ -64,20 +65,6 @@ export interface Dictionary {
     close: string
   }
 
-  contributions: {
-    /** `{count}` */
-    commitsInYear: string
-    /** `{days}` */
-    streak: string
-    lastTwelveMonths: string
-    less: string
-    more: string
-    /** `{date}` */
-    noCommits: string
-    /** `{date}` and `{count}` */
-    someCommits: string
-  }
-
   dock: {
     consoleOpen: string
     consoleClose: string
@@ -91,22 +78,74 @@ export interface Dictionary {
     title: string
     placeholder: string
     prompt: string
+    /** Aria-label for the panel's close button. */
+    close: string
     boot: readonly string[]
     helpTitle: string
-    helpLines: readonly string[]
+    /** Nudge that `help` is not the whole list. */
+    helpHint: string
+    /**
+     * One line per command `help` lists. The tuple in `lib/terminal/names`
+     * is the contract: add a name there and this record stops compiling
+     * until both languages describe it.
+     */
+    commands: Readonly<Record<ListedCommand, string>>
     whoami: readonly string[]
+    neofetchRole: string
+    neofetchLabels: Readonly<{
+      host: string
+      role: string
+      location: string
+      stack: string
+      projects: string
+      certs: string
+      language: string
+      uptime: string
+    }>
     skillsTierPro: string
     skillsTierProList: string
     skillsTierSecondary: string
     skillsTierSecondaryList: string
+    projectsTitle: string
     projectsHint: string
-    contactLines: readonly string[]
+    certsTitle: string
+    certsHint: string
+    timelineTitle: string
+    contactTitle: string
+    /** `{name}` */
+    opening: string
+    unknownProject: string
+    unknownCertificate: string
+    /** `{targets}` */
+    copyUsage: string
+    copyUnknown: string
+    /** `{target}` */
+    copyDone: string
+    copyFailed: string
+    cvUnavailable: string
     /** `{section}` */
     goingTo: string
     unknownSection: string
+    /** `{locale}` */
+    langCurrent: string
+    /** `{locales}` */
+    langUsage: string
+    langAlready: string
+    langUnknown: string
+    /** `{locale}` */
+    langSwitching: string
+    historyTitle: string
+    historyEmpty: string
     /** `{command}` */
     notFound: string
-    cvUnavailable: string
+    /** Printed by the hidden `tetris` command. */
+    tetris: readonly string[]
+    bonfireLit: string
+    praise: string
+    matrixHint: string
+    matrixStop: string
+    sudoDenied: string
+    sudoGranted: readonly string[]
   }
 
   footer: {

@@ -4,6 +4,7 @@ import { useEffect, useRef, type KeyboardEvent } from 'react'
 import type { Dictionary } from '@/i18n/types'
 import type { LineTone, TerminalLine } from '@/lib/terminal'
 import { cn } from '@/lib/utils'
+import { MatrixRain } from './matrix-rain'
 
 const TONE_CLASS: Readonly<Record<LineTone, string>> = {
   input: 'text-fg',
@@ -16,9 +17,16 @@ interface TerminalPanelProps {
   open: boolean
   copy: Dictionary['terminal']
   lines: readonly TerminalLine[]
+  /** True while a block of output is still arriving a line at a time. */
+  streaming: boolean
+  matrix: boolean
   value: string
   onChange: (value: string) => void
   onSubmit: () => void
+  /** `-1` reaches for an older command, `+1` for a newer one. */
+  onRecall: (direction: -1 | 1) => void
+  onComplete: () => void
+  onStopMatrix: () => void
   onClose: () => void
 }
 
@@ -28,14 +36,23 @@ interface TerminalPanelProps {
  * Collapses to zero height rather than unmounting, so reopening it keeps the
  * session history and skips a remount. While closed it is inert —
  * `pointer-events: none` plus `aria-hidden` — so it cannot be tabbed into.
+ *
+ * The input deliberately swallows Tab and the arrow keys: inside a terminal
+ * those mean completion and history, not focus and caret movement. Escape
+ * still closes, so the keyboard is never trapped here.
  */
 export function TerminalPanel({
   open,
   copy,
   lines,
+  streaming,
+  matrix,
   value,
   onChange,
   onSubmit,
+  onRecall,
+  onComplete,
+  onStopMatrix,
   onClose,
 }: TerminalPanelProps) {
   const outputRef = useRef<HTMLDivElement>(null)
@@ -54,18 +71,34 @@ export function TerminalPanel({
   }, [open])
 
   const handleKey = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      event.preventDefault()
-      onSubmit()
+    switch (event.key) {
+      case 'Enter':
+        event.preventDefault()
+        onSubmit()
+        break
+      case 'Tab':
+        event.preventDefault()
+        onComplete()
+        break
+      case 'ArrowUp':
+        event.preventDefault()
+        onRecall(-1)
+        break
+      case 'ArrowDown':
+        event.preventDefault()
+        onRecall(1)
+        break
+      case 'Escape':
+        onClose()
+        break
     }
-    if (event.key === 'Escape') onClose()
   }
 
   return (
     <div
       aria-hidden={!open}
       className={cn(
-        'box-border flex w-[min(620px,calc(100vw-48px))] flex-col overflow-hidden rounded-[15px] border border-line-strong bg-panel shadow-[0_24px_60px_rgba(0,0,0,0.6)]',
+        'relative box-border flex w-[min(620px,calc(100vw-48px))] flex-col overflow-hidden rounded-[15px] border border-line-strong bg-panel shadow-[0_24px_60px_rgba(0,0,0,0.6)]',
         'origin-bottom-left transition-[height,opacity,transform,filter] duration-[420ms] ease-[var(--ease-out-spring)]',
         open
           ? 'h-[min(340px,calc(100vh-240px))] translate-y-0 scale-100 opacity-100 blur-0'
@@ -82,7 +115,7 @@ export function TerminalPanel({
         <button
           type="button"
           onClick={onClose}
-          aria-label={copy.title}
+          aria-label={copy.close}
           tabIndex={open ? 0 : -1}
           className="px-1 text-[13px] text-fg-fainter transition-colors hover:text-accent"
         >
@@ -109,8 +142,28 @@ export function TerminalPanel({
           ))}
         </div>
 
-        <div className="mt-1 flex items-center gap-2">
-          <label htmlFor="terminal-input" className="flex-none text-[13px] text-accent">
+        {streaming && (
+          <span
+            aria-hidden
+            className="mt-1 inline-block h-[14px] w-[7px] animate-blink bg-accent align-middle"
+          />
+        )}
+
+        {/*
+          While output streams the prompt is hidden rather than unmounted: a
+          remount would drop focus, and typing ahead is exactly how a visitor
+          cuts a long block short.
+        */}
+        <div
+          className={cn(
+            'mt-1 flex items-center gap-2 transition-opacity',
+            streaming && 'opacity-0',
+          )}
+        >
+          <label
+            htmlFor="terminal-input"
+            className="flex-none text-[13px] text-accent"
+          >
             {copy.prompt}
           </label>
           <input
@@ -127,6 +180,10 @@ export function TerminalPanel({
           />
         </div>
       </div>
+
+      {matrix && open && (
+        <MatrixRain onStop={onStopMatrix} hint={copy.matrixStop} />
+      )}
     </div>
   )
 }
