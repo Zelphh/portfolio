@@ -18,10 +18,10 @@ interface CertificateLightboxProps {
 }
 
 /**
- * Full-screen preview opened by clicking the stack's front sheet — the same
- * click-to-expand a chat image viewer gives you. Mirrors `ProjectDialog`'s
- * conventions (backdrop, escape key, focus handling) so the two overlays
- * feel like one design language.
+ * Full-screen preview of a scan, opened by clicking the hero inside
+ * `CertificateDialog` — the same click-to-expand a chat image viewer gives
+ * you. It stacks above that dialog, so it sits a layer higher and takes
+ * escape for itself while it is up.
  */
 export function CertificateLightbox({
   certificate,
@@ -54,7 +54,7 @@ export function CertificateLightbox({
     <div
       role="presentation"
       onClick={onClose}
-      className="animate-rise fixed inset-0 z-[60] grid place-items-center overflow-y-auto overscroll-contain bg-[rgba(10,10,10,0.84)] p-7 backdrop-blur-[3px]"
+      className="animate-rise fixed inset-0 z-[70] grid place-items-center overflow-y-auto overscroll-contain bg-[rgba(10,10,10,0.84)] p-7 backdrop-blur-[3px]"
     >
       <div
         role="dialog"

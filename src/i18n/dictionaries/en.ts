@@ -12,7 +12,7 @@ export const en: Dictionary = {
     sobre: 'about',
     skills: 'skills',
     projetos: 'projects',
-    certificados: 'certificates',
+    certificados: 'studies',
     contato: 'contact',
   },
 
@@ -33,7 +33,7 @@ export const en: Dictionary = {
     sobre: 'about',
     skills: 'skills',
     projetos: 'projects',
-    certificados: 'certificates',
+    certificados: 'studies',
     contato: 'contact',
   },
 
@@ -66,13 +66,18 @@ export const en: Dictionary = {
   },
 
   certificates: {
-    openPdf: '[ open pdf ]',
-    dragHint: 'drag the certificate',
+    intro:
+      'the formal base, the courses that were worth it and what i study on my own. click any of them to see what stuck.',
+    kinds: {
+      degree: 'degree',
+      course: 'course',
+      certification: 'certification',
+    },
+    openCertificate: '[ open certificate ]',
+    certNote: 'certificate available',
+    noCert: 'no certificate published',
     enlarge: 'enlarge certificate',
     close: 'close',
-    previous: 'previous certificate',
-    next: 'next certificate',
-    counter: '{current} / {total}',
   },
 
   dock: {
@@ -103,8 +108,8 @@ export const en: Dictionary = {
       skills: 'skills and the level of each',
       projects: 'list the projects',
       open: 'open a project card',
-      certs: 'list the certificates',
-      cert: 'enlarge a certificate',
+      certs: 'list the studies and certificates',
+      cert: 'open a certificate',
       timeline: 'the career so far',
       contact: 'contact channels',
       copy: 'copy a contact',
@@ -126,7 +131,7 @@ export const en: Dictionary = {
       location: 'location',
       stack: 'stack',
       projects: 'projects',
-      certs: 'certificates',
+      certs: 'studies',
       language: 'language',
       uptime: 'uptime',
     },
@@ -136,8 +141,8 @@ export const en: Dictionary = {
     skillsTierSecondaryList: '  rust · java · python · spring boot · c',
     projectsTitle: 'projects',
     projectsHint: 'run `open <id>` or `open <n>` to bring up the card.',
-    certsTitle: 'certificates',
-    certsHint: 'run `cert <id>` or `cert <n>` to enlarge it.',
+    certsTitle: 'studies',
+    certsHint: 'run `cert <id>` or `cert <n>` to open it.',
     timelineTitle: 'career',
     contactTitle: 'contact',
     opening: 'opening {name}...',

@@ -60,18 +60,36 @@ export interface Project {
   readonly story: Localized<readonly string[]>
 }
 
+/**
+ * What a study entry is, which drives the pill colour and its label. A
+ * degree, a course taken somewhere, or a proficiency exam — the three
+ * things that end up on this shelf.
+ */
+export type StudyKind = 'degree' | 'course' | 'certification'
+
 export interface Certificate {
   readonly id: string
+  readonly kind: StudyKind
   readonly issuer: string
+  /** Printed on the dialog's badge. Open-ended entries read `2024 →`. */
   readonly year: string
-  readonly hours: string
-  readonly url: string
-  /** Scan of the certificate itself. Falls back to a "PDF" placeholder when absent. */
+  /** Course load. Absent where it means nothing — a degree, an exam. */
+  readonly hours?: string
+  /** Vendor mark, drawn on the card and blown up as its watermark. */
+  readonly icon: string
+  /** Public link to the credential. Absent while there is nothing to open. */
+  readonly url?: string
+  /** Scan of the certificate itself, enlarged from the dialog when present. */
   readonly image?: string
-  /** `image`'s intrinsic `width / height`, e.g. `'1600 / 1131'` — keeps the stack sheet uncropped. */
+  /** `image`'s intrinsic `width / height`, e.g. `'1600 / 1131'`. */
   readonly imageAspect?: string
   readonly name: Localized<string>
-  readonly description: Localized<string>
+  /** One-liner on the card, clamped to two lines (four on the tall one). */
+  readonly summary: Localized<string>
+  /** Long write-up. Paragraphs are separate entries, not one string. */
+  readonly story: Localized<readonly string[]>
+  /** What the study actually covered, drawn as pills under the write-up. */
+  readonly topics: Localized<readonly string[]>
 }
 
 export interface ContactChannel {

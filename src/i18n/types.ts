@@ -1,4 +1,5 @@
 import type { SectionId } from '@/content/navigation'
+import type { StudyKind } from '@/content/types'
 import type { ListedCommand } from '@/lib/terminal/names'
 
 /**
@@ -55,12 +56,15 @@ export interface Dictionary {
   }
 
   certificates: {
-    openPdf: string
-    dragHint: string
-    previous: string
-    next: string
-    counter: string
-    /** Aria-label for the click-to-zoom sheet and the lightbox's close button. */
+    /** Standfirst under the section heading. */
+    intro: string
+    /** Badge copy per study kind — the pill on every card and dialog. */
+    kinds: Readonly<Record<StudyKind, string>>
+    openCertificate: string
+    /** Footer note when there is a credential to open, and when there is not. */
+    certNote: string
+    noCert: string
+    /** Aria-label for the click-to-zoom scan and the lightbox's close button. */
     enlarge: string
     close: string
   }

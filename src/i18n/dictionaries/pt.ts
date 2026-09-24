@@ -12,7 +12,7 @@ export const pt: Dictionary = {
     sobre: 'sobre',
     skills: 'skills',
     projetos: 'projetos',
-    certificados: 'certificados',
+    certificados: 'estudos',
     contato: 'contato',
   },
 
@@ -33,7 +33,7 @@ export const pt: Dictionary = {
     sobre: 'sobre',
     skills: 'skills',
     projetos: 'projetos',
-    certificados: 'certificados',
+    certificados: 'estudos',
     contato: 'contato',
   },
 
@@ -66,13 +66,18 @@ export const pt: Dictionary = {
   },
 
   certificates: {
-    openPdf: '[ abrir pdf ]',
-    dragHint: 'arraste o certificado',
+    intro:
+      'a base formal, os cursos que valeram e o que eu estudo por conta. clica em qualquer um pra ver o que ficou.',
+    kinds: {
+      degree: 'graduação',
+      course: 'curso',
+      certification: 'certificação',
+    },
+    openCertificate: '[ abrir certificado ]',
+    certNote: 'certificado disponível',
+    noCert: 'sem certificado publicado',
     enlarge: 'ampliar certificado',
     close: 'fechar',
-    previous: 'certificado anterior',
-    next: 'próximo certificado',
-    counter: '{current} / {total}',
   },
 
   dock: {
@@ -103,8 +108,8 @@ export const pt: Dictionary = {
       skills: 'as skills e o nível de cada uma',
       projects: 'lista os projetos',
       open: 'abre o card de um projeto',
-      certs: 'lista os certificados',
-      cert: 'amplia um certificado',
+      certs: 'lista os estudos e certificados',
+      cert: 'abre um certificado',
       timeline: 'a carreira até aqui',
       contact: 'canais de contato',
       copy: 'copia um contato',
@@ -126,7 +131,7 @@ export const pt: Dictionary = {
       location: 'local',
       stack: 'stack',
       projects: 'projetos',
-      certs: 'certificados',
+      certs: 'estudos',
       language: 'idioma',
       uptime: 'uptime',
     },
@@ -136,8 +141,8 @@ export const pt: Dictionary = {
     skillsTierSecondaryList: '  rust · java · python · spring boot · c',
     projectsTitle: 'projetos',
     projectsHint: 'use `open <id>` ou `open <n>` para abrir o card.',
-    certsTitle: 'certificados',
-    certsHint: 'use `cert <id>` ou `cert <n>` para ampliar.',
+    certsTitle: 'estudos',
+    certsHint: 'use `cert <id>` ou `cert <n>` para abrir.',
     timelineTitle: 'carreira',
     contactTitle: 'contato',
     opening: 'abrindo {name}...',
