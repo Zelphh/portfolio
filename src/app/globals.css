@@ -29,6 +29,11 @@
   --color-sand-dim: #4d463a;
   --color-warn: #c9744a;
 
+  /* Overlays: the modal backdrop, and the translucent fill for chrome that
+     sits on top of imagery (close buttons, hero fades). */
+  --color-scrim: rgb(10 10 10 / 0.84);
+  --color-scrim-soft: rgb(20 20 20 / 0.7);
+
   /* Foreground ramp, brightest to faintest. */
   --color-fg: #f2f2ec;
   --color-fg-strong: #e8e8e2;
@@ -49,6 +54,11 @@
   --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo,
     Consolas, 'Liberation Mono', monospace;
   --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+
+  /* Depth for anything lifted off the page. */
+  --shadow-modal: 0 30px 80px -20px rgb(0 0 0 / 0.7),
+    inset 0 1px 0 rgb(255 255 255 / 0.04);
+  --shadow-float: 0 30px 80px rgb(0 0 0 / 0.6);
 
   /* The one easing curve the whole site uses. */
   --ease-out-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
@@ -155,6 +165,12 @@
   font-size: 13px;
 }
 
+/* Thin, palette-matched scrollbars for inner scroll areas. */
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line-bright) transparent;
+}
+
 @utility fade-y {
   mask-image: linear-gradient(
     180deg,
@@ -216,5 +232,140 @@
   .study-card {
     grid-column: span var(--study-col-lg);
     grid-row: span var(--study-row-lg);
+  }
+}
+
+/*
+ * Modals — native <dialog> opened with showModal(), see `Modal`.
+ *
+ * The browser supplies the top layer, the focus trap and escape; this adds
+ * the look and the motion. Enter plays on [open], exit on [data-closing],
+ * and the component waits for the `modal-out-*` animation to end before it
+ * unmounts. The backdrop fades while the panel moves, so the scrim never
+ * slides with it.
+ */
+
+/* Page behind stays put while any modal is up, nested ones included. */
+html:has(dialog.modal[open]) {
+  overflow: hidden;
+}
+
+.modal {
+  margin: auto;
+  padding: 0;
+  border: 0;
+  max-width: none;
+  max-height: none;
+  background: transparent;
+  color: inherit;
+  overflow: visible;
+}
+
+.modal::backdrop {
+  background: var(--color-scrim);
+  backdrop-filter: blur(3px);
+  animation: modal-fade-in 0.28s var(--ease-out-soft) both;
+}
+
+.modal[data-closing]::backdrop {
+  animation: modal-fade-out 0.2s ease-in both;
+}
+
+/* Panel: a card centred on the page, a bottom sheet on phones. */
+.modal-panel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 92dvh;
+  margin: auto 0 0;
+  overflow: hidden;
+  border: 1px solid var(--color-line-strong);
+  border-bottom: 0;
+  border-radius: 15px 15px 0 0;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-modal);
+  animation: modal-sheet-in 0.36s var(--ease-out-spring) both;
+}
+
+.modal-panel[data-closing] {
+  animation: modal-out-sheet 0.22s ease-in both;
+}
+
+@media (width >= 40rem) {
+  .modal-panel {
+    width: min(var(--modal-width, 720px), calc(100% - 3.5rem));
+    max-height: calc(100dvh - 3.5rem);
+    margin: auto;
+    border-bottom: 1px solid var(--color-line-strong);
+    border-radius: 15px;
+    animation-name: modal-panel-in;
+  }
+
+  .modal-panel[data-closing] {
+    animation-name: modal-out-panel;
+  }
+}
+
+/* Lightbox: the content grows out of --modal-from-* (the thumbnail it was
+   opened from) and shrinks back into it. Without an origin it just scales. */
+.modal-lightbox {
+  animation: modal-grow-in 0.38s var(--ease-out-spring) both;
+}
+
+.modal-lightbox[data-closing] {
+  animation: modal-out-grow 0.26s var(--ease-out-soft) both;
+}
+
+@keyframes modal-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes modal-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes modal-sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes modal-out-sheet {
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes modal-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+}
+
+@keyframes modal-out-panel {
+  to {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+}
+
+@keyframes modal-grow-in {
+  from {
+    opacity: 0.3;
+    transform: translate(var(--modal-from-x, 0), var(--modal-from-y, 0))
+      scale(var(--modal-from-scale, 0.92));
+  }
+}
+
+@keyframes modal-out-grow {
+  to {
+    opacity: 0;
+    transform: translate(var(--modal-from-x, 0), var(--modal-from-y, 0))
+      scale(var(--modal-from-scale, 0.92));
   }
 }

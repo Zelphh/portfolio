@@ -1,6 +1,7 @@
 import type { NextConfig } from 'next'
+import { PHASE_DEVELOPMENT_SERVER } from 'next/constants'
 
-const nextConfig: NextConfig = {
+const baseConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
 
@@ -30,4 +31,17 @@ const nextConfig: NextConfig = {
   },
 }
 
-export default nextConfig
+// In the exported site the host serves `public/index.html` at `/`, and that
+// page picks the language. `next dev` only maps public files to their exact
+// path, so `/` would 404 there; point it at the same file while developing.
+// Dev-only because rewrites need a server and can't be exported.
+export default function nextConfig(phase: string): NextConfig {
+  if (phase !== PHASE_DEVELOPMENT_SERVER) return baseConfig
+
+  return {
+    ...baseConfig,
+    async rewrites() {
+      return [{ source: '/', destination: '/index.html' }]
+    },
+  }
+}

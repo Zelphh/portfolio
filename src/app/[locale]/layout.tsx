@@ -75,7 +75,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale === 'pt' ? 'pt-BR' : 'en'} className={`${display.variable} ${mono.variable}`}>
-      <body>{children}</body>
+      <body suppressHydrationWarning>{children}</body>
     </html>
   )
 }

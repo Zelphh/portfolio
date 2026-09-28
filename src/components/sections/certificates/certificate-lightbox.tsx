@@ -1,9 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import { useEffect, useRef } from 'react'
+import { Modal } from '@/components/ui/modal'
 import type { Certificate } from '@/content/types'
-import { useEscapeKey } from '@/hooks/use-escape-key'
 import type { Locale } from '@/i18n/config'
 
 /** Landscape ratio used when a certificate has no scan, so parsing never fails. */
@@ -14,74 +13,45 @@ interface CertificateLightboxProps {
   certificate: Certificate & { image: string }
   locale: Locale
   closeLabel: string
+  /** Where the scan sits in the dialog's hero; the preview grows out of it. */
+  origin: DOMRect
   onClose: () => void
 }
 
 /**
  * Full-screen preview of a scan, opened by clicking the hero inside
  * `CertificateDialog` — the same click-to-expand a chat image viewer gives
- * you. It stacks above that dialog, so it sits a layer higher and takes
- * escape for itself while it is up.
+ * you. It grows out of the thumbnail and shrinks back into it on close, and
+ * as a second `<dialog>` it stacks above the first and takes escape for
+ * itself while it is up.
  */
 export function CertificateLightbox({
   certificate,
   locale,
   closeLabel,
+  origin,
   onClose,
 }: CertificateLightboxProps) {
-  const closeRef = useRef<HTMLButtonElement>(null)
-
-  useEscapeKey(true, onClose)
-
-  useEffect(() => {
-    const previouslyFocused = document.activeElement as HTMLElement | null
-    const { overflow } = document.body.style
-
-    closeRef.current?.focus()
-    document.body.style.overflow = 'hidden'
-
-    return () => {
-      document.body.style.overflow = overflow
-      previouslyFocused?.focus()
-    }
-  }, [])
-
   const [width, height] = (certificate.imageAspect ?? FALLBACK_ASPECT)
     .split('/')
     .map((part) => parseFloat(part.trim()))
 
   return (
-    <div
-      role="presentation"
-      onClick={onClose}
-      className="animate-rise fixed inset-0 z-[70] grid place-items-center overflow-y-auto overscroll-contain bg-[rgba(10,10,10,0.84)] p-7 backdrop-blur-[3px]"
+    <Modal
+      variant="lightbox"
+      onClose={onClose}
+      closeLabel={closeLabel}
+      origin={origin}
+      label={certificate.name[locale]}
     >
-      <div
-        role="dialog"
-        aria-modal="true"
-        aria-label={certificate.name[locale]}
-        onClick={(event) => event.stopPropagation()}
-        className="relative max-h-full cursor-default"
-      >
-        <Image
-          src={certificate.image}
-          alt={certificate.name[locale]}
-          width={width}
-          height={height}
-          sizes="92vw"
-          className="h-auto max-h-[85vh] w-auto max-w-[92vw] rounded-sm shadow-[0_30px_80px_rgba(0,0,0,0.6)]"
-        />
-
-        <button
-          ref={closeRef}
-          type="button"
-          onClick={onClose}
-          aria-label={closeLabel}
-          className="absolute -right-3 -top-3 rounded-[10px] border border-line-strong bg-[rgba(20,20,20,0.85)] px-2.5 py-1.5 text-xs text-fg-dim transition-colors hover:text-accent"
-        >
-          [ x ]
-        </button>
-      </div>
-    </div>
+      <Image
+        src={certificate.image}
+        alt={certificate.name[locale]}
+        width={width}
+        height={height}
+        sizes="92vw"
+        className="block h-auto max-h-[85vh] w-auto max-w-[92vw] rounded-sm shadow-float"
+      />
+    </Modal>
   )
 }
