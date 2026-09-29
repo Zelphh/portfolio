@@ -54,6 +54,12 @@ export interface Project {
   readonly hero?: ProjectCover
   /** Short claims about how it was built, drawn as pills on the card. */
   readonly badges?: Localized<readonly string[]>
+  /**
+   * Still being built. Draws the work-in-progress pill on the card and in
+   * the dialog. A flag rather than a date in `year`, so the marker never
+   * needs revisiting to stay true — flipping it off is the whole edit.
+   */
+  readonly inProgress?: boolean
   readonly name: Localized<string>
   readonly summary: Localized<string>
   /** Long write-up. Paragraphs are separate entries, not `\n\n` in a string. */

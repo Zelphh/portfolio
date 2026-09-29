@@ -2,6 +2,33 @@ import type { Project } from './types'
 
 export const PROJECTS: readonly Project[] = [
   {
+    id: 'whats-recap',
+    year: '2026',
+    stack: 'rust · tauri · sqlite',
+    url: 'https://github.com/Zelphh/whats-recap',
+    cover: { kind: 'video', src: '/projects/whats-recap.mp4' },
+    badges: { pt: ['100% local'], en: ['100% local'] },
+    inProgress: true,
+    name: { pt: 'whatsrecap', en: 'whatsrecap' },
+    summary: {
+      pt: 'app de desktop que lê o export do whatsapp e devolve a conversa em números.',
+      en: 'app de desktop que lê o export do whatsapp e devolve a conversa em números.',
+    },
+    // TODO: english copy pending, pt text duplicated for now.
+    story: {
+      pt: [
+        'App de desktop que lê o arquivo exportado de uma conversa do whatsapp entre duas pessoas e transforma ela em números: quem manda mais mensagens, quem responde mais rápido, palavras e emojis favoritos, horários, figurinhas e áudios. Tudo roda na própria máquina, nenhuma mensagem sai do computador.',
+        'Esse é o projeto que eu escolhi para aprender IA na prática. A ideia é rodar um modelo de linguagem localmente, junto do app, e passar pelos conceitos que até agora eu só tinha lido a respeito: embeddings, chunking, RAG e escrita de prompt. Uma conversa de anos é um material ótimo para isso, porque ela nunca cabe inteira no contexto do modelo e obriga a buscar só o trecho certo antes de perguntar.',
+        'Ainda está em andamento. A parte determinística já funciona: ler o export, guardar em um banco local e montar o dashboard com as estatísticas. O que vem agora é a camada de IA em cima disso, com detecção de momentos da relação ao longo do tempo e um chat que responde perguntas sobre a própria conversa, sempre apontando a mensagem original.',
+      ],
+      en: [
+        'App de desktop que lê o arquivo exportado de uma conversa do whatsapp entre duas pessoas e transforma ela em números: quem manda mais mensagens, quem responde mais rápido, palavras e emojis favoritos, horários, figurinhas e áudios. Tudo roda na própria máquina, nenhuma mensagem sai do computador.',
+        'Esse é o projeto que eu escolhi para aprender IA na prática. A ideia é rodar um modelo de linguagem localmente, junto do app, e passar pelos conceitos que até agora eu só tinha lido a respeito: embeddings, chunking, RAG e escrita de prompt. Uma conversa de anos é um material ótimo para isso, porque ela nunca cabe inteira no contexto do modelo e obriga a buscar só o trecho certo antes de perguntar.',
+        'Ainda está em andamento. A parte determinística já funciona: ler o export, guardar em um banco local e montar o dashboard com as estatísticas. O que vem agora é a camada de IA em cima disso, com detecção de momentos da relação ao longo do tempo e um chat que responde perguntas sobre a própria conversa, sempre apontando a mensagem original.',
+      ],
+    },
+  },
+  {
     id: 'spatium',
     year: '2026',
     stack: 'tauri · rust · react',

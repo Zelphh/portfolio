@@ -135,7 +135,8 @@ const projects: Command = {
         line(t.projectsTitle, 'accent'),
         ...PROJECTS.map((project, index) =>
           line(
-            `  ${pad2(index + 1)}  ${project.id.padEnd(width)}  ${project.year}  ${project.stack}`,
+            `  ${pad2(index + 1)}  ${project.id.padEnd(width)}  ${project.year}  ${project.stack}` +
+              (project.inProgress ? `  ·  ${t.projectsWip}` : ''),
           ),
         ),
         line(''),

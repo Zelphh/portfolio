@@ -4,11 +4,13 @@ import type { Project } from '@/content/types'
 import type { Locale } from '@/i18n/config'
 import { ProjectBadges } from './project-badges'
 import { ProjectCover } from './project-cover'
+import { ProjectStatus } from './project-status'
 
 interface ProjectCardProps {
   project: Project
   locale: Locale
   detailsLabel: string
+  inProgressLabel: string
   onOpen: () => void
   /** Signed distance from the centre of the carousel, in slots. */
   offset: number
@@ -23,6 +25,7 @@ export function ProjectCard({
   project,
   locale,
   detailsLabel,
+  inProgressLabel,
   onOpen,
   offset,
 }: ProjectCardProps) {
@@ -56,8 +59,13 @@ export function ProjectCard({
           <span>{project.year}</span>
           <span className="text-line-strong">·</span>
           <span>{project.stack}</span>
-          {project.badges && (
-            <ProjectBadges labels={project.badges[locale]} className="ml-auto" />
+          {(project.inProgress || project.badges) && (
+            <span className="ml-auto flex items-center gap-2">
+              {project.inProgress && <ProjectStatus label={inProgressLabel} />}
+              {project.badges && (
+                <ProjectBadges labels={project.badges[locale]} />
+              )}
+            </span>
           )}
         </div>
 

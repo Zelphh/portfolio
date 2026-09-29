@@ -49,6 +49,7 @@ export function ProjectsSection({ locale, label, copy }: ProjectsSectionProps) {
             project={project}
             locale={locale}
             detailsLabel={copy.details}
+            inProgressLabel={copy.inProgress}
             onOpen={() => setOpenIndex(index)}
             offset={ringOffset(index, carousel.position, PROJECTS.length)}
           />

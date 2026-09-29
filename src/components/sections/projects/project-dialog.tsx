@@ -6,6 +6,7 @@ import type { Locale } from '@/i18n/config'
 import type { Dictionary } from '@/i18n/types'
 import { ProjectBadges } from './project-badges'
 import { ProjectCover } from './project-cover'
+import { ProjectStatus } from './project-status'
 
 interface ProjectDialogProps {
   project: Project
@@ -52,6 +53,7 @@ export function ProjectDialog({
           <span className="text-[11px] uppercase tracking-[0.22em] text-fg-fainter">
             {project.stack}
           </span>
+          {project.inProgress && <ProjectStatus label={copy.inProgress} />}
           {project.badges && <ProjectBadges labels={project.badges[locale]} />}
         </div>
 

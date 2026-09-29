@@ -46,6 +46,8 @@ export interface Dictionary {
 
   projects: {
     details: string
+    /** Pill on a project that is still being built. */
+    inProgress: string
     openSource: string
     openGithub: string
     previous: string
@@ -111,6 +113,8 @@ export interface Dictionary {
     skillsTierSecondary: string
     skillsTierSecondaryList: string
     projectsTitle: string
+    /** Suffix on the listed line of a project that is still being built. */
+    projectsWip: string
     projectsHint: string
     certsTitle: string
     certsHint: string

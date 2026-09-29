@@ -57,6 +57,7 @@ export const en: Dictionary = {
 
   projects: {
     details: '[ see details ]',
+    inProgress: 'in progress',
     openSource: 'open source',
     openGithub: '[ open on github ]',
     previous: 'previous project',
@@ -140,6 +141,7 @@ export const en: Dictionary = {
     skillsTierSecondary: 'secondary',
     skillsTierSecondaryList: '  rust · java · python · spring boot · c',
     projectsTitle: 'projects',
+    projectsWip: 'in progress',
     projectsHint: 'run `open <id>` or `open <n>` to bring up the card.',
     certsTitle: 'studies',
     certsHint: 'run `cert <id>` or `cert <n>` to open it.',
