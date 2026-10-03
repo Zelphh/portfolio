@@ -77,7 +77,7 @@ export interface Certificate {
   readonly id: string
   readonly kind: StudyKind
   readonly issuer: string
-  /** Printed on the dialog's badge. Open-ended entries read `2024 →`. */
+  /** Printed on the dialog's badge. Ranges read `2024 → 2027`, open-ended ones `2024 →`. */
   readonly year: string
   /** Course load. Absent where it means nothing — a degree, an exam. */
   readonly hours?: string
@@ -89,6 +89,11 @@ export interface Certificate {
   readonly image?: string
   /** `image`'s intrinsic `width / height`, e.g. `'1600 / 1131'`. */
   readonly imageAspect?: string
+  /**
+   * Institution's own mark, shown in the dialog's hero in place of `icon`
+   * when there is no scan. Drawn on its own background, so it may be opaque.
+   */
+  readonly logo?: string
   readonly name: Localized<string>
   /** One-liner on the card, clamped to two lines (four on the tall one). */
   readonly summary: Localized<string>

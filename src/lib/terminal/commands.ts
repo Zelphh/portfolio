@@ -171,13 +171,14 @@ const certs: Command = {
   aliases: ['certificados', 'certificates'],
   run: ({ t, locale }) => {
     const width = Math.max(...CERTIFICATE_IDS.map((id) => id.length))
+    const yearWidth = Math.max(...CERTIFICATES.map((entry) => entry.year.length))
 
     return {
       lines: [
         line(t.certsTitle, 'accent'),
         ...CERTIFICATES.map((certificate, index) =>
           line(
-            `  ${pad2(index + 1)}  ${certificate.id.padEnd(width)}  ${certificate.year}  ${certificate.name[locale]}`,
+            `  ${pad2(index + 1)}  ${certificate.id.padEnd(width)}  ${certificate.year.padEnd(yearWidth)}  ${certificate.name[locale]}`,
           ),
         ),
         line(''),

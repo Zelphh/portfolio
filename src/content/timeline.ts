@@ -2,40 +2,40 @@ import type { TimelineEntry } from './types'
 
 export const TIMELINE: readonly TimelineEntry[] = [
   {
-    company: 'ambev',
-    role: { pt: 'jovem aprendiz', en: 'young apprentice' },
+    company: 'Ambev',
+    role: { pt: 'Jovem aprendiz', en: 'Young apprentice' },
     period: {
-      start: { pt: 'jul 2024', en: 'jul 2024' },
-      end: { pt: 'set 2025', en: 'sep 2025' },
+      start: { pt: 'Jul 2024', en: 'Jul 2024' },
+      end: { pt: 'Set 2025', en: 'Sep 2025' },
     },
     current: false,
   },
   {
-    company: 'hsp software',
-    role: { pt: 'estagiário full stack', en: 'full stack internship' },
+    company: 'HSP Software',
+    role: { pt: 'Estagiário full stack', en: 'Full stack internship' },
     period: {
-      start: { pt: 'set 2025', en: 'sep 2025' },
-      end: { pt: 'jun 2026', en: 'jun 2026' },
+      start: { pt: 'Set 2025', en: 'Sep 2025' },
+      end: { pt: 'Jun 2026', en: 'Jun 2026' },
     },
     current: false,
   },
   {
-    company: 'hsp software',
+    company: 'HSP Software',
     role: {
-      pt: 'desenvolvedor full stack jr.',
-      en: 'junior full stack developer',
+      pt: 'Desenvolvedor full stack jr.',
+      en: 'Junior full stack developer',
     },
     period: {
-      start: { pt: 'jul 2026', en: 'jul 2026' },
-      end: { pt: 'atualmente', en: 'present' },
+      start: { pt: 'Jul 2026', en: 'Jul 2026' },
+      end: { pt: 'Atualmente', en: 'Present' },
     },
     current: false,
   },
   {
     company: null,
     role: {
-      pt: 'o próximo passo é com você? 👀',
-      en: 'the next step is up to you? 👀',
+      pt: 'O próximo passo é com você? 👀',
+      en: 'The next step is up to you? 👀',
     },
     period: null,
     current: true,

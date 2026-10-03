@@ -14,35 +14,8 @@ import { CertificateLightbox } from './certificate-lightbox'
 const NOISE = ".,:;'~-_+*"
 /** Enough characters to fill the hero at any width it is given. */
 const NOISE_LENGTH = 900
-/** Inset of the scan inside the hero; matches the image's `p-7`. */
-const HERO_PADDING = 28
-/** Landscape ratio used when a certificate has no aspect on file. */
-const FALLBACK_ASPECT = 3 / 2
-
-/**
- * Where the scan actually sits inside the hero button: the padded box,
- * shrunk to the image's aspect the way `object-contain` does it. The
- * lightbox grows out of exactly this rectangle.
- */
-function containedRect(box: DOMRect, aspect: number): DOMRect {
-  const width = Math.max(box.width - HERO_PADDING * 2, 1)
-  const height = Math.max(box.height - HERO_PADDING * 2, 1)
-  const fitWidth = Math.min(width, height * aspect)
-  const fitHeight = fitWidth / aspect
-
-  return new DOMRect(
-    box.left + (box.width - fitWidth) / 2,
-    box.top + (box.height - fitHeight) / 2,
-    fitWidth,
-    fitHeight,
-  )
-}
-
-function parseAspect(value: string | undefined): number {
-  if (!value) return FALLBACK_ASPECT
-  const [width = 0, height = 0] = value.split('/').map((part) => parseFloat(part))
-  return width > 0 && height > 0 ? width / height : FALLBACK_ASPECT
-}
+/** Hero proportions for a scan with no aspect on file. */
+const FALLBACK_ASPECT = '3 / 2'
 
 /**
  * Deterministic static for the hero, seeded by the entry so each one gets
@@ -71,8 +44,8 @@ interface CertificateDialogProps {
  * Mounted only while open, so the long-form copy for every entry never sits
  * in the DOM unread. Built on the same `Modal` as `ProjectDialog`, so the two
  * overlays share one design language. Where there is a scan on file it
- * becomes the hero and clicking it grows it into a lightbox; everything
- * else gets its mark over static.
+ * fills the hero edge to edge and clicking it grows it into a lightbox;
+ * everything else gets its institution's logo, or its mark, over static.
  */
 export function CertificateDialog({
   certificate,
@@ -80,7 +53,7 @@ export function CertificateDialog({
   copy,
   onClose,
 }: CertificateDialogProps) {
-  // The rectangle the lightbox grows from; set means the lightbox is up.
+  // The hero's rectangle, which the lightbox grows from; set means it is up.
   const [zoomOrigin, setZoomOrigin] = useState<DOMRect | null>(null)
 
   const noise = useMemo(() => noiseFor(certificate.id), [certificate.id])
@@ -96,46 +69,60 @@ export function CertificateDialog({
         width="680px"
         labelledBy="certificate-dialog-title"
       >
-        <div className="relative grid h-[clamp(170px,30vh,260px)] place-items-center overflow-hidden border-b border-line-soft bg-surface-raised">
-          <pre
-            aria-hidden
-            className="pointer-events-none absolute inset-0 m-0 select-none overflow-hidden whitespace-pre-wrap break-all px-[18px] py-3.5 text-xs leading-[1.5] text-[#262822]"
-          >
-            {noise}
-          </pre>
-
+        <div
+          className={cn(
+            'relative grid place-items-center overflow-hidden border-b border-line-soft bg-surface-raised',
+            image ? 'max-h-[60vh]' : 'h-[clamp(170px,30vh,260px)]',
+          )}
+          // The hero takes the scan's own proportions, so it fills edge to
+          // edge uncropped; only on short viewports does the cap trim it.
+          style={image ? { aspectRatio: certificate.imageAspect ?? FALLBACK_ASPECT } : undefined}
+        >
           {image ? (
             <button
               type="button"
               onClick={(event) =>
-                setZoomOrigin(
-                  containedRect(
-                    event.currentTarget.getBoundingClientRect(),
-                    parseAspect(certificate.imageAspect),
-                  ),
-                )
+                setZoomOrigin(event.currentTarget.getBoundingClientRect())
               }
               aria-label={copy.enlarge}
-              className="relative h-full w-full cursor-zoom-in"
+              className="group absolute inset-0 cursor-zoom-in"
             >
               <Image
                 src={image}
                 alt={certificate.name[locale]}
                 fill
-                sizes="680px"
-                className="object-contain p-7 drop-shadow-[0_10px_30px_rgba(0,0,0,0.45)]"
+                sizes="(width >= 40rem) 680px, 100vw"
+                className="object-cover transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:scale-[1.02]"
               />
             </button>
           ) : (
-            /* eslint-disable-next-line @next/next/no-img-element --
-               Local SVG: the optimizer has nothing to do with a 1 kB
-               vector, and would only add a request through /_next/image. */
-            <img
-              src={certificate.icon}
-              alt=""
-              aria-hidden
-              className="relative block h-24 w-24"
-            />
+            <>
+              <pre
+                aria-hidden
+                className="pointer-events-none absolute inset-0 m-0 select-none overflow-hidden whitespace-pre-wrap break-all px-[18px] py-3.5 text-xs leading-[1.5] text-[#262822]"
+              >
+                {noise}
+              </pre>
+              {certificate.logo ? (
+                <Image
+                  src={certificate.logo}
+                  alt={certificate.issuer}
+                  width={614}
+                  height={499}
+                  className="relative h-[clamp(120px,21vh,185px)] w-auto rounded-xl shadow-float"
+                />
+              ) : (
+                /* eslint-disable-next-line @next/next/no-img-element --
+                   Local SVG: the optimizer has nothing to do with a 1 kB
+                   vector, and would only add a request through /_next/image. */
+                <img
+                  src={certificate.icon}
+                  alt=""
+                  aria-hidden
+                  className="relative block h-24 w-24"
+                />
+              )}
+            </>
           )}
 
           <span className="absolute right-0 top-0 rounded-bl-[10px] bg-accent px-4 py-2.5 text-[13px] font-bold text-ink">

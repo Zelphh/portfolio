@@ -4,7 +4,7 @@ export const SITE = {
   email: 'matheus.tartari@gmail.com',
   /** Absolute origin, used for canonical URLs and Open Graph tags. */
   url: 'https://zelph.dev',
-  location: 'joinville — sc',
+  location: 'Joinville — SC',
   startYear: 2026,
 } as const
 
