@@ -48,7 +48,7 @@ jobs:
       # run page and ready for whichever host the domain ends up pointing at.
       - name: Upload static site
         if: github.event_name == 'push'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: site
           path: out
