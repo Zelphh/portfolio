@@ -161,6 +161,12 @@ export interface Dictionary {
     location: string
   }
 
+  notFound: {
+    title: string
+    message: string
+    back: string
+  }
+
   a11y: {
     /** `{language}` */
     switchLanguage: string

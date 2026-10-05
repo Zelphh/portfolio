@@ -21,6 +21,10 @@ const baseConfig: NextConfig = {
   // Trim the client bundle: only the icons actually imported get emitted.
   experimental: {
     optimizePackageImports: ['react', 'react-dom'],
+    // The only root layouts live under `[locale]`, so a plain `not-found`
+    // has no layout to render in. This one brings its own <html> and is
+    // exported as `404.html`, which static hosts serve for unknown paths.
+    globalNotFound: true,
   },
 
   // Every asset is local, so this only ever served our own SVGs — none of

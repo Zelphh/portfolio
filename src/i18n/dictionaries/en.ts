@@ -187,6 +187,12 @@ export const en: Dictionary = {
     location: 'Joinville — SC',
   },
 
+  notFound: {
+    title: 'Page not found',
+    message: "This page doesn't exist — or it's hiding under the papers.",
+    back: '[ Back to the start ]',
+  },
+
   a11y: {
     switchLanguage: 'Switch language to {language}',
     bonfire: 'Animated ASCII art bonfire',

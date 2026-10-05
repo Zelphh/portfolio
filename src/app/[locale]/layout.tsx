@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import { Archivo, JetBrains_Mono } from 'next/font/google'
 import { SITE } from '@/content/site'
 import { getDictionary } from '@/i18n'
 import { LOCALES, toLocale, type Locale } from '@/i18n/config'
+import { display, mono } from '../fonts'
 import '../globals.css'
 
 /**
@@ -15,20 +15,6 @@ export const dynamicParams = false
 export function generateStaticParams() {
   return LOCALES.map((locale) => ({ locale }))
 }
-
-const display = Archivo({
-  subsets: ['latin'],
-  weight: ['600', '800'],
-  variable: '--font-archivo',
-  display: 'swap',
-})
-
-const mono = JetBrains_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'],
-  variable: '--font-jetbrains-mono',
-  display: 'swap',
-})
 
 interface LocaleParams {
   params: Promise<{ locale: string }>

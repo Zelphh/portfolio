@@ -189,6 +189,12 @@ export const pt: Dictionary = {
     location: 'Joinville — SC',
   },
 
+  notFound: {
+    title: 'Página não encontrada',
+    message: 'Essa página não existe.',
+    back: '[ Voltar ao início ]',
+  },
+
   a11y: {
     switchLanguage: 'Mudar idioma para {language}',
     bonfire: 'Fogueira em arte ASCII animada',
