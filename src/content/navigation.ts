@@ -4,9 +4,11 @@
  */
 export const SECTION_IDS = [
   'sobre',
+  'experiencia',
   'skills',
   'projetos',
   'certificados',
+  'agora',
   'contato',
 ] as const
 

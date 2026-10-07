@@ -5,6 +5,8 @@ export const SITE = {
   /** Absolute origin, used for canonical URLs and Open Graph tags. */
   url: 'https://zelph.dev',
   location: 'Joinville — SC',
+  /** GitHub username, for the contribution graph. */
+  github: 'Zelphh',
   startYear: 2026,
 } as const
 

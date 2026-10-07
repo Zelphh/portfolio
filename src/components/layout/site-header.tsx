@@ -26,7 +26,7 @@ interface TabRect {
  *
  * The highlight is a single absolutely-positioned box animated with
  * `transform` and `width`, rather than a border on each link — one composited
- * element instead of five that restyle on every hover.
+ * element instead of one per tab restyling on every hover.
  */
 export function SiteHeader({
   locale,
@@ -87,7 +87,7 @@ export function SiteHeader({
       <nav
         ref={navRef}
         onMouseLeave={() => setHovered(null)}
-        className="relative hidden gap-1.5 text-[13px] md:flex"
+        className="relative hidden gap-0.5 text-[13px] lg:flex xl:gap-1.5"
       >
         <span
           aria-hidden
@@ -111,11 +111,15 @@ export function SiteHeader({
               scrollTo(id)
             }}
             className={cn(
-              'relative z-[1] rounded-2xl px-3 py-[7px] transition-colors duration-200',
+              'relative z-[1] whitespace-nowrap rounded-2xl px-2.5 py-[7px] transition-colors duration-200 xl:px-3',
               index === shown ? 'text-accent' : 'text-fg-subtle',
             )}
           >
-            [ {labels[id]} ]
+            {/* Seven tabs only fit with their brackets on wide screens;
+                below that they drop them rather than wrap. */}
+            <span aria-hidden className="hidden xl:inline">[ </span>
+            {labels[id]}
+            <span aria-hidden className="hidden xl:inline"> ]</span>
           </a>
         ))}
       </nav>

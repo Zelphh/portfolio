@@ -35,6 +35,32 @@ export interface Dictionary {
     timelineLabel: string
   }
 
+  experience: {
+    /** Pill on the job held right now. */
+    current: string
+  }
+
+  now: {
+    /** Standfirst under the section heading. */
+    intro: string
+    /** `{date}` */
+    updated: string
+    githubTitle: string
+    githubLink: string
+    /** `{date}` — the last day on the calendar. */
+    range: string
+    total: string
+    activeDays: string
+    longestStreak: string
+    /** Unit after the streak, picked with `Intl.PluralRules`. */
+    days: Readonly<{ one: string; other: string }>
+    /** Ends of the colour legend. */
+    less: string
+    more: string
+    /** Hover text on a day. `{count}`, `{date}` */
+    dayTitle: string
+  }
+
   skills: {
     tierPro: string
     tierProDescription: string
@@ -119,6 +145,9 @@ export interface Dictionary {
     certsTitle: string
     certsHint: string
     timelineTitle: string
+    nowTitle: string
+    /** `{date}` */
+    nowUpdated: string
     contactTitle: string
     /** `{name}` */
     opening: string
@@ -133,6 +162,7 @@ export interface Dictionary {
     cvUnavailable: string
     /** `{section}` */
     goingTo: string
+    /** `{sections}` */
     unknownSection: string
     /** `{locale}` */
     langCurrent: string
@@ -173,6 +203,8 @@ export interface Dictionary {
     bonfire: string
     grass: string
     timeline: string
+    /** `{total}` */
+    contributions: string
     /** `{name}` */
     logo: string
     skipToContent: string

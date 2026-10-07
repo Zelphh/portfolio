@@ -10,9 +10,11 @@ export const pt: Dictionary = {
 
   nav: {
     sobre: 'Sobre',
+    experiencia: 'Experiência',
     skills: 'Skills',
     projetos: 'Projetos',
     certificados: 'Estudos',
+    agora: 'Agora',
     contato: 'Contato',
   },
 
@@ -31,9 +33,11 @@ export const pt: Dictionary = {
 
   sections: {
     sobre: 'Sobre',
+    experiencia: 'Experiência',
     skills: 'Skills',
     projetos: 'Projetos',
     certificados: 'Estudos',
+    agora: 'Agora',
     contato: 'Contato',
   },
 
@@ -44,6 +48,26 @@ export const pt: Dictionary = {
       'Gosto de compartilhar experiências e conhecimentos, sinta-se à vontade para entrar em contato.',
     ],
     timelineLabel: 'TRAJETÓRIA',
+  },
+
+  experience: {
+    current: 'Atual',
+  },
+
+  now: {
+    intro:
+      'O que está na mesa este mês. Muda com frequência, então a data ao lado diz o quão fresco isso está.',
+    updated: 'Atualizado em {date}',
+    githubTitle: 'Atividade no GitHub',
+    githubLink: '[ Ver perfil ]',
+    range: 'Último ano, até {date}',
+    total: 'Contribuições',
+    activeDays: 'Dias ativos',
+    longestStreak: 'Maior sequência',
+    days: { one: 'dia', other: 'dias' },
+    less: 'Menos',
+    more: 'Mais',
+    dayTitle: '{date} · {count}',
   },
 
   skills: {
@@ -112,6 +136,7 @@ export const pt: Dictionary = {
       certs: 'Lista os estudos e certificados',
       cert: 'Abre um certificado',
       timeline: 'A carreira até aqui',
+      now: 'O que estou fazendo agora',
       contact: 'Canais de contato',
       copy: 'Copia um contato',
       cv: 'Baixa o currículo',
@@ -146,6 +171,8 @@ export const pt: Dictionary = {
     certsTitle: 'Estudos',
     certsHint: 'Use `cert <id>` ou `cert <n>` para abrir.',
     timelineTitle: 'Carreira',
+    nowTitle: 'Agora',
+    nowUpdated: 'Atualizado em {date}',
     contactTitle: 'Contato',
     opening: 'Abrindo {name}...',
     unknownProject: 'Projeto desconhecido. Rode `projects` para ver a lista.',
@@ -158,8 +185,7 @@ export const pt: Dictionary = {
     cvUnavailable:
       'Currículo ainda não publicado. Peça a versão atual em matheus.tartari@gmail.com',
     goingTo: 'Indo para #{section}...',
-    unknownSection:
-      'Seção desconhecida. Use: sobre, skills, projetos, certificados, contato',
+    unknownSection: 'Seção desconhecida. Use: {sections}',
     langCurrent: 'Idioma atual: {locale}',
     langUsage: 'Uso: lang <id> — disponíveis: {locales}',
     langAlready: 'O site já está nesse idioma.',
@@ -200,6 +226,7 @@ export const pt: Dictionary = {
     bonfire: 'Fogueira em arte ASCII animada',
     grass: 'Grama e árvore em arte ASCII animada',
     timeline: 'Trajetória profissional em arte ASCII',
+    contributions: '{total} contribuições no GitHub no último ano',
     logo: 'Logo do {name} em ASCII 3D',
     skipToContent: 'Pular para o conteúdo',
   },

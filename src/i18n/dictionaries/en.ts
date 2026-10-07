@@ -10,9 +10,11 @@ export const en: Dictionary = {
 
   nav: {
     sobre: 'About',
+    experiencia: 'Experience',
     skills: 'Skills',
     projetos: 'Projects',
     certificados: 'Studies',
+    agora: 'Now',
     contato: 'Contact',
   },
 
@@ -31,9 +33,11 @@ export const en: Dictionary = {
 
   sections: {
     sobre: 'About',
+    experiencia: 'Experience',
     skills: 'Skills',
     projetos: 'Projects',
     certificados: 'Studies',
+    agora: 'Now',
     contato: 'Contact',
   },
 
@@ -44,6 +48,26 @@ export const en: Dictionary = {
       'This site is a bonfire. A place to leave a record before moving on.',
     ],
     timelineLabel: 'TIMELINE',
+  },
+
+  experience: {
+    current: 'Current',
+  },
+
+  now: {
+    intro:
+      "What's on the desk this month. It changes often, so the date beside it says how fresh this is.",
+    updated: 'Updated {date}',
+    githubTitle: 'GitHub activity',
+    githubLink: '[ See profile ]',
+    range: 'Last year, up to {date}',
+    total: 'Contributions',
+    activeDays: 'Active days',
+    longestStreak: 'Longest streak',
+    days: { one: 'day', other: 'days' },
+    less: 'Less',
+    more: 'More',
+    dayTitle: '{date} · {count}',
   },
 
   skills: {
@@ -112,6 +136,7 @@ export const en: Dictionary = {
       certs: 'List the studies and certificates',
       cert: 'Open a certificate',
       timeline: 'The career so far',
+      now: "What I'm doing now",
       contact: 'Contact channels',
       copy: 'Copy a contact',
       cv: 'Download the resume',
@@ -146,6 +171,8 @@ export const en: Dictionary = {
     certsTitle: 'Studies',
     certsHint: 'Run `cert <id>` or `cert <n>` to open it.',
     timelineTitle: 'Career',
+    nowTitle: 'Now',
+    nowUpdated: 'Updated {date}',
     contactTitle: 'Contact',
     opening: 'Opening {name}...',
     unknownProject: 'Unknown project. Run `projects` for the list.',
@@ -157,8 +184,7 @@ export const en: Dictionary = {
     cvUnavailable:
       'Resume not published yet. Ask for the current version at matheus.tartari@gmail.com',
     goingTo: 'Going to #{section}...',
-    unknownSection:
-      'Unknown section. Use: sobre, skills, projetos, certificados, contato',
+    unknownSection: 'Unknown section. Use: {sections}',
     langCurrent: 'Current language: {locale}',
     langUsage: 'Usage: lang <id> — available: {locales}',
     langAlready: 'The site is already in that language.',
@@ -198,6 +224,7 @@ export const en: Dictionary = {
     bonfire: 'Animated ASCII art bonfire',
     grass: 'Animated ASCII art grass and tree',
     timeline: 'Career timeline in ASCII art',
+    contributions: '{total} GitHub contributions in the last year',
     logo: '{name} logo in 3D ASCII',
     skipToContent: 'Skip to content',
   },

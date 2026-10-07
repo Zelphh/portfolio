@@ -37,7 +37,9 @@ src/
 │   └── widgets/              Dock flutuante: console + ações rápidas
 │
 ├── content/                  Dados do portfólio, bilíngues e tipados
-│   ├── skills.ts  projects.ts  certificates.ts  contacts.ts  timeline.ts
+│   ├── skills.ts  projects.ts  certificates.ts  contacts.ts
+│   ├── experience.ts         Empregos — dono das datas; `timeline.ts` deriva daqui
+│   ├── now.ts                Página "agora": o que está na mesa no mês
 │   ├── navigation.ts         Ids de seção (âncora, nav e comando `goto`)
 │   ├── site.ts               Identidade e URLs
 │   └── types.ts
@@ -46,7 +48,7 @@ src/
 ├── i18n/                     Config, dicionários pt/en e o contrato `Dictionary`
 ├── lib/
 │   ├── ascii/                Motores de renderização ASCII (puros, sem DOM)
-│   ├── contributions.ts      Heatmap de commits, determinístico
+│   ├── github.ts             Calendário de contribuições, lido no build
 │   ├── terminal.ts           Registro de comandos do console
 │   └── utils.ts
 └── middleware.ts             `/` → idioma preferido
@@ -58,6 +60,7 @@ src/
 | --- | --- |
 | Textos da interface | `src/i18n/dictionaries/{pt,en}.ts` |
 | Projetos, skills, certificados, contatos | `src/content/*.ts` |
+| Experiência e a seção "Agora" | `src/content/experience.ts`, `src/content/now.ts` |
 | Cores, fontes, easing | `src/app/globals.css` (bloco `@theme`) |
 | Comandos do console | `src/lib/terminal.ts` |
 | Nome, e-mail, domínio | `src/content/site.ts` |
@@ -65,13 +68,13 @@ src/
 ## Decisões de performance
 
 **Server Components por padrão.** Só o que tem estado é cliente: header, wheel de skills,
-carrossel de projetos, pilha de certificados e o dock. Hero, sobre, contato e o heatmap
-saem prontos do servidor.
+carrossel de projetos, pilha de certificados e o dock. Hero, sobre, experiência, agora (com
+o heatmap) e contato saem prontos do servidor.
 
-**O heatmap não custa JavaScript.** As 371 células vêm de um gerador com seed e data de
-referência fixas, então o resultado é idêntico em qualquer build e em qualquer fuso — o que
-permite calcular tudo em build time e enviar HTML puro. Trocar pela API real do GitHub é
-substituir uma função em `src/lib/contributions.ts`.
+**O heatmap não custa JavaScript.** O calendário de contribuições é lido do GitHub no build
+(`src/lib/github.ts`, a partir do fragmento HTML público do perfil — sem token) e sai como
+HTML puro. Como o site é exportado estático, o gráfico é tão recente quanto o último build;
+se o GitHub não responder, a seção sai sem o gráfico em vez de quebrar o build.
 
 **Animação nunca passa pelo React.** Os frames ASCII são escritos direto em `innerHTML` via
 ref, e o Tetris desenha no canvas dentro de um único efeito. Reconciliar milhares de nós 30

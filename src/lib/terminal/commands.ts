@@ -1,6 +1,7 @@
 import { CERTIFICATES } from '@/content/certificates'
 import { CONTACTS } from '@/content/contacts'
 import { isSectionId, SECTION_IDS } from '@/content/navigation'
+import { NOW, NOW_UPDATED } from '@/content/now'
 import { PROJECTS } from '@/content/projects'
 import { SITE } from '@/content/site'
 import { TIMELINE } from '@/content/timeline'
@@ -237,6 +238,26 @@ const timeline: Command = {
   },
 }
 
+const now: Command = {
+  name: 'now',
+  aliases: ['agora'],
+  run: ({ t, locale }) => {
+    const width = Math.max(...NOW.map((entry) => entry.label[locale].length))
+
+    return {
+      stream: true,
+      lines: [
+        line(t.nowTitle, 'accent'),
+        ...NOW.map((entry) =>
+          line(`  ${entry.label[locale].padEnd(width)}  ${entry.text[locale]}`),
+        ),
+        line(''),
+        line(format(t.nowUpdated, { date: NOW_UPDATED[locale] })),
+      ],
+    }
+  },
+}
+
 const contact: Command = {
   name: 'contact',
   aliases: ['contato'],
@@ -289,7 +310,14 @@ const goto: Command = {
   run: ({ t, args }) => {
     const target = args[0] ?? ''
     if (!isSectionId(target)) {
-      return { lines: [line(t.unknownSection, 'error')] }
+      return {
+        lines: [
+          line(
+            format(t.unknownSection, { sections: SECTION_IDS.join(', ') }),
+            'error',
+          ),
+        ],
+      }
     }
 
     return {
@@ -427,6 +455,7 @@ export const COMMANDS: Readonly<Record<CommandName, Command>> = {
   certs,
   cert,
   timeline,
+  now,
   contact,
   copy,
   cv,

@@ -16,6 +16,7 @@ export const LISTED_COMMANDS = [
   'certs',
   'cert',
   'timeline',
+  'now',
   'contact',
   'copy',
   'cv',

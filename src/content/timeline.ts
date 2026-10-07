@@ -1,36 +1,20 @@
+import { EXPERIENCE } from './experience'
 import type { TimelineEntry } from './types'
 
+/**
+ * The about section's ASCII career tree: every job from `EXPERIENCE`, oldest
+ * first, then the open-ended invitation that closes it. Dates live in
+ * `experience.ts`; this only reshapes them.
+ */
 export const TIMELINE: readonly TimelineEntry[] = [
-  {
-    company: 'Ambev',
-    role: { pt: 'Jovem aprendiz', en: 'Young apprentice' },
-    period: {
-      start: { pt: 'Jul 2024', en: 'Jul 2024' },
-      end: { pt: 'Set 2025', en: 'Sep 2025' },
-    },
-    current: false,
-  },
-  {
-    company: 'HSP Software',
-    role: { pt: 'Estagiário full stack', en: 'Full stack internship' },
-    period: {
-      start: { pt: 'Set 2025', en: 'Sep 2025' },
-      end: { pt: 'Jun 2026', en: 'Jun 2026' },
-    },
-    current: false,
-  },
-  {
-    company: 'HSP Software',
-    role: {
-      pt: 'Desenvolvedor full stack jr.',
-      en: 'Junior full stack developer',
-    },
-    period: {
-      start: { pt: 'Jul 2026', en: 'Jul 2026' },
-      end: { pt: 'Atualmente', en: 'Present' },
-    },
-    current: false,
-  },
+  ...[...EXPERIENCE].reverse().map(
+    ({ company, role, period }): TimelineEntry => ({
+      company,
+      role,
+      period,
+      current: false,
+    }),
+  ),
   {
     company: null,
     role: {

@@ -111,6 +111,29 @@ export interface ContactChannel {
   readonly url: string
 }
 
+export interface ExperienceEntry {
+  readonly id: string
+  readonly company: string
+  readonly role: Localized<string>
+  readonly period: {
+    readonly start: Localized<string>
+    readonly end: Localized<string>
+  }
+  /** The job held right now, drawn with the accent and a "current" pill. */
+  readonly current: boolean
+  /** What the job actually involved. Empty where there is nothing to add. */
+  readonly highlights: Localized<readonly string[]>
+  /** Tools used there, drawn as pills under the highlights. */
+  readonly stack: readonly string[]
+}
+
+/** One line of the "now" page: what kind of thing, and what it is. */
+export interface NowEntry {
+  readonly id: string
+  readonly label: Localized<string>
+  readonly text: Localized<string>
+}
+
 export interface TimelineEntry {
   readonly company: string | null
   readonly role: Localized<string>
