@@ -19,15 +19,22 @@ export const pt: Dictionary = {
   },
 
   hero: {
-    welcome: '~/ bem-vindo',
+    welcome: '~/ bem vindo',
     greetings: {
       morning: 'Bom dia,',
       afternoon: 'Boa tarde,',
       evening: 'Boa noite,',
     },
-    line2: 'viajante!',
+    epithets: [
+      'viajante',
+      'curioso',
+      'pessoa',
+      // 'visitante',
+      'amigo?',
+      'fera',
+    ],
     paragraph:
-      'Bem-vindo ao meu cantinho. Aqui eu compartilho o que construo, o que ando aprendendo e quaisquer outras coisas que eu ache interessante.',
+      'Bem vindo ao meu site. Aqui eu compartilho o que construo, o que ando aprendendo e quaisquer outras coisas que eu ache interessante.',
     scroll: 'Sinta-se à vontade',
   },
 
@@ -43,11 +50,10 @@ export const pt: Dictionary = {
 
   about: {
     paragraphs: [
-      'Sou desenvolvedor fullstack, mexo principalmente com programação web, backend em Node, front em React e banco em Postgres (Não MySQL 🤢). Ultimamente venho aprendendo Rust por curiosidade e demandas relacionadas no trabalho.',
+      'Sou desenvolvedor fullstack, mexo principalmente com programação web, backend em Node, front em React e banco em Postgres. Ultimamente venho aprendendo Rust por curiosidade e demandas relacionadas no trabalho.',
       'Minha base na programação foi fundada antes da atual era da IA, então não, não sou dependente de IA para criar código, mas, atualmente uso CLI (Claude) no trabalho para desenvolver projetos.',
       'Gosto de compartilhar experiências e conhecimentos, sinta-se à vontade para entrar em contato.',
     ],
-    timelineLabel: 'TRAJETÓRIA',
   },
 
   experience: {
@@ -92,7 +98,7 @@ export const pt: Dictionary = {
 
   certificates: {
     intro:
-      'A base formal, os cursos que valeram e o que eu estudo por conta. Clica em qualquer um pra ver o que ficou.',
+      'A base formal e os cursos que realmente valeram o tempo gasto.',
     kinds: {
       degree: 'Graduação',
       course: 'Curso',
@@ -225,7 +231,6 @@ export const pt: Dictionary = {
     switchLanguage: 'Mudar idioma para {language}',
     bonfire: 'Fogueira em arte ASCII animada',
     grass: 'Grama e árvore em arte ASCII animada',
-    timeline: 'Trajetória profissional em arte ASCII',
     contributions: '{total} contribuições no GitHub no último ano',
     logo: 'Logo do {name} em ASCII 3D',
     skipToContent: 'Pular para o conteúdo',

@@ -3,7 +3,7 @@ import { SiteHeader } from '@/components/layout/site-header'
 import { AboutSection } from '@/components/sections/about-section'
 import { CertificatesSection } from '@/components/sections/certificates/certificates-section'
 import { ContactSection } from '@/components/sections/contact-section'
-import { ExperienceSection } from '@/components/sections/experience-section'
+import { ExperienceLog } from '@/components/sections/experience-section'
 import { HeroSection } from '@/components/sections/hero-section'
 import { NowSection } from '@/components/sections/now/now-section'
 import { ProjectsSection } from '@/components/sections/projects/projects-section'
@@ -51,18 +51,16 @@ export default async function HomePage({ params }: PageProps) {
           <HeroSection copy={dictionary.hero} bonfireLabel={a11y.bonfire} />
 
           <AboutSection
-            locale={locale}
             copy={dictionary.about}
             label={sections.sobre}
-            timelineLabel={a11y.timeline}
             grassLabel={a11y.grass}
-          />
-
-          <ExperienceSection
-            locale={locale}
-            label={sections.experiencia}
-            copy={dictionary.experience}
-          />
+          >
+            <ExperienceLog
+              locale={locale}
+              label={sections.experiencia}
+              copy={dictionary.experience}
+            />
+          </AboutSection>
 
           <SkillsSection
             locale={locale}

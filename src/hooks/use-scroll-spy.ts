@@ -21,6 +21,8 @@ const SHRINK_AFTER = 40
  * Deliberately a scroll listener rather than an IntersectionObserver: the
  * rule here is "the last section whose top has passed the threshold", which
  * an observer expresses awkwardly once sections are taller than the viewport.
+ * Sections that share a top — sobre and experiencia sit side by side on wide
+ * screens — resolve to the first of them, so the spy never skips one.
  * Reads are batched into one rAF so a fast scroll never forces layout twice
  * in a frame.
  */
@@ -33,11 +35,13 @@ export function useScrollSpy(): ScrollState {
     const measure = () => {
       queued = false
       let active: SectionId = SECTION_IDS[0]
+      let activeTop = -Infinity
 
       for (const id of SECTION_IDS) {
-        const element = document.getElementById(id)
-        if (element && element.getBoundingClientRect().top <= ACTIVE_THRESHOLD) {
+        const top = document.getElementById(id)?.getBoundingClientRect().top
+        if (top !== undefined && top <= ACTIVE_THRESHOLD && top > activeTop) {
           active = id
+          activeTop = top
         }
       }
 

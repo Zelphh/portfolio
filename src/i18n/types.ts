@@ -23,7 +23,8 @@ export interface Dictionary {
     welcome: string
     /** Keyed by time of day — read client-side from the visitor's own clock. */
     greetings: Readonly<{ morning: string; afternoon: string; evening: string }>
-    line2: string
+    /** Shown after the greeting one at a time, cycling in this exact order. */
+    epithets: readonly [string, ...string[]]
     paragraph: string
     scroll: string
   }
@@ -32,7 +33,6 @@ export interface Dictionary {
 
   about: {
     paragraphs: readonly [string, string, string]
-    timelineLabel: string
   }
 
   experience: {
@@ -202,7 +202,6 @@ export interface Dictionary {
     switchLanguage: string
     bonfire: string
     grass: string
-    timeline: string
     /** `{total}` */
     contributions: string
     /** `{name}` */

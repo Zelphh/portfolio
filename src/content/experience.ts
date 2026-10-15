@@ -1,9 +1,9 @@
 import type { ExperienceEntry } from './types'
 
 /**
- * Work history, newest first. The single owner of these dates: the ASCII
- * timeline in the about section is derived from this list, so a new job is
- * added here and nowhere else.
+ * Work history, newest first. The single owner of these dates: the
+ * terminal `timeline` is derived from this list, so a new job is added here
+ * and nowhere else.
  */
 export const EXPERIENCE: readonly ExperienceEntry[] = [
   {

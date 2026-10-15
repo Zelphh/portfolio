@@ -25,7 +25,15 @@ export const en: Dictionary = {
       afternoon: 'Good afternoon,',
       evening: 'Good evening,',
     },
-    line2: 'traveler!',
+    epithets: [
+      'traveler',
+      'curious one',
+      'person',
+      'wanderer',
+      'visitor',
+      'nomad',
+      'friend',
+    ],
     paragraph:
       "Sit by the fire for a bit. This is where I keep what I build, what I'm learning and the random things I think are too good to die in an open tab.",
     scroll: 'Scroll down',
@@ -47,7 +55,6 @@ export const en: Dictionary = {
       'I like small things done well: a CLI that solves exactly one problem, a terminal configured the right way, ASCII art where no ASCII art was required.',
       'This site is a bonfire. A place to leave a record before moving on.',
     ],
-    timelineLabel: 'TIMELINE',
   },
 
   experience: {
@@ -223,7 +230,6 @@ export const en: Dictionary = {
     switchLanguage: 'Switch language to {language}',
     bonfire: 'Animated ASCII art bonfire',
     grass: 'Animated ASCII art grass and tree',
-    timeline: 'Career timeline in ASCII art',
     contributions: '{total} GitHub contributions in the last year',
     logo: '{name} logo in 3D ASCII',
     skipToContent: 'Skip to content',

@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { BonfireArt } from '@/components/ascii'
 import type { Dictionary } from '@/i18n/types'
 import { HeroGreeting } from './hero-greeting'
@@ -5,24 +6,6 @@ import { HeroGreeting } from './hero-greeting'
 interface HeroSectionProps {
   copy: Dictionary['hero']
   bonfireLabel: string
-}
-
-/** Generic head-and-shoulders mark for the not-yet-filled-in photo spot. */
-function PersonIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.4"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-    >
-      <circle cx="12" cy="8.2" r="3.4" />
-      <path d="M5.5 19.5c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" />
-    </svg>
-  )
 }
 
 /**
@@ -38,16 +21,22 @@ export function HeroSection({ copy, bonfireLabel }: HeroSectionProps) {
         </p>
 
         <h1 className="m-0 text-balance font-display text-[clamp(60px,9.6vw,168px)] font-extrabold leading-[0.9] tracking-[-0.035em] text-fg">
-          <HeroGreeting greetings={copy.greetings} line2={copy.line2} />
+          <HeroGreeting
+            greetings={copy.greetings}
+            epithets={copy.epithets}
+          />
         </h1>
 
-        <div className="mt-6 flex items-start gap-3">
-          <div
-            aria-hidden
-            className="grid h-20 w-20 flex-none place-items-center rounded-full border border-dashed border-line-strong text-fg-fainter"
-          >
-            <PersonIcon className="h-8 w-8" />
-          </div>
+        <div className="mt-15 flex items-start gap-3">
+          {/* Decorative: the speech bubble beside it already says who this is. */}
+          <Image
+            src="/hero/me.jpg"
+            alt=""
+            width={240}
+            height={240}
+            priority
+            className="h-20 w-20 flex-none rounded-full border border-line-strong object-cover"
+          />
 
           <p className="relative max-w-[44ch] rounded-[14px] border border-line-strong bg-surface px-4 py-3 text-[17px] leading-[1.6] text-fg-dim">
             <span
@@ -58,7 +47,7 @@ export function HeroSection({ copy, bonfireLabel }: HeroSectionProps) {
           </p>
         </div>
 
-        <p className="mt-6 flex items-center gap-3.5 text-sm text-fg-fainter">
+        <p className="mt-15 flex items-center gap-3.5 text-sm text-fg-fainter">
           <span className="text-accent">&gt;</span>
           <span>{copy.scroll}</span>
           <span

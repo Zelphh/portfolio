@@ -10,7 +10,10 @@ interface ProjectCoverProps {
   alt: string
   /** Word drawn in the frame while a project has no artwork yet. */
   placeholder: string
-  /** Videos mount and play only while the cover is on screen at all. */
+  /**
+   * Whether the cover's slot is in view within its carousel. Videos also wait
+   * for the frame to reach the browser viewport before mounting and playing.
+   */
   active: boolean
   /**
    * Sizes the frame. Use box classes, not positioning ones: the frame owns
@@ -28,9 +31,10 @@ interface ProjectCoverProps {
  * screenshots of dense UIs, where losing an edge costs more than the letterbox
  * bars do.
  *
- * Video covers are deliberately lazy: the element mounts on first activation
- * and stays mounted afterwards, so a card scrolled out and back into the
- * carousel resumes instead of refetching the file. They keep playing while
+ * Video covers are deliberately lazy: the element mounts the first time the
+ * cover is both active and on screen, and stays mounted afterwards, so a card
+ * scrolled out and back in (carousel or page) resumes instead of refetching
+ * the file. They keep playing while
  * merely off-centre, since a carousel of stills that only animates on the
  * focused card reads as broken rather than as restraint.
  */
@@ -41,12 +45,30 @@ export function ProjectCover({
   active,
   className,
 }: ProjectCoverProps) {
+  const frameRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
-  const [armed, setArmed] = useState(active)
+  const [onScreen, setOnScreen] = useState(false)
+  const [armed, setArmed] = useState(false)
+  const isVideo = cover?.kind === 'video'
+  const playing = active && onScreen
 
   useEffect(() => {
-    if (active) setArmed(true)
-  }, [active])
+    const frame = frameRef.current
+    if (!isVideo || !frame) return
+
+    // The margin arms the video a little before it scrolls in, so it shows
+    // its first frame on arrival instead of a black box.
+    const observer = new IntersectionObserver(
+      ([entry]) => setOnScreen(entry?.isIntersecting ?? false),
+      { rootMargin: '200px 0px' },
+    )
+    observer.observe(frame)
+    return () => observer.disconnect()
+  }, [isVideo])
+
+  useEffect(() => {
+    if (playing) setArmed(true)
+  }, [playing])
 
   useEffect(() => {
     const video = videoRef.current
@@ -56,14 +78,14 @@ export function ProjectCover({
       '(prefers-reduced-motion: reduce)',
     ).matches
 
-    if (active && !reduceMotion) {
+    if (playing && !reduceMotion) {
       // Autoplay can still be refused (a battery-saver tab, say); the frame
       // then simply holds on its first frame.
       void video.play().catch(() => {})
     } else {
       video.pause()
     }
-  }, [active, armed])
+  }, [playing, armed])
 
   if (!cover) {
     return (
@@ -81,7 +103,10 @@ export function ProjectCover({
   const frame = cover.kind === 'logo' ? 'p-10' : 'bg-ink'
 
   return (
-    <div className={`relative overflow-hidden ${frame} ${className ?? ''}`}>
+    <div
+      ref={frameRef}
+      className={`relative overflow-hidden ${frame} ${className ?? ''}`}
+    >
       {cover.kind === 'video' ? (
         armed && (
           <video

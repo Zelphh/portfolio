@@ -1,10 +1,17 @@
 import { EXPERIENCE } from './experience'
+import type { Localized } from '@/i18n/config'
 import type { TimelineEntry } from './types'
 
+/** The open-ended line that closes the career tree, on the page and in the terminal. */
+export const NEXT_STEP: Localized<string> = {
+  pt: 'O próximo passo é com você? 👀',
+  en: 'The next step is up to you? 👀',
+}
+
 /**
- * The about section's ASCII career tree: every job from `EXPERIENCE`, oldest
- * first, then the open-ended invitation that closes it. Dates live in
- * `experience.ts`; this only reshapes them.
+ * The terminal `timeline`: every job from `EXPERIENCE`, oldest first, then
+ * the invitation that closes it. Dates live in `experience.ts`; this only
+ * reshapes them.
  */
 export const TIMELINE: readonly TimelineEntry[] = [
   ...[...EXPERIENCE].reverse().map(
@@ -17,10 +24,7 @@ export const TIMELINE: readonly TimelineEntry[] = [
   ),
   {
     company: null,
-    role: {
-      pt: 'O próximo passo é com você? 👀',
-      en: 'The next step is up to you? 👀',
-    },
+    role: NEXT_STEP,
     period: null,
     current: true,
   },

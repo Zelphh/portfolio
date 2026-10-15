@@ -22,11 +22,6 @@ export const GrassArt = dynamic(
   { ssr: false },
 )
 
-export const TimelineArt = dynamic(
-  () => import('./timeline-art').then((m) => m.TimelineArt),
-  { ssr: false },
-)
-
 export const LogoArt = dynamic(
   () => import('./logo-art').then((m) => m.LogoArt),
   { ssr: false },

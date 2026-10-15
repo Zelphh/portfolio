@@ -38,7 +38,7 @@ export function NowSection({
         <SectionHeading label={label} className="mb-[18px]" />
 
         <div className="mb-10 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
-          <p className="max-w-[56ch] text-pretty text-sm leading-[1.8] text-fg-faint">
+          <p className="grow text-pretty text-sm leading-[1.8] text-fg-faint">
             {copy.intro}
           </p>
           <p className="text-[11px] uppercase tracking-[0.2em] text-moss-light">

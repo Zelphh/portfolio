@@ -60,7 +60,7 @@ export function CertificatesSection({
       <div className="mx-auto max-w-[1180px]">
         <SectionHeading label={label} className="mb-[18px]" />
 
-        <p className="mb-10 max-w-[56ch] text-pretty text-sm leading-[1.8] text-fg-faint">
+        <p className="mb-10 text-pretty text-sm leading-[1.8] text-fg-faint">
           {copy.intro}
         </p>
 
