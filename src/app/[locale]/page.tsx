@@ -54,6 +54,7 @@ export default async function HomePage({ params }: PageProps) {
             copy={dictionary.about}
             label={sections.sobre}
             grassLabel={a11y.grass}
+            coffeeLabel={a11y.coffee}
           >
             <ExperienceLog
               locale={locale}

@@ -230,6 +230,7 @@ export const en: Dictionary = {
     switchLanguage: 'Switch language to {language}',
     bonfire: 'Animated ASCII art bonfire',
     grass: 'Animated ASCII art grass and tree',
+    coffee: 'Animated ASCII art cup of coffee, its steam pushed by the cursor',
     contributions: '{total} GitHub contributions in the last year',
     logo: '{name} logo in 3D ASCII',
     skipToContent: 'Skip to content',

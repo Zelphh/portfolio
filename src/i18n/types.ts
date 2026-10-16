@@ -202,6 +202,7 @@ export interface Dictionary {
     switchLanguage: string
     bonfire: string
     grass: string
+    coffee: string
     /** `{total}` */
     contributions: string
     /** `{name}` */

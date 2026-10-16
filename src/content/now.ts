@@ -12,30 +12,54 @@ export const NOW: readonly NowEntry[] = [
   {
     id: 'work',
     label: { pt: 'Trabalhando', en: 'Working' },
+    icon: '/icons/briefcase.svg',
+    tags: [
+      { label: 'Node', icon: '/icons/nodejs.svg' },
+      { label: 'React', icon: '/icons/react.svg' },
+      { label: 'Postgres', icon: '/icons/postgresql.svg' },
+      { label: 'Docker', icon: '/icons/docker.svg' },
+      { label: 'Rust', icon: '/icons/rust.svg' },
+      { label: 'CI/CD' },
+    ],
     text: {
-      pt: 'Como desenvolvedor full stack jr. na HSP Software, com Node, React e Postgres, e cuidando de CI/CD e Docker no caminho.',
-      en: 'As a junior full stack developer at HSP Software, with Node, React and Postgres, and looking after CI/CD and Docker along the way.',
+      pt: 'Como desenvolvedor full stack jr. na HSP Software, com Node, React, Rust e Postgres, e cuidando de CI/CD e Docker no caminho.',
+      en: 'As a junior full stack developer at HSP Software, with Node, React, Rust and Postgres, and looking after CI/CD and Docker along the way.',
     },
   },
   {
     id: 'building',
     label: { pt: 'Construindo', en: 'Building' },
+    icon: '/icons/cube.svg',
+    tags: [
+      { label: 'WhatsRecap' },
+      { label: 'Embeddings' },
+      { label: 'RAG' },
+      { label: 'LLM' },
+    ],
     text: {
-      pt: 'A camada de IA do WhatsRecap: embeddings, RAG e um modelo de linguagem rodando local, sem nada sair da máquina.',
-      en: "WhatsRecap's AI layer: embeddings, RAG and a language model running locally, with nothing leaving the machine.",
+      pt: 'A camada de IA do WhatsRecap: embeddings, RAG e um modelo de linguagem rodando local, sem nada sair da minha máquina.',
+      en: "WhatsRecap's AI layer: embeddings, RAG and a language model running locally, with nothing leaving my machine.",
     },
   },
   {
     id: 'learning',
     label: { pt: 'Aprendendo', en: 'Learning' },
+    icon: '/icons/book.svg',
+    tags: [{ label: 'Rust', icon: '/icons/rust.svg' }],
     text: {
-      pt: 'Rust, por curiosidade e porque o trabalho começou a pedir.',
+      pt: 'Rust, por curiosidade e pelo engajamento que a linguagem está tendo nos últimoos tempos, acredito que ela possa ter um lugar importatne nno futuro da programação.',
       en: 'Rust, out of curiosity and because work started asking for it.',
     },
   },
   {
     id: 'studying',
     label: { pt: 'Estudando', en: 'Studying' },
+    icon: '/icons/graduation.svg',
+    tags: [
+      { label: 'UDESC' },
+      { label: 'ADS' },
+      { label: '2027' },
+    ],
     text: {
       pt: 'Análise e desenvolvimento de sistemas na UDESC, com formatura prevista para 2027.',
       en: 'Systems analysis and development at UDESC, due to graduate in 2027.',

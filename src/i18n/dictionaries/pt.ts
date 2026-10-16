@@ -231,6 +231,7 @@ export const pt: Dictionary = {
     switchLanguage: 'Mudar idioma para {language}',
     bonfire: 'Fogueira em arte ASCII animada',
     grass: 'Grama e árvore em arte ASCII animada',
+    coffee: 'Xícara de café em arte ASCII animada, com a fumaça empurrada pelo cursor',
     contributions: '{total} contribuições no GitHub no último ano',
     logo: 'Logo do {name} em ASCII 3D',
     skipToContent: 'Pular para o conteúdo',

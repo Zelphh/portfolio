@@ -127,11 +127,25 @@ export interface ExperienceEntry {
   readonly stack: readonly string[]
 }
 
+/**
+ * One pill on a "now" line. The mark is what the hover panel shows, so a
+ * tag without one is a word the icon set has nothing for — a practice, a
+ * year — and it stays a word there too.
+ */
+export interface NowTag {
+  readonly label: string
+  readonly icon?: string
+}
+
 /** One line of the "now" page: what kind of thing, and what it is. */
 export interface NowEntry {
   readonly id: string
   readonly label: Localized<string>
+  /** Line mark, drawn in the gutter so the rows read apart at a glance. */
+  readonly icon: string
   readonly text: Localized<string>
+  /** What the line is made of, drawn as pills beside the text. */
+  readonly tags: readonly NowTag[]
 }
 
 export interface TimelineEntry {

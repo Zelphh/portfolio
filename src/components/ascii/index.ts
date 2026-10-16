@@ -17,6 +17,11 @@ export const BonfireArt = dynamic(
   { ssr: false },
 )
 
+export const CoffeeArt = dynamic(
+  () => import('./coffee-art').then((m) => m.CoffeeArt),
+  { ssr: false },
+)
+
 export const GrassArt = dynamic(
   () => import('./grass-art').then((m) => m.GrassArt),
   { ssr: false },

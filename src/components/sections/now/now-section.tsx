@@ -1,10 +1,12 @@
 import { SectionHeading } from '@/components/ui/section-heading'
 import { NOW, NOW_UPDATED } from '@/content/now'
 import { SITE } from '@/content/site'
+import type { NowTag } from '@/content/types'
 import type { Locale } from '@/i18n/config'
 import { format } from '@/i18n/format'
 import type { Dictionary } from '@/i18n/types'
 import type { ContributionCalendar } from '@/lib/github'
+import { cn } from '@/lib/utils'
 import { ContributionGraph } from './contribution-graph'
 
 interface NowSectionProps {
@@ -46,18 +48,53 @@ export function NowSection({
           </p>
         </div>
 
-        <ul className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="grid gap-3.5">
           {NOW.map((entry) => (
             <li
               key={entry.id}
-              className="grid content-start gap-3 rounded-[15px] border border-line bg-surface p-6"
+              className="group relative grid grid-cols-[auto_1fr] items-center gap-x-5 gap-y-3.5 overflow-hidden rounded-[15px] border border-line bg-surface p-6 transition-colors duration-300 hover:border-accent-dim sm:grid-cols-[auto_150px_1fr] sm:gap-x-7"
             >
+              <span className="flex size-11 items-center justify-center rounded-xl border border-line-strong bg-surface-raised">
+                {/* eslint-disable-next-line @next/next/no-img-element --
+                    Local, already-minimal SVGs: the optimizer cannot improve
+                    a 1 kB vector and would only add a request through
+                    /_next/image. */}
+                <img
+                  src={entry.icon}
+                  alt=""
+                  aria-hidden
+                  width={22}
+                  height={22}
+                  loading="lazy"
+                  decoding="async"
+                  className="block size-[22px]"
+                />
+              </span>
+
               <span className="text-[10px] uppercase tracking-[0.22em] text-moss-light">
                 {entry.label[locale]}
               </span>
-              <p className="text-pretty text-sm leading-[1.8] text-fg-muted">
-                {entry.text[locale]}
-              </p>
+
+              {/* On narrow screens the icon and the label take the first row
+                  on their own and the copy drops under both of them. */}
+              <div className="relative col-span-2 grid gap-3 sm:col-span-1 sm:content-center sm:self-stretch">
+                <p className="text-pretty text-sm leading-[1.8] text-fg-muted">
+                  {entry.text[locale]}
+                </p>
+
+                <ul className="flex flex-wrap gap-2">
+                  {entry.tags.map((tag) => (
+                    <li
+                      key={tag.label}
+                      className="rounded-full border border-line-strong px-2.5 py-[5px] text-[11px] tracking-[0.12em] text-fg-subtle"
+                    >
+                      {tag.label}
+                    </li>
+                  ))}
+                </ul>
+
+                <TagPanel tags={entry.tags} />
+              </div>
             </li>
           ))}
         </ul>
@@ -96,5 +133,69 @@ export function NowSection({
         )}
       </div>
     </section>
+  )
+}
+
+/**
+ * The hover state: the accent eats the card from the right edge inward and
+ * leaves the tags behind as marks, so a glance at a hovered line reads as
+ * logos rather than prose.
+ *
+ * It is a sibling of the copy rather than an overlay on the whole card: the
+ * panel bleeds out to the card's padding on every side it touches, so the
+ * wipe stops exactly where the text column starts and the icon and label
+ * stay readable under it. Tags the icon set has no mark for keep their word.
+ */
+function TagPanel({ tags }: { tags: readonly NowTag[] }) {
+  return (
+    <div
+      aria-hidden
+      className={cn(
+        'pointer-events-none absolute -bottom-6 -left-6 -right-6 top-0 bg-accent sm:-top-6 sm:left-0',
+        // The leading edge is a semicircle rather than a straight cut: the
+        // radius is deliberately larger than any card, so CSS scales it down
+        // to exactly half the panel's height whatever the copy does to it,
+        // and the nose stays round through the whole wipe instead of only
+        // at rest.
+        '[clip-path:inset(0_0_0_100%_round_9999px_0_0_9999px)]',
+        'transition-[clip-path] duration-[450ms] ease-[var(--ease-out-soft)]',
+        'group-hover:[clip-path:inset(0_0_0_0%_round_9999px_0_0_9999px)]',
+        'motion-reduce:transition-none',
+      )}
+    >
+      {/* The extra left padding is what the curve buys: the first mark sits
+          clear of the nose instead of riding on it. */}
+      <ul className="flex h-full flex-wrap items-center gap-2.5 py-6 pl-8 pr-6">
+        {tags.map((tag) => (
+          <li
+            key={tag.label}
+            className={cn(
+              'flex items-center gap-2 rounded-full bg-ink py-2 pl-2.5 pr-3.5',
+              'translate-x-3 opacity-0 transition-[opacity,translate] duration-300',
+              'group-hover:translate-x-0 group-hover:opacity-100 group-hover:delay-150',
+              'motion-reduce:transition-none',
+            )}
+          >
+            {tag.icon && (
+              /* eslint-disable-next-line @next/next/no-img-element --
+                 Local, already-minimal SVGs; see SkillShowcase for why these
+                 skip the image optimizer. */
+              <img
+                src={tag.icon}
+                alt=""
+                width={18}
+                height={18}
+                loading="lazy"
+                decoding="async"
+                className="block size-[18px] flex-none"
+              />
+            )}
+            <span className="text-[11px] uppercase tracking-[0.16em] text-accent">
+              {tag.label}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }
