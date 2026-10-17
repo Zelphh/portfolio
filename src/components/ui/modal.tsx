@@ -58,6 +58,7 @@ export function Modal({
   const dialogRef = useRef<HTMLDialogElement>(null)
   const closeRef = useRef<HTMLButtonElement>(null)
   const previouslyFocused = useRef<HTMLElement | null>(null)
+  const scrollY = useRef(0)
   const pressedBackdrop = useRef(false)
   const finished = useRef(false)
   const [closing, setClosing] = useState(false)
@@ -73,9 +74,16 @@ export function Modal({
 
     if (!dialog.open) {
       previouslyFocused.current = document.activeElement as HTMLElement | null
+      // Remembered before the dialog opens, because `globals.css` clips the
+      // root while one is up and a clipped root has nowhere to be scrolled
+      // to — some engines clamp the offset to zero and never hand it back.
+      scrollY.current = window.scrollY
       dialog.showModal()
     }
-    closeRef.current?.focus()
+    // Without `preventScroll` the browser is free to scroll the page to
+    // reveal the button it just focused, even though the modal is on top of
+    // that page and does not move with it.
+    closeRef.current?.focus({ preventScroll: true })
 
     if (variant === 'lightbox' && origin) {
       const target = dialog.getBoundingClientRect()
@@ -101,6 +109,10 @@ export function Modal({
     if (previouslyFocused.current?.isConnected) {
       previouslyFocused.current.focus({ preventScroll: true })
     }
+    // The page could not move while the modal was up, so putting it back
+    // where it was is a no-op on engines that kept the offset and the fix on
+    // the ones that threw it away.
+    window.scrollTo(0, scrollY.current)
     onCloseRef.current()
   }, [])
 
