@@ -7,6 +7,8 @@ import { cn } from '@/lib/utils'
 
 interface LanguageToggleProps {
   current: Locale
+  /** Page within the language to land on, e.g. `/projects`. Defaults to home. */
+  path?: string
   /** `pt` → `português`, used for the accessible label. */
   otherLanguageName: string
   switchLabel: string
@@ -22,6 +24,7 @@ interface LanguageToggleProps {
  */
 export function LanguageToggle({
   current,
+  path = '',
   otherLanguageName,
   switchLabel,
 }: LanguageToggleProps) {
@@ -29,7 +32,7 @@ export function LanguageToggle({
 
   return (
     <Link
-      href={`/${target}`}
+      href={`/${target}${path}`}
       onClick={() => rememberLocale(target)}
       aria-label={switchLabel.replace('{language}', otherLanguageName)}
       className="flex items-center gap-2 rounded-full border border-line-strong px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-fg-subtle transition-colors hover:border-moss hover:text-accent"

@@ -8,6 +8,8 @@ export const SITE = {
   /** GitHub username, for the contribution graph. */
   github: 'Zelphh',
   startYear: 2026,
+  /** Served from `public/`; the `cv` command and quick action download it. */
+  resume: '/curriculo.pdf',
 } as const
 
 /** ASCII mark used in the header, kept out of JSX so it stays readable. */

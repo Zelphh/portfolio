@@ -300,7 +300,14 @@ const copy: Command = {
 const cv: Command = {
   name: 'cv',
   aliases: ['curriculo', 'currículo', 'resume'],
-  run: ({ t }) => ({ lines: [line(t.cvUnavailable, 'error')] }),
+  run: ({ t }) => ({
+    lines: [line(t.cvDownloading)],
+    effect: {
+      type: 'download',
+      href: SITE.resume,
+      filename: 'matheus-tartari-curriculo.pdf',
+    },
+  }),
 }
 
 const goto: Command = {

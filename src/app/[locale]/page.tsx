@@ -6,7 +6,7 @@ import { ContactSection } from '@/components/sections/contact-section'
 import { ExperienceLog } from '@/components/sections/experience-section'
 import { HeroSection } from '@/components/sections/hero-section'
 import { NowSection } from '@/components/sections/now/now-section'
-import { ProjectsSection } from '@/components/sections/projects/projects-section'
+import { ProjectsMoved } from '@/components/sections/projects/projects-moved'
 import { SkillsSection } from '@/components/sections/skills/skills-section'
 import { CommandDock } from '@/components/widgets/command-dock'
 import { ConsoleBusProvider } from '@/components/widgets/console-bus'
@@ -70,7 +70,7 @@ export default async function HomePage({ params }: PageProps) {
             logoLabelTemplate={a11y.logo}
           />
 
-          <ProjectsSection
+          <ProjectsMoved
             locale={locale}
             label={sections.projetos}
             copy={dictionary.projects}

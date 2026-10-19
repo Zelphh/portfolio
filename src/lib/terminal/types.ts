@@ -30,6 +30,8 @@ export type TerminalEffect =
   | { readonly type: 'setLocale'; readonly locale: Locale }
   /** Writes `text` to the clipboard; the dock prints whether it worked. */
   | { readonly type: 'copy'; readonly text: string; readonly target: string }
+  /** Downloads the file at `href`, saved as `filename`. */
+  | { readonly type: 'download'; readonly href: string; readonly filename: string }
   | { readonly type: 'tetris' }
   | { readonly type: 'bonfire' }
   | { readonly type: 'matrix' }

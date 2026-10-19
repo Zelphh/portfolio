@@ -121,6 +121,13 @@ export function CommandDock({ locale, terminal, dock }: CommandDockProps) {
         case 'copy':
           copyToClipboard(effect.text, effect.target)
           break
+        case 'download': {
+          const link = document.createElement('a')
+          link.href = effect.href
+          link.download = effect.filename
+          link.click()
+          break
+        }
         case 'tetris':
           scrollTo('tetris', 700)
           emit({ type: 'tetris' })

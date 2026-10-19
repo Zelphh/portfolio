@@ -95,6 +95,17 @@ export const en: Dictionary = {
     next: 'Next project',
     close: 'Close',
     counter: '{current} / {total}',
+    movedNote: 'The projects got a page of their own.',
+    movedLink: '[ cd ~/projects → ]',
+    pageTitle: 'Projects — zelph',
+    pageDescription:
+      'Projects by zelph: desktop apps in Rust and Tauri, Spring Boot APIs and exercises in C and Python.',
+    back: '[ ← cd ~ ]',
+    listLabel: 'Project list',
+    listHint: 'Hover to peek, click to open. ↑ ↓ to move.',
+    idleCount: '{total} projects found.',
+    idlePointer: 'Pick one from the list.',
+    idleTouch: 'Tap a project above.',
   },
 
   certificates: {
@@ -188,8 +199,7 @@ export const en: Dictionary = {
     copyUnknown: 'Unknown target. Run `contact` for the channels.',
     copyDone: '{target} copied to the clipboard.',
     copyFailed: 'Could not reach the clipboard.',
-    cvUnavailable:
-      'Resume not published yet. Ask for the current version at matheus.tartari@gmail.com',
+    cvDownloading: 'Downloading the resume...',
     goingTo: 'Going to #{section}...',
     unknownSection: 'Unknown section. Use: {sections}',
     langCurrent: 'Current language: {locale}',

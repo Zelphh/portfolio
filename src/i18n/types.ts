@@ -81,6 +81,20 @@ export interface Dictionary {
     close: string
     /** `{current} / {total}` */
     counter: string
+    /** What the home section says now that the projects have their own page. */
+    movedNote: string
+    movedLink: string
+    pageTitle: string
+    pageDescription: string
+    /** Header link from the projects page back to the home page. */
+    back: string
+    /** Accessible name of the always-visible project list. */
+    listLabel: string
+    listHint: string
+    /** Stage before a project is picked. `{total}` */
+    idleCount: string
+    idlePointer: string
+    idleTouch: string
   }
 
   certificates: {
@@ -159,7 +173,7 @@ export interface Dictionary {
     /** `{target}` */
     copyDone: string
     copyFailed: string
-    cvUnavailable: string
+    cvDownloading: string
     /** `{section}` */
     goingTo: string
     /** `{sections}` */

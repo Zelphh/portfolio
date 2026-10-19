@@ -22,7 +22,7 @@ export const NOW: readonly NowEntry[] = [
       { label: 'CI/CD' },
     ],
     text: {
-      pt: 'Como desenvolvedor full stack jr. na HSP Software, com Node, React, Rust e Postgres, e cuidando de CI/CD e Docker no caminho.',
+      pt: 'Como desenvolvedor full stack jr. na HSP Software, com Node, React, Rust, Postgres e Docker.',
       en: 'As a junior full stack developer at HSP Software, with Node, React, Rust and Postgres, and looking after CI/CD and Docker along the way.',
     },
   },
@@ -37,7 +37,7 @@ export const NOW: readonly NowEntry[] = [
       { label: 'LLM' },
     ],
     text: {
-      pt: 'A camada de IA do WhatsRecap: embeddings, RAG e um modelo de linguagem rodando local, sem nada sair da minha máquina.',
+      pt: 'A camada de IA do WhatsRecap: embeddings, RAG e um modelo de linguagem rodando no meu computador, tudo localmente.',
       en: "WhatsRecap's AI layer: embeddings, RAG and a language model running locally, with nothing leaving my machine.",
     },
   },
@@ -47,7 +47,7 @@ export const NOW: readonly NowEntry[] = [
     icon: '/icons/book.svg',
     tags: [{ label: 'Rust', icon: '/icons/rust.svg' }],
     text: {
-      pt: 'Rust, por curiosidade e pelo engajamento que a linguagem está tendo nos últimoos tempos, acredito que ela possa ter um lugar importatne nno futuro da programação.',
+      pt: 'Rust, por curiosidade e pelo engajamento que a linguagem está tendo nos últimos tempos',
       en: 'Rust, out of curiosity and because work started asking for it.',
     },
   },
@@ -57,7 +57,7 @@ export const NOW: readonly NowEntry[] = [
     icon: '/icons/graduation.svg',
     tags: [
       { label: 'UDESC' },
-      { label: 'ADS' },
+      { label: 'TADS' },
       { label: '2027' },
     ],
     text: {

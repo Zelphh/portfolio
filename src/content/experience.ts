@@ -23,7 +23,7 @@ export const EXPERIENCE: readonly ExperienceEntry[] = [
         'Desenvolvimento web full stack com Node.js, React e PostgreSQL.',
         'Criação de workflows de CI/CD para automatizar processos do time.',
         'Docker para padronizar os ambientes de desenvolvimento e deploy.',
-        'Rust em demandas do próprio trabalho.',
+        'Rust em demandas secundárias e aplicações a parte.',
       ],
       en: [
         'Full stack web development with Node.js, React and PostgreSQL.',

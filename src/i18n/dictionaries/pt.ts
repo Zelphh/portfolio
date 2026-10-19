@@ -26,12 +26,12 @@ export const pt: Dictionary = {
       evening: 'Boa noite,',
     },
     epithets: [
-      'viajante',
       'curioso',
-      'pessoa',
-      // 'visitante',
-      'amigo?',
       'fera',
+      'pessoa',
+      'amigo?',
+      'viajante',
+      // 'visitante',
     ],
     paragraph:
       'Bem vindo ao meu site. Aqui eu compartilho o que construo, o que ando aprendendo e quaisquer outras coisas que eu ache interessante.',
@@ -50,8 +50,8 @@ export const pt: Dictionary = {
 
   about: {
     paragraphs: [
-      'Sou desenvolvedor fullstack, mexo principalmente com programação web, backend em Node, front em React e banco em Postgres. Ultimamente venho aprendendo Rust por curiosidade e demandas relacionadas no trabalho.',
-      'Minha base na programação foi fundada antes da atual era da IA, então não, não sou dependente de IA para criar código, mas, atualmente uso CLI (Claude) no trabalho para desenvolver projetos.',
+      'Sou desenvolvedor fullstack, trabalho principalmente com programação web, backend em Node, front em React e banco em Postgres. Ultimamente venho aprendendo Rust por curiosidade e demandas relacionadas no trabalho.',
+      'Minha base na programação foi fundada antes da atual era da IA, então não, não sou dependente de IA para criar código, mas, uso CLI (Claude) no trabalho para desenvolver projetos.',
       'Gosto de compartilhar experiências e conhecimentos, sinta-se à vontade para entrar em contato.',
     ],
   },
@@ -94,6 +94,17 @@ export const pt: Dictionary = {
     next: 'Próximo projeto',
     close: 'Fechar',
     counter: '{current} / {total}',
+    movedNote: 'Os projetos ganharam uma página só para eles.',
+    movedLink: '[ cd ~/projects → ]',
+    pageTitle: 'Projetos — zelph',
+    pageDescription:
+      'Os projetos de zelph: apps de desktop em Rust e Tauri, APIs em Spring Boot e exercícios em C e Python.',
+    back: '[ ← cd ~ ]',
+    listLabel: 'Lista de projetos',
+    listHint: 'Passe o mouse para espiar, clique para abrir. ↑ ↓ navegam.',
+    idleCount: '{total} projetos encontrados.',
+    idlePointer: 'Escolha um na lista ao lado.',
+    idleTouch: 'Toque em um projeto acima.',
   },
 
   certificates: {
@@ -188,8 +199,7 @@ export const pt: Dictionary = {
     copyUnknown: 'Alvo desconhecido. Rode `contato` para ver os canais.',
     copyDone: '{target} copiado para a área de transferência.',
     copyFailed: 'Não consegui acessar a área de transferência.',
-    cvUnavailable:
-      'Currículo ainda não publicado. Peça a versão atual em matheus.tartari@gmail.com',
+    cvDownloading: 'Baixando o currículo...',
     goingTo: 'Indo para #{section}...',
     unknownSection: 'Seção desconhecida. Use: {sections}',
     langCurrent: 'Idioma atual: {locale}',
