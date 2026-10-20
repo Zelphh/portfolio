@@ -18,7 +18,7 @@ Desenvolvedor full stack com foco em programação web: back-end em Node.js, fro
 ## Experiência profissional
 
 ### HSP Software — Desenvolvedor Full Stack Jr.
-**jul 2026 – atualmente**
+**ago 2026 – atualmente**
 
 - Desenvolvimento web full stack com Node.js, React e PostgreSQL.
 - Criação de workflows de CI/CD para automação de processos.

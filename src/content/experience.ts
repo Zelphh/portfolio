@@ -14,7 +14,7 @@ export const EXPERIENCE: readonly ExperienceEntry[] = [
       en: 'Junior full stack developer',
     },
     period: {
-      start: { pt: 'Jul 2026', en: 'Jul 2026' },
+      start: { pt: 'Out 2026', en: 'Oct 2026' },
       end: { pt: 'Atualmente', en: 'Present' },
     },
     current: true,

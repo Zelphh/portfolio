@@ -23,7 +23,7 @@ export const SKILLS: readonly Skill[] = [
     blurb: {
       pt: [
         'Minha principal skill front-end: trabalho ativamente com ela e uso diariamente nos meus projetos secundários.',
-        'Conheço o suficiente para criar páginas bem estruturadas, otimizadas e responsivas com SCSS.',
+        'Conheço o suficiente para criar páginas bem estruturadas, otimizadas e responsivas com SCSS (Como essa).',
       ],
       en: [
         'My main front-end skill: I work with it actively and use it daily on my side projects.',
@@ -58,7 +58,7 @@ export const SKILLS: readonly Skill[] = [
     note: { pt: 'Dados', en: 'Data' },
     blurb: {
       pt: [
-        'Um ótimo gerenciador de banco de dados, sempre que necessário uso nos meus projetos pessoais.',
+        'Um ótimo gerenciador de banco de dados, uso no trabalho e sempre que necessário uso nos meus projetos pessoais.',
         'Prefiro ele ao MySQL por razões de performance, coerência, extensibilidade e entre outros motivos.',
         'Recomendo dar uma olhada no site: https://youjustneedpostgres.com/',
       ],
@@ -78,9 +78,9 @@ export const SKILLS: readonly Skill[] = [
     note: { pt: 'Versionamento', en: 'Versioning' },
     blurb: {
       pt: [
-        'A ferramenta básica e, acredito, a mais usada para o versionamento de código.',
+        'A ferramenta básica e mais usada para o versionamento de código.',
         'Já resolvi muitos problemas com branches no GitHub, então acredito ter uma boa experiência.',
-        'No meu trabalho já produzi workflows para automatizar processos, como CI/CD.',
+        'No meu trabalho já produzi alguns workflows para automatizar processos, como sistemas de CI/CD.',
       ],
       en: [
         'The basic and, I believe, most used tool for versioning code.',
@@ -100,7 +100,7 @@ export const SKILLS: readonly Skill[] = [
       pt: [
         'Uso no dia a dia para garantir que o projeto seja o mesmo em qualquer máquina, sem depender do sistema operacional.',
         'Combinado com os workflows de CI/CD que já montei, essa mesma garantia continua valendo fora da minha máquina.',
-        'Ainda quero me aprofundar nas partes mais avançadas, como multi-stage build e reduzir o tamanho final das imagens.',
+        'Ainda quero me aprofundar em partes mais avançadas.',
       ],
       en: [
         'I use it daily to make sure the project is the same on any machine, without depending on the operating system.',
@@ -138,7 +138,7 @@ export const SKILLS: readonly Skill[] = [
     note: { pt: 'Back-end', en: 'Back-end' },
     blurb: {
       pt: [
-        'Já usei bastante em projetos pessoais, foi a primeira linguagem em que me aprofundei de verdade.',
+        'Já usei bastante em projetos pessoais, foi a primeira linguagem em que me aprofundei de verdade para conseguir meu primeiro emprego na área.',
         'Foi ela quem estruturou toda a base de programação orientada a objetos que sei hoje, e posso dizer com segurança que isso me ajudou a aprender diversas outras linguagens e a pensar de forma estruturada.',
       ],
       en: [
@@ -157,7 +157,7 @@ export const SKILLS: readonly Skill[] = [
     blurb: {
       pt: [
         'Foi a linguagem que me introduziu ao mundo da programação.',
-        'Já usei para alguns projetos pessoais, como jogos e atividades da escola.',
+        'Já usei para alguns projetos pessoais, como jogos e atividades da escola e faculdade.',
         'Foi nela que aprendi todos os conceitos básicos da programação.',
       ],
       en: [
@@ -196,9 +196,9 @@ export const SKILLS: readonly Skill[] = [
     // TODO: link `keyboard-fix` and the image editor to their cards.
     blurb: {
       pt: [
-        'Muitos cursos que eu fiz (CS50x é um exemplo) usaram ela para ensinar lógica de programação.',
-        'Já fiz alguns projetos pessoais como o keyboard-fix e um editor simples de imagens.',
-        'Também foi a linguagem onde eu aprendi todo o assunto de estrutura de dados.',
+        'Muitos cursos que eu fiz (CS50x é um exemplo) usaram essa linguagem para ensinar lógica de programação.',
+        'Já fiz alguns projetos pessoais usando C como: um aplicador de filtros simples em imagens e um programa de remapeamento de teclas para meu teclado quebrado.',
+        'Também foi a linguagem onde eu aprendi todo as minhas matérias de estrutura de dados da facu.',
       ],
       en: [
         'Many courses I took (CS50x being one) used it to teach programming logic.',

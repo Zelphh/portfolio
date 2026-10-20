@@ -62,7 +62,7 @@ export const pt: Dictionary = {
 
   now: {
     intro:
-      'O que está na mesa este mês. Muda com frequência, então a data ao lado diz o quão fresco isso está.',
+      'O que estou fazendo esse mês. Muda com frequência, então a data ao lado diz a quanto tempo está desatualizado.',
     updated: 'Atualizado em {date}',
     githubTitle: 'Atividade no GitHub',
     githubLink: '[ Ver perfil ]',
@@ -94,7 +94,7 @@ export const pt: Dictionary = {
     next: 'Próximo projeto',
     close: 'Fechar',
     counter: '{current} / {total}',
-    movedNote: 'Os projetos ganharam uma página só para eles.',
+    movedNote: 'Projetos que achei interessante compartilhar.',
     movedLink: '[ cd ~/projects → ]',
     pageTitle: 'Projetos — zelph',
     pageDescription:
@@ -227,7 +227,7 @@ export const pt: Dictionary = {
   },
 
   footer: {
-    note: 'Feito devagar, com fogo baixo.',
+    note: 'Feito com carinho atenção e personalidade :)',
     location: 'Joinville — SC',
   },
 
