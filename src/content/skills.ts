@@ -6,11 +6,11 @@ const icon = (name: string) => `/icons/${name}.svg`
  * Order matters: the wheel, the marquee and the terminal `skills` output all
  * read this list top to bottom.
  *
- * TODO: some blurbs name a project that should link to its own card. Two
- * things block that: those projects are not in PROJECTS yet, and the open
- * card lives in ProjectsSection's local `openIndex`, so a trigger from this
- * section needs shared state (or a URL hash) first. Entries carrying such a
- * name are marked with their own TODO.
+ * TODO: some blurbs name a project that should link to its own card. The
+ * open card lives in ProjectsSection's local `openIndex`, so a trigger from
+ * this section needs shared state (or a URL hash) first, and keyboard-fix is
+ * not in PROJECTS yet. Entries carrying such a name are marked with their
+ * own TODO.
  */
 export const SKILLS: readonly Skill[] = [
   {
@@ -23,11 +23,11 @@ export const SKILLS: readonly Skill[] = [
     blurb: {
       pt: [
         'Minha principal skill front-end: trabalho ativamente com ela e uso diariamente nos meus projetos secundários.',
-        'Conheço o suficiente para criar páginas bem estruturadas, otimizadas e responsivas com SCSS (Como essa).',
+        'Conheço o suficiente para criar páginas bem estruturadas, otimizadas e responsivas com SCSS ou Tailwind (como esta).',
       ],
       en: [
         'My main front-end skill: I work with it actively and use it daily on my side projects.',
-        'I know enough to build well-structured, optimised and responsive pages with SCSS.',
+        'I know enough to build well-structured, optimised and responsive pages with SCSS or Tailwind (like this one).',
       ],
     },
   },
@@ -44,8 +44,8 @@ export const SKILLS: readonly Skill[] = [
         'Acredito que hoje em dia há tecnologias melhores para fazer um back-end, como Rust ou Go.',
       ],
       en: [
-        'My professional back-end skill: I use it a lot at work, but it is not the one I reach for on a side project.',
-        'I think there are better technologies for a back-end today, like Rust or Go.',
+        'My professional back-end skill: I use it a lot at work, but it is not the one I think of when starting a side project.',
+        'I believe there are better technologies for building a back-end nowadays, like Rust or Go.',
       ],
     },
   },
@@ -59,13 +59,13 @@ export const SKILLS: readonly Skill[] = [
     blurb: {
       pt: [
         'Um ótimo gerenciador de banco de dados, uso no trabalho e sempre que necessário uso nos meus projetos pessoais.',
-        'Prefiro ele ao MySQL por razões de performance, coerência, extensibilidade e entre outros motivos.',
+        'Prefiro ele ao MySQL por razões de performance, coerência, extensibilidade, entre outros motivos.',
         'Recomendo dar uma olhada no site: https://youjustneedpostgres.com/',
       ],
       en: [
-        'A great database manager, I use it on my personal projects whenever it is needed.',
+        'A great database management system: I use it at work and, whenever needed, on my personal projects.',
         'I prefer it over MySQL for reasons of performance, consistency, extensibility and others.',
-        'Worth a look: https://youjustneedpostgres.com/',
+        'I recommend taking a look at this site: https://youjustneedpostgres.com/',
       ],
     },
   },
@@ -83,9 +83,9 @@ export const SKILLS: readonly Skill[] = [
         'No meu trabalho já produzi alguns workflows para automatizar processos, como sistemas de CI/CD.',
       ],
       en: [
-        'The basic and, I believe, most used tool for versioning code.',
-        'I have solved plenty of branch problems on GitHub, so I believe I have good experience with it.',
-        'At work I have built workflows to automate processes, such as CI/CD.',
+        'The basic and most widely used tool for code versioning.',
+        'I have solved many branch problems on GitHub, so I believe I have good experience with it.',
+        'At work I have built a few workflows to automate processes, such as CI/CD pipelines.',
       ],
     },
   },
@@ -103,9 +103,9 @@ export const SKILLS: readonly Skill[] = [
         'Ainda quero me aprofundar em partes mais avançadas.',
       ],
       en: [
-        'I use it daily to make sure the project is the same on any machine, without depending on the operating system.',
+        'I use it every day to make sure the project is the same on any machine, regardless of the operating system.',
         'Combined with the CI/CD workflows I have built, that same guarantee holds outside my own machine.',
-        'I still want to go deeper into the more advanced parts, like multi-stage builds and shrinking the final image size.',
+        'I still want to go deeper into the more advanced parts.',
       ],
     },
   },
@@ -125,7 +125,7 @@ export const SKILLS: readonly Skill[] = [
       en: [
         'I have been studying this language a lot because of the attention it has been getting lately.',
         'And I believe that is not for nothing: from what I have studied and used at work, it is an absurdly optimised language compared to Node, for example.',
-        'Even though the code follows rather unconventional paradigms (which makes learning it a bit harder), I plan to use it a lot on my personal projects.',
+        'Even though the code follows quite unconventional paradigms (which makes learning it a bit harder), I plan to use it a lot on my personal projects.',
       ],
     },
   },
@@ -142,7 +142,7 @@ export const SKILLS: readonly Skill[] = [
         'Foi ela quem estruturou toda a base de programação orientada a objetos que sei hoje, e posso dizer com segurança que isso me ajudou a aprender diversas outras linguagens e a pensar de forma estruturada.',
       ],
       en: [
-        'I used it a lot on personal projects, it was the first language I really went deep into.',
+        'I have used it a lot on personal projects; it was the first language I really went deep into, to land my first job in the field.',
         'It built the whole object-oriented foundation I have today, and I can safely say that helped me pick up several other languages and think in a structured way.',
       ],
     },
@@ -161,8 +161,8 @@ export const SKILLS: readonly Skill[] = [
         'Foi nela que aprendi todos os conceitos básicos da programação.',
       ],
       en: [
-        'The language that introduced me to programming.',
-        'I have used it on a few personal projects, like games and school assignments.',
+        'The language that introduced me to the world of programming.',
+        'I have used it on a few personal projects, like games and school and college assignments.',
         'It is where I learned all the basic programming concepts.',
       ],
     },
@@ -193,17 +193,17 @@ export const SKILLS: readonly Skill[] = [
     visual: { kind: 'icon', src: icon('c') },
     marqueeIcon: icon('c'),
     note: { pt: 'Fundamentos', en: 'Fundamentals' },
-    // TODO: link `keyboard-fix` and the image editor to their cards.
+    // TODO: link `filter` and keyboard-fix (not in PROJECTS yet) to their cards.
     blurb: {
       pt: [
         'Muitos cursos que eu fiz (CS50x é um exemplo) usaram essa linguagem para ensinar lógica de programação.',
         'Já fiz alguns projetos pessoais usando C como: um aplicador de filtros simples em imagens e um programa de remapeamento de teclas para meu teclado quebrado.',
-        'Também foi a linguagem onde eu aprendi todo as minhas matérias de estrutura de dados da facu.',
+        'Também foi a linguagem em que eu aprendi todas as minhas matérias de estrutura de dados da facu.',
       ],
       en: [
         'Many courses I took (CS50x being one) used it to teach programming logic.',
-        'I have built a few personal projects with it, like keyboard-fix and a simple image editor.',
-        'It is also the language where I learned everything about data structures.',
+        'I have built a few personal projects in C, such as a simple image filter tool and a key-remapping program for my broken keyboard.',
+        'It is also the language in which I took all my data structures classes in college.',
       ],
     },
   },

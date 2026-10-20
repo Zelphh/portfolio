@@ -4,7 +4,7 @@ export const en: Dictionary = {
   meta: {
     title: 'zelph — Full stack developer',
     description:
-      "zelph's portfolio: Node, React and Postgres, with animated ASCII art and a terminal that answers back. Projects, certificates and contact.",
+      "zelph's portfolio: Node, React and Postgres, with animated ASCII art and a terminal that answers. Projects, certificates and contact.",
     ogAlt: 'English',
   },
 
@@ -26,17 +26,16 @@ export const en: Dictionary = {
       evening: 'Good evening,',
     },
     epithets: [
-      'traveler',
       'curious one',
+      'champ',
       'person',
-      'wanderer',
-      'visitor',
-      'nomad',
-      'friend',
+      'friend?',
+      'traveler',
+      // 'visitor',
     ],
     paragraph:
-      "Sit by the fire for a bit. This is where I keep what I build, what I'm learning and the random things I think are too good to die in an open tab.",
-    scroll: 'Scroll down',
+      "Welcome to my site. Here I share what I build, what I'm learning and anything else I find interesting.",
+    scroll: 'Make yourself at home',
   },
 
   sections: {
@@ -51,9 +50,9 @@ export const en: Dictionary = {
 
   about: {
     paragraphs: [
-      "I'm a developer, mostly web — Node on the back, React on the front, Postgres underneath. Lately I've been digging into Rust out of curiosity, and because a compiler yelling at me is a decent way to learn.",
-      'I like small things done well: a CLI that solves exactly one problem, a terminal configured the right way, ASCII art where no ASCII art was required.',
-      'This site is a bonfire. A place to leave a record before moving on.',
+      "I'm a full stack developer and work mostly on web development: back-end in Node, front-end in React and Postgres for the database. Lately I've been learning Rust, out of curiosity and because of related demands at work.",
+      "My programming foundation was built before the current AI era, so no, I don't depend on AI to write code, but I do use an AI CLI (Claude) at work to build projects.",
+      'I like sharing experiences and knowledge, so feel free to get in touch.',
     ],
   },
 
@@ -63,7 +62,7 @@ export const en: Dictionary = {
 
   now: {
     intro:
-      "What's on the desk this month. It changes often, so the date beside it says how fresh this is.",
+      "What I'm up to this month. It changes often, so the date beside it says how out of date it is.",
     updated: 'Updated {date}',
     githubTitle: 'GitHub activity',
     githubLink: '[ See profile ]',
@@ -95,7 +94,7 @@ export const en: Dictionary = {
     next: 'Next project',
     close: 'Close',
     counter: '{current} / {total}',
-    movedNote: 'The projects got a page of their own.',
+    movedNote: 'Projects I thought were worth sharing.',
     movedLink: '[ cd ~/projects → ]',
     pageTitle: 'Projects — zelph',
     pageDescription:
@@ -110,7 +109,7 @@ export const en: Dictionary = {
 
   certificates: {
     intro:
-      'The formal base, the courses that were worth it and what I study on my own. Click any of them to see what stuck.',
+      'The formal foundation and the courses that were truly worth the time.',
     kinds: {
       degree: 'Degree',
       course: 'Course',
@@ -165,7 +164,7 @@ export const en: Dictionary = {
       exit: 'Close the console',
     },
     whoami: [
-      'Back-end dev focused on Node and Postgres, React on the front.',
+      'Full stack dev focused on Node and Postgres, with React on the front-end.',
       'I like ASCII art, terminals and things that run on their own.',
     ],
     neofetchRole: 'Junior full stack dev',
@@ -226,13 +225,13 @@ export const en: Dictionary = {
   },
 
   footer: {
-    note: 'Made slowly, over a low fire.',
+    note: 'Made with care, attention and personality :)',
     location: 'Joinville — SC',
   },
 
   notFound: {
     title: 'Page not found',
-    message: "This page doesn't exist — or it's hiding under the papers.",
+    message: "This page doesn't exist.",
     back: '[ Back to the start ]',
   },
 

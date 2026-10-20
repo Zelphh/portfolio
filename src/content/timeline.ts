@@ -5,7 +5,7 @@ import type { TimelineEntry } from './types'
 /** The open-ended line that closes the career tree, on the page and in the terminal. */
 export const NEXT_STEP: Localized<string> = {
   pt: 'O próximo passo é com você? 👀',
-  en: 'The next step is up to you? 👀',
+  en: 'Could the next step be with you? 👀',
 }
 
 /**

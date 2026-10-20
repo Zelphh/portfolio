@@ -47,11 +47,13 @@ export function HeroGreeting({ greetings, epithets }: HeroGreetingProps) {
       {greetings[period]}
       <br />
       <span className="text-accent">
-        {/* Keyed so each swap remounts the word and replays the rise. */}
+        {/* Keyed so each swap remounts the word and replays the rise. The "!"
+            lives inside the inline-block: outside it, the line could break
+            before the "!", and a wrapped inline-block keeps its full width,
+            leaving the "!" stranded far from a two-word epithet. */}
         <span key={epithetIndex} className="inline-block animate-rise">
-          {epithets[epithetIndex]}
+          {epithets[epithetIndex]}!
         </span>
-        !
       </span>
     </>
   )

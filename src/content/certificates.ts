@@ -23,12 +23,12 @@ export const CERTIFICATES: readonly Certificate[] = [
     },
     story: {
       pt: [
-        'Graduação tecnológica na Universidade do Estado de Santa Catarina, em andamento. A grade cobre a base que não se aprende só na prática: complexidade de algoritmo, estrutura de dados, modelagem relacional, engenharia de software e redes.',
+        'Graduação tecnológica na Universidade do Estado de Santa Catarina (UDESC), em andamento. A grade cobre a base que não se aprende só na prática: complexidade de algoritmo, estrutura de dados, modelagem relacional, engenharia de software e redes.',
         'É onde a teoria encosta no que eu já faço todo dia. Boa parte do que eu sei explicar — e não só fazer — veio de trabalho de disciplina que acabei levando mais longe do que precisava.',
       ],
       en: [
-        'A technologist degree at Universidade do Estado de Santa Catarina, in progress. The syllabus covers the ground you do not pick up from practice alone: algorithmic complexity, data structures, relational modelling, software engineering and networks.',
-        'This is where the theory meets what I already do daily. Most of what I can explain — not just build — came out of coursework I took further than it needed to go.',
+        'Technology degree at the Santa Catarina State University (UDESC), in progress. The curriculum covers the foundation you do not learn from practice alone: algorithmic complexity, data structures, relational modelling, software engineering and networks.',
+        'This is where theory meets what I already do every day. A good part of what I can explain — not just do — came from coursework I ended up taking further than it needed to go.',
       ],
     },
     topics: {
@@ -51,17 +51,17 @@ export const CERTIFICATES: readonly Certificate[] = [
       en: 'CS50x',
     },
     summary: {
-      pt: 'Dez semanas com atividade práticas e um projeto final, de C a Python, SQL e desenvolvimento web. A base mais purista de algoritmos e estrutura de dados que eu já tive.',
-      en: 'Ten problem sets and one final project, from C to Python, SQL and web development. The most purist base in algorithms and data structures I have had.',
+      pt: 'Dez semanas com atividades práticas e um projeto final, de C a Python, SQL e desenvolvimento web. A base mais purista de algoritmos e estrutura de dados que eu já tive.',
+      en: 'Ten weeks of problem sets and a final project, from C to Python, SQL and web development. The most purist foundation in algorithms and data structures I have ever had.',
     },
     story: {
       pt: [
-        'Dez semanas com atividade práticas e um projeto final, de C a Python, SQL e desenvolvimento web. A base mais purista de algoritmos e estrutura de dados que eu já tive. Recomendaria com confiança até mesmo para programadores já expirientes.',
-        'As atividades práticas são extremamente criativas e desafiadoras, forçam você a entender o assunto da semana de fato com um contexto interativo, lógico e que faz sentido.',
+        'Dez semanas com atividades práticas e um projeto final, de C a Python, SQL e desenvolvimento web. A base mais purista de algoritmos e estrutura de dados que eu já tive. Recomendaria com confiança até mesmo para programadores já experientes.',
+        'As atividades práticas são extremamente criativas e desafiadoras: forçam você a entender de fato o assunto da semana, com um contexto interativo, lógico e que faz sentido.',
       ],
       en: [
-        'Ten problem sets and one final project, from C to Python, SQL and web development. The most purist base in algorithms and data structures I have had.',
-        'Starting in C changes how you write every language after it: allocating memory by hand, understanding pointers and paying for every copy makes it obvious what the high-level languages are hiding.',
+        'Ten weeks of problem sets and a final project, from C to Python, SQL and web development. The most purist foundation in algorithms and data structures I have ever had. I would confidently recommend it even to experienced programmers.',
+        'The problem sets are extremely creative and challenging: they force you to really understand the topic of the week, within an interactive, logical context that makes sense.',
       ],
     },
     topics: {
@@ -89,12 +89,12 @@ export const CERTIFICATES: readonly Certificate[] = [
     },
     story: {
       pt: [
-        'REST API, modelagem de domínio, ORM com JPA, camadas, tratamento de exceções, validação de dados, otimização deconsultas SQL e JPQL, OAuth2 e JWT.',
-        'Foi também meu primeiro contato com infra: tokens, claims, expiração e refresh. Foi de fato onde comecei a enteder de verdade autenticação.',
+        'REST API, modelagem de domínio, ORM com JPA, camadas, tratamento de exceções, validação de dados, otimização de consultas SQL e JPQL, OAuth2 e JWT.',
+        'Foi também meu primeiro contato com autenticação stateless: tokens, claims, expiração e refresh. Foi ali que comecei a entender autenticação de verdade.',
       ],
       en: [
-        'REST API, domain modelling, ORM with JPA, layers, exception handling, data validation, SQL and JPQL queries, OAuth2 and JWT.',
-        'This is where stateless authentication stopped being magic: signed tokens, claims, expiry and refresh became things I can draw on a whiteboard before writing the first line.',
+        'REST API, domain modelling, ORM with JPA, layers, exception handling, data validation, SQL and JPQL query optimisation, OAuth2 and JWT.',
+        'It was also my first contact with stateless authentication: tokens, claims, expiry and refresh. That is where I started to truly understand authentication.',
       ],
     },
     topics: {
@@ -113,7 +113,7 @@ export const CERTIFICATES: readonly Certificate[] = [
       en: 'English — C2 proficiency',
     },
     summary: {
-      pt: 'Nível C2 do Quadro Europeu Comum: leitura técnica, escrita e conversa sem camada de tradução no meio.',
+      pt: 'Nível C2 do Quadro Europeu Comum: leitura técnica, escrita e conversação sem camada de tradução no meio.',
       en: 'C2 on the Common European Framework: technical reading, writing and conversation with no translation layer in between.',
     },
     story: {

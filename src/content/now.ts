@@ -23,7 +23,7 @@ export const NOW: readonly NowEntry[] = [
     ],
     text: {
       pt: 'Como desenvolvedor full stack jr. na HSP Software, com Node, React, Rust, Postgres e Docker.',
-      en: 'As a junior full stack developer at HSP Software, with Node, React, Rust and Postgres, and looking after CI/CD and Docker along the way.',
+      en: 'As a junior full stack developer at HSP Software, with Node, React, Rust, Postgres and Docker.',
     },
   },
   {
@@ -38,7 +38,7 @@ export const NOW: readonly NowEntry[] = [
     ],
     text: {
       pt: 'A camada de IA do WhatsRecap: embeddings, RAG e um modelo de linguagem rodando no meu computador, tudo localmente.',
-      en: "WhatsRecap's AI layer: embeddings, RAG and a language model running locally, with nothing leaving my machine.",
+      en: "WhatsRecap's AI layer: embeddings, RAG and a language model running on my own computer, all locally.",
     },
   },
   {
@@ -47,8 +47,8 @@ export const NOW: readonly NowEntry[] = [
     icon: '/icons/book.svg',
     tags: [{ label: 'Rust', icon: '/icons/rust.svg' }],
     text: {
-      pt: 'Rust, por curiosidade e pelo engajamento que a linguagem está tendo nos últimos tempos',
-      en: 'Rust, out of curiosity and because work started asking for it.',
+      pt: 'Rust, por curiosidade e pelo engajamento que a linguagem está tendo nos últimos tempos.',
+      en: 'Rust, out of curiosity and because of the traction the language has been getting lately.',
     },
   },
   {
@@ -62,7 +62,7 @@ export const NOW: readonly NowEntry[] = [
     ],
     text: {
       pt: 'Análise e desenvolvimento de sistemas na UDESC, com formatura prevista para 2027.',
-      en: 'Systems analysis and development at UDESC, due to graduate in 2027.',
+      en: 'Systems analysis and development at UDESC, expected to graduate in 2027.',
     },
   },
 ]

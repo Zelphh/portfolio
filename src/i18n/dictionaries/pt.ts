@@ -19,7 +19,7 @@ export const pt: Dictionary = {
   },
 
   hero: {
-    welcome: '~/ bem vindo',
+    welcome: '~/ bem-vindo',
     greetings: {
       morning: 'Bom dia,',
       afternoon: 'Boa tarde,',
@@ -34,7 +34,7 @@ export const pt: Dictionary = {
       // 'visitante',
     ],
     paragraph:
-      'Bem vindo ao meu site. Aqui eu compartilho o que construo, o que ando aprendendo e quaisquer outras coisas que eu ache interessante.',
+      'Bem-vindo ao meu site. Aqui eu compartilho o que construo, o que ando aprendendo e quaisquer outras coisas que eu ache interessantes.',
     scroll: 'Sinta-se à vontade',
   },
 
@@ -50,8 +50,8 @@ export const pt: Dictionary = {
 
   about: {
     paragraphs: [
-      'Sou desenvolvedor fullstack, trabalho principalmente com programação web, backend em Node, front em React e banco em Postgres. Ultimamente venho aprendendo Rust por curiosidade e demandas relacionadas no trabalho.',
-      'Minha base na programação foi fundada antes da atual era da IA, então não, não sou dependente de IA para criar código, mas, uso CLI (Claude) no trabalho para desenvolver projetos.',
+      'Sou desenvolvedor full stack e trabalho principalmente com programação web: back-end em Node, front-end em React e banco em Postgres. Ultimamente venho aprendendo Rust, por curiosidade e por demandas relacionadas no trabalho.',
+      'Minha base na programação foi construída antes da atual era da IA, então não, não sou dependente de IA para criar código, mas uso uma CLI de IA (Claude) no trabalho para desenvolver projetos.',
       'Gosto de compartilhar experiências e conhecimentos, sinta-se à vontade para entrar em contato.',
     ],
   },
@@ -62,7 +62,7 @@ export const pt: Dictionary = {
 
   now: {
     intro:
-      'O que estou fazendo esse mês. Muda com frequência, então a data ao lado diz a quanto tempo está desatualizado.',
+      'O que estou fazendo esse mês. Muda com frequência, então a data ao lado diz há quanto tempo está desatualizado.',
     updated: 'Atualizado em {date}',
     githubTitle: 'Atividade no GitHub',
     githubLink: '[ Ver perfil ]',
@@ -164,7 +164,7 @@ export const pt: Dictionary = {
       exit: 'Fecha o console',
     },
     whoami: [
-      'Dev back-end focado em Node e Postgres, com front em React.',
+      'Dev full stack focado em Node e Postgres, com front-end em React.',
       'Gosto de ASCII art, terminal e coisas que rodam sozinhas.',
     ],
     neofetchRole: 'Dev full stack jr.',
@@ -196,7 +196,7 @@ export const pt: Dictionary = {
     unknownCertificate:
       'Certificado desconhecido. Rode `certs` para ver a lista.',
     copyUsage: 'Uso: copy <id> — disponíveis: {targets}',
-    copyUnknown: 'Alvo desconhecido. Rode `contato` para ver os canais.',
+    copyUnknown: 'Alvo desconhecido. Rode `contact` para ver os canais.',
     copyDone: '{target} copiado para a área de transferência.',
     copyFailed: 'Não consegui acessar a área de transferência.',
     cvDownloading: 'Baixando o currículo...',
@@ -227,7 +227,7 @@ export const pt: Dictionary = {
   },
 
   footer: {
-    note: 'Feito com carinho atenção e personalidade :)',
+    note: 'Feito com carinho, atenção e personalidade :)',
     location: 'Joinville — SC',
   },
 
