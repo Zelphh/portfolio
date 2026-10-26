@@ -105,12 +105,16 @@ export const CERTIFICATES: readonly Certificate[] = [
   {
     id: 'english-c2',
     kind: 'certification',
-    issuer: 'CEFR C2',
-    year: '2023',
-    icon: '/icons/language.svg',
+    issuer: 'EF SET',
+    year: '2026',
+    icon: '/icons/book.svg',
+    url: 'https://cert.efset.org/pt/2poH7L',
+    image: '/certificates/ef-set.jpg',
+    imageAspect: '1200 / 1697',
+    previewAspect: '1200 / 880',
     name: {
-      pt: 'Inglês — proficiência C2',
-      en: 'English — C2 proficiency',
+      pt: 'Inglês - Proficiência C2',
+      en: 'English - C2 proficiency',
     },
     summary: {
       pt: 'Nível C2 do Quadro Europeu Comum: leitura técnica, escrita e conversação sem camada de tradução no meio.',
@@ -118,11 +122,11 @@ export const CERTIFICATES: readonly Certificate[] = [
     },
     story: {
       pt: [
-        'Nível C2 do Quadro Europeu Comum de Referência — o topo da escala, usuário proficiente.',
+        'EF SET com 73/100, nível C2 do Quadro Europeu Comum de Referência — o topo da escala, usuário proficiente. Leitura com 74 e compreensão oral com 71.',
         'Na prática é o que faz documentação, RFC, issue e code review em inglês serem o meu padrão e não um esforço extra. A maior parte do que eu estudo nunca foi traduzida, e esperar tradução é abrir mão de chegar primeiro.',
       ],
       en: [
-        'C2 on the Common European Framework of Reference — the top of the scale, proficient user.',
+        'EF SET score of 73/100, C2 on the Common European Framework of Reference — the top of the scale, proficient user. Reading scored 74 and listening 71.',
         'In practice it is what makes documentation, RFCs, issues and code review in English my default rather than extra effort. Most of what I study was never translated, and waiting for a translation means giving up on getting there first.',
       ],
     },

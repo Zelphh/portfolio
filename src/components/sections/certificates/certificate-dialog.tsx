@@ -72,11 +72,20 @@ export function CertificateDialog({
         <div
           className={cn(
             'relative grid place-items-center overflow-hidden border-b border-line-soft bg-surface-raised',
-            image ? 'max-h-[60vh]' : 'h-[clamp(170px,30vh,260px)]',
+            image ? 'max-h-[60vh] w-full' : 'h-[clamp(170px,30vh,260px)]',
           )}
           // The hero takes the scan's own proportions, so it fills edge to
-          // edge uncropped; only on short viewports does the cap trim it.
-          style={image ? { aspectRatio: certificate.imageAspect ?? FALLBACK_ASPECT } : undefined}
+          // edge uncropped; only on short viewports does the cap trim it. A
+          // tall scan opts into `previewAspect` and shows just its top. The
+          // full width keeps the cap from narrowing the hero to hold its ratio.
+          style={
+            image
+              ? {
+                  aspectRatio:
+                    certificate.previewAspect ?? certificate.imageAspect ?? FALLBACK_ASPECT,
+                }
+              : undefined
+          }
         >
           {image ? (
             <button
@@ -92,7 +101,10 @@ export function CertificateDialog({
                 alt={certificate.name[locale]}
                 fill
                 sizes="(width >= 40rem) 680px, 100vw"
-                className="object-cover transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:scale-[1.02]"
+                className={cn(
+                  'object-cover transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:scale-[1.02]',
+                  certificate.previewAspect && 'object-top',
+                )}
               />
             </button>
           ) : (

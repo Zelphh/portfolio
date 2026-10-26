@@ -90,6 +90,12 @@ export interface Certificate {
   /** `image`'s intrinsic `width / height`, e.g. `'1600 / 1131'`. */
   readonly imageAspect?: string
   /**
+   * Proportions of the dialog's hero when it should show only the top of a
+   * tall scan; the lightbox still opens the whole of it. Absent, the hero
+   * takes `imageAspect`.
+   */
+  readonly previewAspect?: string
+  /**
    * Institution's own mark, shown in the dialog's hero in place of `icon`
    * when there is no scan. Drawn on its own background, so it may be opaque.
    */
