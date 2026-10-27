@@ -35,6 +35,7 @@ export type TerminalEffect =
   | { readonly type: 'tetris' }
   | { readonly type: 'bonfire' }
   | { readonly type: 'matrix' }
+  | { readonly type: 'snake' }
 
 export interface TerminalResult {
   readonly lines: readonly TerminalLine[]

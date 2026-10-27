@@ -47,6 +47,7 @@ export function CommandDock({ locale, terminal, dock }: CommandDockProps) {
   const [panel, setPanel] = useState<Panel>(null)
   const [input, setInput] = useState('')
   const [matrix, setMatrix] = useState(false)
+  const [snake, setSnake] = useState(false)
 
   const output = usePrintQueue()
   const history = useCommandHistory()
@@ -67,6 +68,11 @@ export function CommandDock({ locale, terminal, dock }: CommandDockProps) {
     bootedAtRef.current = Date.now()
     printRef.current(bootLines(terminal), true)
   }, [terminal])
+
+  // Closing the console ends a game rather than leaving it to resume blind.
+  useEffect(() => {
+    if (panel !== 'terminal') setSnake(false)
+  }, [panel])
 
   const openTerminal = useCallback(() => setPanel('terminal'), [])
   const closePanel = useCallback(() => setPanel(null), [])
@@ -138,6 +144,9 @@ export function CommandDock({ locale, terminal, dock }: CommandDockProps) {
         case 'matrix':
           setMatrix(true)
           break
+        case 'snake':
+          setSnake(true)
+          break
       }
     },
     [output, closePanel, scrollTo, emit, router, copyToClipboard],
@@ -195,6 +204,14 @@ export function CommandDock({ locale, terminal, dock }: CommandDockProps) {
 
   const stopMatrix = useCallback(() => setMatrix(false), [])
 
+  const stopSnake = useCallback(
+    (score: number) => {
+      setSnake(false)
+      output.print([line(format(terminal.snake.result, { score }), 'accent')])
+    },
+    [output, terminal],
+  )
+
   const labels = useMemo(
     () => ({
       terminal: panel === 'terminal' ? dock.consoleClose : dock.consoleOpen,
@@ -211,12 +228,14 @@ export function CommandDock({ locale, terminal, dock }: CommandDockProps) {
         lines={output.lines}
         streaming={output.streaming}
         matrix={matrix}
+        snake={snake}
         value={input}
         onChange={setInput}
         onSubmit={submit}
         onRecall={recall}
         onComplete={autocomplete}
         onStopMatrix={stopMatrix}
+        onStopSnake={stopSnake}
         onClose={closePanel}
       />
 

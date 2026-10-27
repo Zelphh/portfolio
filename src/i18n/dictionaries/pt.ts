@@ -159,6 +159,7 @@ export const pt: Dictionary = {
       cv: 'Baixa o currículo',
       goto: 'Rola até a seção',
       lang: 'Troca o idioma',
+      snake: 'Jogo da cobrinha',
       history: 'Comandos anteriores',
       clear: 'Limpa o terminal',
       exit: 'Fecha o console',
@@ -218,6 +219,18 @@ export const pt: Dictionary = {
     praise: '\\[T]/ praise the sun',
     matrixHint: 'Acorde, Neo...',
     matrixStop: 'Qualquer tecla para sair',
+    snake: {
+      intro: 'Snake carregado. Esc devolve o console.',
+      label: 'Jogo da cobrinha',
+      score: 'Pontos {score}',
+      best: 'Recorde {best}',
+      ready: 'Setas, WASD ou deslize para começar',
+      controls: 'Setas / WASD · Esc para sair',
+      paused: 'Pausado — clique no tabuleiro para continuar',
+      over: 'Fim de jogo — {score} pts · Enter para jogar de novo',
+      exit: 'Sair ✕',
+      result: 'Snake encerrado com {score} pts.',
+    },
     sudoDenied:
       'Visitante não está no arquivo sudoers. Este incidente será reportado.',
     sudoGranted: [

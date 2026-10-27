@@ -435,6 +435,15 @@ const matrix: Command = {
   }),
 }
 
+const snake: Command = {
+  name: 'snake',
+  aliases: ['cobra'],
+  run: ({ t }) => ({
+    lines: [line(t.snake.intro, 'accent')],
+    effect: { type: 'snake' },
+  }),
+}
+
 /** Asking nicely works; asking with `sudo` is the joke. */
 const sudo: Command = {
   name: 'sudo',
@@ -475,6 +484,7 @@ export const COMMANDS: Readonly<Record<CommandName, Command>> = {
   bonfire,
   praise,
   matrix,
+  snake,
   sudo,
 }
 

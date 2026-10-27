@@ -196,6 +196,23 @@ export interface Dictionary {
     praise: string
     matrixHint: string
     matrixStop: string
+    /** The hidden `snake` command and the board it opens. */
+    snake: {
+      intro: string
+      label: string
+      /** `{score}` */
+      score: string
+      /** `{best}` */
+      best: string
+      ready: string
+      controls: string
+      paused: string
+      /** `{score}` */
+      over: string
+      exit: string
+      /** `{score}` — printed back in the console on the way out. */
+      result: string
+    }
     sudoDenied: string
     sudoGranted: readonly string[]
   }

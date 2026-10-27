@@ -22,6 +22,7 @@ export const LISTED_COMMANDS = [
   'cv',
   'goto',
   'lang',
+  'snake',
   'history',
   'clear',
   'exit',

@@ -5,6 +5,7 @@ import type { Dictionary } from '@/i18n/types'
 import type { LineTone, TerminalLine } from '@/lib/terminal'
 import { cn } from '@/lib/utils'
 import { MatrixRain } from './matrix-rain'
+import { SnakeGame } from './snake-game'
 
 const TONE_CLASS: Readonly<Record<LineTone, string>> = {
   input: 'text-fg',
@@ -20,6 +21,7 @@ interface TerminalPanelProps {
   /** True while a block of output is still arriving a line at a time. */
   streaming: boolean
   matrix: boolean
+  snake: boolean
   value: string
   onChange: (value: string) => void
   onSubmit: () => void
@@ -27,6 +29,8 @@ interface TerminalPanelProps {
   onRecall: (direction: -1 | 1) => void
   onComplete: () => void
   onStopMatrix: () => void
+  /** Receives the final score of the game being left. */
+  onStopSnake: (score: number) => void
   onClose: () => void
 }
 
@@ -47,12 +51,14 @@ export function TerminalPanel({
   lines,
   streaming,
   matrix,
+  snake,
   value,
   onChange,
   onSubmit,
   onRecall,
   onComplete,
   onStopMatrix,
+  onStopSnake,
   onClose,
 }: TerminalPanelProps) {
   const outputRef = useRef<HTMLDivElement>(null)
@@ -69,6 +75,12 @@ export function TerminalPanel({
     const timer = setTimeout(() => inputRef.current?.focus(), 260)
     return () => clearTimeout(timer)
   }, [open])
+
+  // The board holds focus while it is up; leaving hands it back to the prompt.
+  const stopSnake = (score: number) => {
+    onStopSnake(score)
+    inputRef.current?.focus()
+  }
 
   const handleKey = (event: KeyboardEvent<HTMLInputElement>) => {
     switch (event.key) {
@@ -184,6 +196,8 @@ export function TerminalPanel({
       {matrix && open && (
         <MatrixRain onStop={onStopMatrix} hint={copy.matrixStop} />
       )}
+
+      {snake && open && <SnakeGame copy={copy.snake} onStop={stopSnake} />}
     </div>
   )
 }
