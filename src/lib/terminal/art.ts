@@ -20,7 +20,7 @@ export const NEOFETCH_LOGO: readonly string[] = [
   '/___/        \\___\\',
 ]
 
-/** Lit by `bonfire`, to match the fire burning behind the hero. */
+/** Lit by `bonfire`, which also stirs the ASCII field behind the hero photo. */
 export const BONFIRE_ART: readonly string[] = [
   '         (',
   '        ) \\',

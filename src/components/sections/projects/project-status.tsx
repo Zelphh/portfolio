@@ -14,11 +14,11 @@ interface ProjectStatusProps {
 export function ProjectStatus({ label, className }: ProjectStatusProps) {
   return (
     <span
-      className={`inline-flex shrink-0 items-center gap-2 rounded-full border border-warn/45 bg-warn/10 px-2.5 py-1 text-[10px] uppercase leading-none tracking-[0.18em] text-warn ${className ?? ''}`}
+      className={`inline-flex shrink-0 items-center gap-2 rounded-full border border-warn/45 bg-warn/10 px-2.5 py-1 text-[0.625rem] uppercase leading-none tracking-[0.18em] text-warn ${className ?? ''}`}
     >
       <span
         aria-hidden
-        className="size-[5px] shrink-0 animate-pulse rounded-full bg-warn motion-reduce:animate-none"
+        className="size-[0.3125rem] shrink-0 animate-pulse rounded-full bg-warn motion-reduce:animate-none"
       />
       {label}
     </span>

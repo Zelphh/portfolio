@@ -35,7 +35,8 @@ export const en: Dictionary = {
     ],
     paragraph:
       "Welcome to my site. Here I share what I build, what I'm learning and anything else I find interesting.",
-    scroll: 'Make yourself at home',
+    cta: { projects: 'see projects', contact: 'talk to me' },
+    photoAlt: 'Photo of Matheus Tartari, aka Zelph',
   },
 
   sections: {
@@ -250,7 +251,6 @@ export const en: Dictionary = {
 
   a11y: {
     switchLanguage: 'Switch language to {language}',
-    bonfire: 'Animated ASCII art bonfire',
     grass: 'Animated ASCII art grass and tree',
     coffee: 'Animated ASCII art cup of coffee, its steam pushed by the cursor',
     contributions: '{total} GitHub contributions in the last year',

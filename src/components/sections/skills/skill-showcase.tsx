@@ -51,7 +51,7 @@ export function SkillShowcase({
     >
       {/* Both visual kinds share one box so the copy beside them starts at the
           same x-position, whichever kind the selected skill happens to use. */}
-      <div className="-mb-3.5 h-[230px] w-[300px] flex-none">
+      <div className="-mb-3.5 h-[14.375rem] w-[18.75rem] flex-none">
         {skill.visual.kind === 'ascii' ? (
           <LogoArt
             logo={skill.visual.logo}
@@ -70,7 +70,7 @@ export function SkillShowcase({
               height={132}
               loading="lazy"
               decoding="async"
-              className="block h-[132px] w-[132px]"
+              className="block h-[8.25rem] w-[8.25rem]"
             />
           </div>
         )}
@@ -84,7 +84,7 @@ export function SkillShowcase({
           <TierBadge tier={skill.tier} label={tierLabel} />
         </div>
 
-        <span className="font-display text-[clamp(34px,4vw,52px)] font-extrabold leading-none tracking-[-0.02em] text-fg">
+        <span className="font-display text-[clamp(2.125rem,4vw,3.25rem)] font-extrabold leading-none tracking-[-0.02em] text-fg">
           {skill.name}
         </span>
 

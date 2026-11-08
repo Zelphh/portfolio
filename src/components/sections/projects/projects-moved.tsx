@@ -90,13 +90,13 @@ export function ProjectsMoved({ locale, label, copy }: ProjectsMovedProps) {
       id="projetos"
       className="border-b border-dashed border-line py-24 lg:py-28"
     >
-      <div className="mx-auto max-w-[1180px] px-6 lg:px-10">
+      <div className="mx-auto max-w-[73.75rem] px-6 lg:px-10">
         <SectionHeading label={label} />
 
         <Link
           ref={boxRef}
           href={href}
-          className="group mt-11 grid gap-5 rounded-[15px] border border-moss-dim bg-surface/40 p-7 font-mono text-sm transition-[border-color,box-shadow] duration-300 hover:border-moss-light hover:shadow-[0_0_48px_-14px_var(--color-moss-light)] sm:p-9"
+          className="group mt-11 grid gap-5 rounded-[0.9375rem] border border-moss-dim bg-surface/40 p-7 font-mono text-sm transition-[border-color,box-shadow] duration-300 hover:border-moss-light hover:shadow-[0_0_3rem_-0.875rem_var(--color-moss-light)] sm:p-9"
         >
           <p className="text-fg-faint">
             <span className="text-moss-light">$</span>{' '}
@@ -128,7 +128,7 @@ export function ProjectsMoved({ locale, label, copy }: ProjectsMovedProps) {
             {copy.movedNote}
           </p>
           <span
-            className={`text-[13px] text-moss-light group-hover:text-fg ${reveal(done)}`}
+            className={`text-[0.8125rem] text-moss-light group-hover:text-fg ${reveal(done)}`}
           >
             {copy.movedLink}
             {done && (

@@ -5,6 +5,7 @@ import type { Locale } from '@/i18n/config'
 import { ProjectBadges } from './project-badges'
 import { ProjectCover } from './project-cover'
 import { ProjectStatus } from './project-status'
+import { rem } from '@/lib/utils'
 
 interface ProjectCardProps {
   project: Project
@@ -16,7 +17,7 @@ interface ProjectCardProps {
   offset: number
 }
 
-/** Horizontal travel per carousel slot, in pixels. */
+/** Horizontal travel per carousel slot, in design pixels (shipped as rem). */
 const SLOT_WIDTH = 660
 /** Slots further out than this are fully transparent. */
 const VISIBLE_RADIUS = 2.2
@@ -38,11 +39,11 @@ export function ProjectCard({
       onClick={onOpen}
       aria-hidden={hidden}
       tabIndex={hidden ? -1 : 0}
-      className="absolute left-1/2 top-0 grid h-[520px] w-[600px] max-w-[calc(100vw-48px)] grid-rows-[1fr_auto] cursor-pointer rounded-[25px] border border-line-soft bg-surface text-left transition-[transform,opacity] duration-[550ms] ease-[var(--ease-out-soft)]"
+      className="absolute left-1/2 top-0 grid h-[32.5rem] w-[37.5rem] max-w-[calc(100vw-3rem)] grid-rows-[1fr_auto] cursor-pointer rounded-[1.5625rem] border border-line-soft bg-surface text-left transition-[transform,opacity] duration-[550ms] ease-[var(--ease-out-soft)]"
       style={{
         // `-50%` centres whatever width the card ended up at, so the capped
         // mobile width stays centred instead of drifting off the viewport.
-        transform: `translateX(calc(-50% + ${offset * SLOT_WIDTH}px)) scale(${1 - Math.min(distance, 2) * 0.07})`,
+        transform: `translateX(calc(-50% + ${rem(offset * SLOT_WIDTH)})) scale(${1 - Math.min(distance, 2) * 0.07})`,
         opacity: hidden ? 0 : Math.max(1 - distance * 0.42, 0.1),
       }}
     >
@@ -51,11 +52,11 @@ export function ProjectCard({
         alt={project.name[locale]}
         placeholder="SCREENSHOT"
         active={!hidden}
-        className="m-6 mb-0 rounded-[6px]"
+        className="m-6 mb-0 rounded-[0.375rem]"
       />
 
       <div className="grid gap-3.5 p-7">
-        <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-fg-fainter">
+        <div className="flex items-center gap-3 text-[0.6875rem] uppercase tracking-[0.2em] text-fg-fainter">
           <span>{project.year}</span>
           <span className="text-line-strong">·</span>
           <span>{project.stack}</span>
@@ -69,7 +70,7 @@ export function ProjectCard({
           )}
         </div>
 
-        <span className="font-display text-[30px] font-extrabold leading-[1.05] tracking-[-0.02em] text-fg">
+        <span className="font-display text-[1.875rem] font-extrabold leading-[1.05] tracking-[-0.02em] text-fg">
           {project.name[locale]}
         </span>
 
@@ -77,7 +78,7 @@ export function ProjectCard({
           {project.summary[locale]}
         </span>
 
-        <span className="text-[13px] text-accent">{detailsLabel}</span>
+        <span className="text-[0.8125rem] text-accent">{detailsLabel}</span>
       </div>
     </button>
   )

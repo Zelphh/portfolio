@@ -40,7 +40,7 @@ export function FooterTetris() {
     <div
       id="tetris"
       aria-hidden
-      className="relative h-[340px] overflow-hidden border-t border-dashed border-line bg-panel"
+      className="relative h-[21.25rem] overflow-hidden border-t border-dashed border-line bg-panel"
     >
       <div
         className={cn(

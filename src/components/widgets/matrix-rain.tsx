@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef } from 'react'
 import { useAnimationLoop } from '@/hooks/use-animation-loop'
+import { rem, rootScale } from '@/lib/utils'
 
 const FPS = 18
 const FONT_SIZE = 12
@@ -44,8 +45,9 @@ export function MatrixRain({ onStop, hint }: MatrixRainProps) {
     const box = boxRef.current
     if (!box) return
 
-    const columns = Math.max(1, Math.floor(box.clientWidth / CHAR_WIDTH))
-    const rows = Math.max(1, Math.floor(box.clientHeight / LINE_HEIGHT))
+    const scale = rootScale()
+    const columns = Math.max(1, Math.floor(box.clientWidth / (CHAR_WIDTH * scale)))
+    const rows = Math.max(1, Math.floor(box.clientHeight / (LINE_HEIGHT * scale)))
 
     sizeRef.current = { columns, rows }
     gridRef.current = new Array<string>(columns * rows).fill(' ')
@@ -132,10 +134,10 @@ export function MatrixRain({ onStop, hint }: MatrixRainProps) {
       <pre
         ref={artRef}
         className="m-0 select-none whitespace-pre font-mono text-accent [text-rendering:optimizeSpeed]"
-        style={{ fontSize: FONT_SIZE, lineHeight: `${LINE_HEIGHT}px` }}
+        style={{ fontSize: rem(FONT_SIZE), lineHeight: rem(LINE_HEIGHT) }}
       />
 
-      <span className="absolute inset-x-0 bottom-3 text-center text-[11px] uppercase tracking-[0.2em] text-fg-fainter">
+      <span className="absolute inset-x-0 bottom-3 text-center text-[0.6875rem] uppercase tracking-[0.2em] text-fg-fainter">
         {hint}
       </span>
     </div>

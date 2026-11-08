@@ -72,14 +72,14 @@ export function SiteHeader({
       className={cn(
         'sticky top-0 z-20 flex items-center justify-between gap-6 border-b border-dashed border-line bg-ink/90 px-10 backdrop-blur-md',
         'transition-[padding] duration-300 ease-[var(--ease-out-soft)]',
-        scrolled ? 'py-3' : 'py-[22px]',
+        scrolled ? 'py-3' : 'py-[1.375rem]',
       )}
     >
       <div className="flex items-baseline gap-3">
-        <pre aria-hidden className="m-0 text-[9px] leading-[1.05] text-accent">
+        <pre aria-hidden className="m-0 text-[0.5625rem] leading-[1.05] text-accent">
           {LOGO_MARK}
         </pre>
-        <span className="text-[13px] font-bold uppercase tracking-[0.22em] text-fg-strong">
+        <span className="text-[0.8125rem] font-bold uppercase tracking-[0.22em] text-fg-strong">
           {SITE.name}
         </span>
       </div>
@@ -87,7 +87,7 @@ export function SiteHeader({
       <nav
         ref={navRef}
         onMouseLeave={() => setHovered(null)}
-        className="relative hidden gap-0.5 text-[13px] lg:flex xl:gap-1.5"
+        className="relative hidden gap-0.5 text-[0.8125rem] lg:flex xl:gap-1.5"
       >
         <span
           aria-hidden
@@ -111,7 +111,7 @@ export function SiteHeader({
               scrollTo(id)
             }}
             className={cn(
-              'relative z-[1] whitespace-nowrap rounded-2xl px-2.5 py-[7px] transition-colors duration-200 xl:px-3',
+              'relative z-[1] whitespace-nowrap rounded-2xl px-2.5 py-[0.4375rem] transition-colors duration-200 xl:px-3',
               index === shown ? 'text-accent' : 'text-fg-subtle',
             )}
           >

@@ -14,7 +14,7 @@ export function ProjectBadges({ labels, className }: ProjectBadgesProps) {
       {labels.map((label) => (
         <span
           key={label}
-          className="rounded-full border border-moss px-2.5 py-1 text-[10px] uppercase leading-none tracking-[0.18em] text-moss-light"
+          className="rounded-full border border-moss px-2.5 py-1 text-[0.625rem] uppercase leading-none tracking-[0.18em] text-moss-light"
         >
           {label}
         </span>

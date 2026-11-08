@@ -22,7 +22,7 @@ export function TierBadge({ tier, label, className }: TierBadgeProps) {
   return (
     <span
       className={cn(
-        'border px-2 py-[3px] text-[10px] uppercase tracking-[0.22em]',
+        'border px-2 py-[0.1875rem] text-[0.625rem] uppercase tracking-[0.22em]',
         TIER_STYLES[tier],
         className,
       )}

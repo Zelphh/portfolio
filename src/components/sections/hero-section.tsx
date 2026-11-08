@@ -1,68 +1,75 @@
 import Image from 'next/image'
-import { BonfireArt } from '@/components/ascii'
 import type { Dictionary } from '@/i18n/types'
+import { HeroActions } from './hero-actions'
+import { HeroField } from './hero-field'
 import { HeroGreeting } from './hero-greeting'
 
 interface HeroSectionProps {
   copy: Dictionary['hero']
-  bonfireLabel: string
 }
 
+/** A `+` pinned to one corner of the photo frame. */
+const CORNER = 'absolute text-sm leading-none text-accent'
+
 /**
- * Server-rendered hero. Only the bonfire is a client component, so the
- * headline and copy are in the initial HTML and paint before any JS runs.
+ * Server-rendered hero: copy and calls to action on the left, a framed
+ * cut-out photo on the right standing in front of a drifting ASCII field.
+ * Only the greeting, the buttons and the field need the browser, so the
+ * headline and paragraph are in the initial HTML.
+ *
+ * The frame and the photo share the same left edge maths but not the same
+ * box: the photo is taller than the frame, so the head rises out of it.
  */
-export function HeroSection({ copy, bonfireLabel }: HeroSectionProps) {
+export function HeroSection({ copy }: HeroSectionProps) {
   return (
-    <section className="relative grid min-h-[calc(100svh-var(--header-height))] items-center gap-0 border-b border-dashed border-line px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.55fr)] lg:pl-10 lg:pr-0">
-      <div className="relative z-[2] py-8 lg:left-[50px]">
-        <p className="mb-6 text-sm uppercase tracking-[0.3em] text-fg-fainter">
+    <section data-hero className="relative grid min-h-[calc(100svh-var(--header-height))] items-center border-b border-dashed border-line px-6 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] lg:px-10">
+      <div className="relative z-[2] py-15 lg:left-[3.125rem]">
+        <p className="mb-7.5 text-sm uppercase tracking-[0.3em] text-fg-fainter">
           {copy.welcome}
         </p>
 
-        <h1 className="m-0 text-balance font-display text-[clamp(60px,9.6vw,168px)] font-extrabold leading-[0.9] tracking-[-0.035em] text-fg">
-          <HeroGreeting
-            greetings={copy.greetings}
-            epithets={copy.epithets}
-          />
+        <h1 className="m-0 text-balance font-display text-[clamp(3.75rem,9.6vw,10.5rem)] font-extrabold leading-[0.9] tracking-[-0.035em] text-fg">
+          <HeroGreeting greetings={copy.greetings} epithets={copy.epithets} />
         </h1>
 
-        <div className="mt-15 flex items-start gap-3">
-          {/* Decorative: the speech bubble beside it already says who this is. */}
-          <Image
-            src="/hero/me.jpg"
-            alt=""
-            width={240}
-            height={240}
-            priority
-            className="h-20 w-20 flex-none rounded-full border border-line-strong object-cover"
-          />
+        <p className="mt-[2.375rem] max-w-[44ch] text-[1.1875rem] leading-[1.8] text-fg-dim">
+          {copy.paragraph}
+        </p>
 
-          <p className="relative max-w-[44ch] rounded-[14px] border border-line-strong bg-surface px-4 py-3 text-[17px] leading-[1.6] text-fg-dim">
-            <span
-              aria-hidden
-              className="absolute left-0 top-10 -ml-[7px] h-3.5 w-3.5 -translate-y-1/2 rotate-45 border-b border-l border-line-strong bg-surface"
-            />
-            {copy.paragraph}
+        <HeroActions copy={copy.cta} />
+      </div>
+
+      <div className="pointer-events-none relative h-[34rem] lg:h-[calc(100svh-var(--header-height))] lg:min-h-[35rem]">
+        <div className="absolute bottom-[10%] left-1/2 h-[64%] w-[min(27.5rem,86%)] -translate-x-[44%]">
+          <div className="absolute inset-0 overflow-hidden border border-dashed border-moss bg-panel">
+            <HeroField />
+          </div>
+          <span aria-hidden className={`${CORNER} -left-[0.3125rem] -top-[0.5625rem]`}>+</span>
+          <span aria-hidden className={`${CORNER} -right-[0.3125rem] -top-[0.5625rem]`}>+</span>
+          <span aria-hidden className={`${CORNER} -bottom-[0.4375rem] -left-[0.3125rem]`}>+</span>
+          <span aria-hidden className={`${CORNER} -bottom-[0.4375rem] -right-[0.3125rem]`}>+</span>
+
+          <p
+            aria-hidden
+            className="absolute inset-x-0 -bottom-[1.875rem] flex gap-2.5 overflow-hidden whitespace-nowrap text-[0.6875rem] uppercase tracking-[0.2em] text-fg-ghost"
+          >
+            <span className="text-moss">└─</span>
+            <span>~/zelph.png</span>
+            <span className="section-rule text-line">{'─'.repeat(120)}</span>
           </p>
         </div>
 
-        <p className="mt-15 flex items-center gap-3.5 text-sm text-fg-fainter">
-          <span className="text-accent">&gt;</span>
-          <span>{copy.scroll}</span>
-          <span
-            aria-hidden
-            className="h-px w-[120px] bg-gradient-to-r from-moss to-transparent"
+        <div className="absolute bottom-[10%] left-1/2 h-[84%] w-[min(22.5rem,70%)] -translate-x-1/2 overflow-hidden [mask-image:linear-gradient(180deg,#000_72%,transparent_100%)]">
+          <Image
+            src="/hero/zelph.png"
+            alt={copy.photoAlt}
+            width={285}
+            height={950}
+            priority
+            sizes="(min-width: 64rem) 28rem, 70vw"
+            className="block h-auto w-full"
           />
-        </p>
-      </div>
-
-      <div className="pointer-events-none relative h-[45svh] lg:h-[calc(100svh-var(--header-height))] lg:pt-20">
-        <BonfireArt label={bonfireLabel} />
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-[radial-gradient(60%_55%_at_50%_62%,rgba(72,78,61,0.28),transparent_70%)]"
-        />
+        </div>
       </div>
     </section>
   )

@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 
 /** Long enough to run off the widest layout; overflow is clipped by CSS. */
-const RULE = '─'.repeat(90)
+const RULE = '─'.repeat(240)
 
 interface SectionHeadingProps {
   label: string
@@ -18,7 +18,7 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <div className={`flex items-center gap-4 ${className ?? ''}`}>
-      <h2 className="text-[13px] uppercase tracking-[0.28em] text-accent">
+      <h2 className="text-[0.8125rem] uppercase tracking-[0.28em] text-accent">
         {label}
       </h2>
       {children}

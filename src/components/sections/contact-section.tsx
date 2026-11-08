@@ -8,7 +8,7 @@ interface ContactSectionProps {
 export function ContactSection({ label }: ContactSectionProps) {
   return (
     <section id="contato" className="px-6 pb-30 lg:px-10">
-      <div className="mx-auto max-w-[1180px]">
+      <div className="mx-auto max-w-[73.75rem]">
         <SectionHeading label={label} className="mb-11" />
 
         <ul className="grid gap-0.5">
@@ -18,16 +18,16 @@ export function ContactSection({ label }: ContactSectionProps) {
                 href={contact.url}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="grid grid-cols-[26px_minmax(0,1fr)_auto] items-center gap-5 border-b border-dashed border-line px-2 py-5 text-fg-muted transition-colors hover:bg-surface-hover hover:text-accent sm:grid-cols-[26px_minmax(0,150px)_minmax(0,1fr)_auto]"
+                className="grid grid-cols-[1.625rem_minmax(0,1fr)_auto] items-center gap-5 border-b border-dashed border-line px-2 py-5 text-fg-muted transition-colors hover:bg-surface-hover hover:text-accent sm:grid-cols-[1.625rem_minmax(0,9.375rem)_minmax(0,1fr)_auto]"
               >
                 <span aria-hidden className="text-sm text-moss">
                   {contact.mark}
                 </span>
                 <span className="text-base text-fg-strong">{contact.name}</span>
-                <span className="hidden truncate text-[13px] text-fg-fainter sm:block">
+                <span className="hidden truncate text-[0.8125rem] text-fg-fainter sm:block">
                   {contact.handle}
                 </span>
-                <span aria-hidden className="text-[13px] text-moss">
+                <span aria-hidden className="text-[0.8125rem] text-moss">
                   --&gt;
                 </span>
               </a>

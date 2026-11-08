@@ -27,3 +27,16 @@ export function ringOffset(
 }
 
 export const pad2 = (value: number): string => String(value).padStart(2, '0')
+
+/** Pixels → rem, for inline styles that must follow the root font size. */
+export const rem = (px: number): string => `${px / 16}rem`
+
+/**
+ * How many CSS pixels one design pixel is right now. Sizes are authored in
+ * px at a 16px root and shipped as rem, so code that measures the DOM in
+ * real pixels multiplies its design constants by this.
+ */
+export function rootScale(): number {
+  if (typeof document === 'undefined') return 1
+  return parseFloat(getComputedStyle(document.documentElement).fontSize) / 16 || 1
+}

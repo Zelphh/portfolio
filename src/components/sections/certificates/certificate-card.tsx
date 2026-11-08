@@ -42,7 +42,7 @@ export function CertificateCard({
         // Tailwind's translate utilities set the `translate` property, not
         // `transform`, so naming `transform` here would leave the lift
         // snapping instead of easing.
-        'study-card group relative flex flex-col justify-between gap-4 overflow-hidden rounded-[15px] border border-line bg-surface p-6 text-left transition-[border-color,translate] duration-[350ms] ease-[var(--ease-out-soft)] hover:-translate-y-[3px] hover:border-moss',
+        'study-card group relative flex flex-col justify-between gap-4 overflow-hidden rounded-[0.9375rem] border border-line bg-surface p-6 text-left transition-[border-color,translate] duration-[350ms] ease-[var(--ease-out-soft)] hover:-translate-y-[0.1875rem] hover:border-moss',
         featured && 'lg:bg-surface-raised',
       )}
     >
@@ -56,21 +56,21 @@ export function CertificateCard({
         loading="lazy"
         decoding="async"
         className={cn(
-          'pointer-events-none absolute -bottom-10 -right-10 h-[170px] w-[170px] opacity-[0.07] grayscale',
-          featured && 'lg:-bottom-[70px] lg:-right-[70px] lg:h-[320px] lg:w-[320px]',
+          'pointer-events-none absolute -bottom-10 -right-10 h-[10.625rem] w-[10.625rem] opacity-[0.07] grayscale',
+          featured && 'lg:-bottom-[4.375rem] lg:-right-[4.375rem] lg:h-[20rem] lg:w-[20rem]',
         )}
       />
 
       <span
         aria-hidden
-        className="absolute right-[18px] top-3.5 text-xs text-line-bright transition-colors group-hover:text-accent"
+        className="absolute right-[1.125rem] top-3.5 text-xs text-line-bright transition-colors group-hover:text-accent"
       >
         +
       </span>
 
-      <div className="relative flex flex-wrap items-center gap-2.5 pr-5 text-[10px] uppercase tracking-[0.22em] text-fg-fainter">
+      <div className="relative flex flex-wrap items-center gap-2.5 pr-5 text-[0.625rem] uppercase tracking-[0.22em] text-fg-fainter">
         <span
-          className={cn('rounded-md border px-2 py-[3px]', KIND_PILL[certificate.kind])}
+          className={cn('rounded-md border px-2 py-[0.1875rem]', KIND_PILL[certificate.kind])}
         >
           {kindLabel}
         </span>
@@ -85,13 +85,13 @@ export function CertificateCard({
           aria-hidden
           loading="lazy"
           decoding="async"
-          className={cn('block h-10 w-10', featured && 'lg:h-[72px] lg:w-[72px]')}
+          className={cn('block h-10 w-10', featured && 'lg:h-[4.5rem] lg:w-[4.5rem]')}
         />
 
         <span
           className={cn(
-            'text-balance font-display text-[22px] font-extrabold leading-[1.08] tracking-[-0.02em] text-fg',
-            featured && 'lg:text-[clamp(28px,3vw,40px)]',
+            'text-balance font-display text-[1.375rem] font-extrabold leading-[1.08] tracking-[-0.02em] text-fg',
+            featured && 'lg:text-[clamp(1.75rem,3vw,2.5rem)]',
           )}
         >
           {certificate.name[locale]}
@@ -99,7 +99,7 @@ export function CertificateCard({
 
         <span
           className={cn(
-            'line-clamp-2 max-w-[46ch] text-[13px] leading-[1.7] text-fg-subtle',
+            'line-clamp-2 max-w-[46ch] text-[0.8125rem] leading-[1.7] text-fg-subtle',
             featured && 'lg:line-clamp-4',
           )}
         >

@@ -11,6 +11,7 @@ import {
 import { format } from '@/i18n/format'
 import type { Dictionary } from '@/i18n/types'
 import { SnakeEngine, type Direction } from '@/lib/snake'
+import { rem, rootScale } from '@/lib/utils'
 
 const FONT_SIZE = 12
 const LINE_HEIGHT = 14
@@ -133,8 +134,9 @@ export function SnakeGame({ copy, onStop }: SnakeGameProps) {
       const board = boardRef.current
       if (!board) return
 
-      const cols = Math.max(8, Math.floor(board.clientWidth / CELL_WIDTH))
-      const rows = Math.max(6, Math.floor(board.clientHeight / LINE_HEIGHT))
+      const scale = rootScale()
+      const cols = Math.max(8, Math.floor(board.clientWidth / (CELL_WIDTH * scale)))
+      const rows = Math.max(6, Math.floor(board.clientHeight / (LINE_HEIGHT * scale)))
       engineRef.current = new SnakeEngine(cols, rows)
       restart()
     }
@@ -262,7 +264,7 @@ export function SnakeGame({ copy, onStop }: SnakeGameProps) {
       onBlur={() => setFocus(false)}
       className="absolute inset-0 z-10 flex flex-col bg-panel px-4 pb-3 pt-3 outline-none"
     >
-      <div className="flex flex-none items-center justify-between pb-2 text-[11px] uppercase tracking-[0.2em] text-fg-fainter">
+      <div className="flex flex-none items-center justify-between pb-2 text-[0.6875rem] uppercase tracking-[0.2em] text-fg-fainter">
         <span>
           {format(copy.score, { score })}
           <span className="px-2 text-line-bright">/</span>
@@ -290,13 +292,13 @@ export function SnakeGame({ copy, onStop }: SnakeGameProps) {
           ref={artRef}
           aria-hidden
           className="m-0 select-none whitespace-pre font-mono text-line-bright [text-rendering:optimizeSpeed]"
-          style={{ fontSize: FONT_SIZE, lineHeight: `${LINE_HEIGHT}px` }}
+          style={{ fontSize: rem(FONT_SIZE), lineHeight: rem(LINE_HEIGHT) }}
         />
       </div>
 
       <span
         aria-live="polite"
-        className="flex-none pt-2 text-center text-[11px] uppercase tracking-[0.2em] text-fg-fainter"
+        className="flex-none pt-2 text-center text-[0.6875rem] uppercase tracking-[0.2em] text-fg-fainter"
       >
         {status}
       </span>

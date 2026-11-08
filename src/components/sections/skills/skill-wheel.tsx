@@ -4,7 +4,7 @@ import { useRef } from 'react'
 import { TIER_DOT } from '@/components/ui/tier-badge'
 import type { Skill } from '@/content/types'
 import { useWheelStep } from '@/hooks/use-wheel-step'
-import { cn, ringOffset } from '@/lib/utils'
+import { cn, rem, ringOffset } from '@/lib/utils'
 
 /** Row height in pixels; also the travel distance of one wheel step. */
 const ITEM_HEIGHT = 45
@@ -41,7 +41,7 @@ export function SkillWheel({
       ref={wheelRef}
       role="listbox"
       aria-label={label}
-      className="fade-y relative h-[210px] touch-none overflow-hidden"
+      className="fade-y relative h-[13.125rem] touch-none overflow-hidden"
     >
       <div className="absolute left-0 right-0 top-1/2">
         {skills.map((skill, index) => {
@@ -57,12 +57,12 @@ export function SkillWheel({
               aria-selected={isActive}
               onClick={() => onSelect(index)}
               className={cn(
-                'absolute left-0 right-0 -mt-[22px] flex h-[45px] items-center justify-end text-[15px]',
+                'absolute left-0 right-0 -mt-[1.375rem] flex h-[2.8125rem] items-center justify-end text-[0.9375rem]',
                 'transition-[transform,color,opacity] duration-[450ms] ease-[var(--ease-out-soft)]',
                 isActive ? 'text-accent' : 'text-fg-faint',
               )}
               style={{
-                transform: `translateY(${offset * ITEM_HEIGHT}px)`,
+                transform: `translateY(${rem(offset * ITEM_HEIGHT)})`,
                 opacity:
                   distance > VISIBLE_RADIUS
                     ? 0

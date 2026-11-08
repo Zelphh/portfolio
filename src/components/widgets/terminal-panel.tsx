@@ -110,18 +110,18 @@ export function TerminalPanel({
     <div
       aria-hidden={!open}
       className={cn(
-        'relative box-border flex w-[min(620px,calc(100vw-48px))] flex-col overflow-hidden rounded-[15px] border border-line-strong bg-panel shadow-[0_24px_60px_rgba(0,0,0,0.6)]',
+        'relative box-border flex w-[min(38.75rem,calc(100vw-3rem))] flex-col overflow-hidden rounded-[0.9375rem] border border-line-strong bg-panel shadow-[0_1.5rem_3.75rem_rgba(0,0,0,0.6)]',
         'origin-bottom-left transition-[height,opacity,transform,filter] duration-[420ms] ease-[var(--ease-out-spring)]',
         open
-          ? 'h-[min(340px,calc(100vh-240px))] translate-y-0 scale-100 opacity-100 blur-0'
-          : 'pointer-events-none h-0 translate-y-6 scale-[0.96] opacity-0 blur-[6px]',
+          ? 'h-[min(21.25rem,calc(100vh-15rem))] translate-y-0 scale-100 opacity-100 blur-0'
+          : 'pointer-events-none h-0 translate-y-6 scale-[0.96] opacity-0 blur-[0.375rem]',
       )}
     >
       <div className="flex flex-none items-center gap-2.5 border-b border-line-soft px-3.5 py-2.5">
-        <span aria-hidden className="h-[9px] w-[9px] rounded-full bg-accent" />
-        <span aria-hidden className="h-[9px] w-[9px] rounded-full bg-moss" />
-        <span aria-hidden className="h-[9px] w-[9px] rounded-full bg-line" />
-        <span className="flex-1 text-center text-[11px] uppercase tracking-[0.2em] text-fg-fainter">
+        <span aria-hidden className="h-[0.5625rem] w-[0.5625rem] rounded-full bg-accent" />
+        <span aria-hidden className="h-[0.5625rem] w-[0.5625rem] rounded-full bg-moss" />
+        <span aria-hidden className="h-[0.5625rem] w-[0.5625rem] rounded-full bg-line" />
+        <span className="flex-1 text-center text-[0.6875rem] uppercase tracking-[0.2em] text-fg-fainter">
           {copy.title}
         </span>
         <button
@@ -129,7 +129,7 @@ export function TerminalPanel({
           onClick={onClose}
           aria-label={copy.close}
           tabIndex={open ? 0 : -1}
-          className="px-1 text-[13px] text-fg-fainter transition-colors hover:text-accent"
+          className="px-1 text-[0.8125rem] text-fg-fainter transition-colors hover:text-accent"
         >
           ✕
         </button>
@@ -145,7 +145,7 @@ export function TerminalPanel({
             <div
               key={index}
               className={cn(
-                'whitespace-pre-wrap text-[13px] leading-[1.7]',
+                'whitespace-pre-wrap text-[0.8125rem] leading-[1.7]',
                 TONE_CLASS[line.tone],
               )}
             >
@@ -157,7 +157,7 @@ export function TerminalPanel({
         {streaming && (
           <span
             aria-hidden
-            className="mt-1 inline-block h-[14px] w-[7px] animate-blink bg-accent align-middle"
+            className="mt-1 inline-block h-[0.875rem] w-[0.4375rem] animate-blink bg-accent align-middle"
           />
         )}
 
@@ -174,7 +174,7 @@ export function TerminalPanel({
         >
           <label
             htmlFor="terminal-input"
-            className="flex-none text-[13px] text-accent"
+            className="flex-none text-[0.8125rem] text-accent"
           >
             {copy.prompt}
           </label>
@@ -188,7 +188,7 @@ export function TerminalPanel({
             spellCheck={false}
             autoComplete="off"
             tabIndex={open ? 0 : -1}
-            className="min-w-0 flex-1 border-none bg-transparent font-mono text-[13px] text-fg caret-accent outline-none"
+            className="min-w-0 flex-1 border-none bg-transparent font-mono text-[0.8125rem] text-fg caret-accent outline-none"
           />
         </div>
       </div>

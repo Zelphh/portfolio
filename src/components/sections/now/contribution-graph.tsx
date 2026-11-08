@@ -20,7 +20,7 @@ const LEVELS = [0, 1, 2, 3, 4] as const
  * same column track, so they grow with it.
  */
 const CELL = 'var(--cell)'
-const GAP = 3
+const GAP = '0.1875rem'
 
 /** A month label needs about this many columns before the next one fits. */
 const LABEL_COLUMNS = 3
@@ -104,12 +104,12 @@ export function ContributionGraph({
       <div className="min-w-0">
         <div
           dir="rtl"
-          className="scrollbar-thin w-fit max-w-full overflow-x-auto pb-2 [--cell:11px] xl:[--cell:14px]"
+          className="scrollbar-thin w-fit max-w-full overflow-x-auto pb-2 [--cell:0.6875rem] xl:[--cell:0.875rem]"
         >
           <div dir="ltr" className="w-max">
             <div
               aria-hidden
-              className="mb-2 grid text-[10px] text-fg-fainter"
+              className="mb-2 grid text-[0.625rem] text-fg-fainter"
               style={{ gridTemplateColumns: track, columnGap: GAP }}
             >
               {months.map(({ column, text }) => (
@@ -142,7 +142,7 @@ export function ContributionGraph({
                         date: dayFormat.format(Date.parse(day.date)),
                         count: day.count,
                       })}
-                      className={`rounded-[2px] ${HEAT[day.level]}`}
+                      className={`rounded-[0.125rem] ${HEAT[day.level]}`}
                     />
                   ) : (
                     <span key={`${column}-${row}`} />
@@ -153,7 +153,7 @@ export function ContributionGraph({
           </div>
         </div>
 
-        <div className="mt-3 flex flex-wrap items-center justify-between gap-3 text-[11px] text-fg-fainter">
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-3 text-[0.6875rem] text-fg-fainter">
           <span>
             {format(copy.range, {
               date: dayFormat.format(Date.parse(calendar.lastDate)),
@@ -164,8 +164,8 @@ export function ContributionGraph({
             {LEVELS.map((level) => (
               <span
                 key={level}
-                className={`inline-block rounded-[2px] ${HEAT[level]}`}
-                style={{ width: 11, height: 11 }}
+                className={`inline-block rounded-[0.125rem] ${HEAT[level]}`}
+                style={{ width: '0.6875rem', height: '0.6875rem' }}
               />
             ))}
             {copy.more}
@@ -176,10 +176,10 @@ export function ContributionGraph({
       <dl className="flex flex-wrap gap-x-10 gap-y-5 lg:grid lg:gap-5">
         {stats.map((stat) => (
           <div key={stat.label} className="grid gap-1">
-            <dt className="text-[10px] uppercase tracking-[0.22em] text-fg-fainter">
+            <dt className="text-[0.625rem] uppercase tracking-[0.22em] text-fg-fainter">
               {stat.label}
             </dt>
-            <dd className="whitespace-nowrap font-display text-[26px] font-extrabold leading-none tracking-[-0.02em] text-fg">
+            <dd className="whitespace-nowrap font-display text-[1.625rem] font-extrabold leading-none tracking-[-0.02em] text-fg">
               {stat.value}
             </dd>
           </div>

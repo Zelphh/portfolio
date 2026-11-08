@@ -19,7 +19,7 @@ interface ProjectsSectionProps {
 }
 
 const ARROW_CLASS =
-  'absolute top-1/2 z-[5] -mt-[21px] border border-line bg-ink px-3.5 py-2.5 text-[15px] text-fg-faint transition-colors hover:border-moss hover:text-accent'
+  'absolute top-1/2 z-[5] -mt-[1.3125rem] border border-line bg-ink px-3.5 py-2.5 text-[0.9375rem] text-fg-faint transition-colors hover:border-moss hover:text-accent'
 
 export function ProjectsSection({ locale, label, copy }: ProjectsSectionProps) {
   const carousel = useRingCarousel(PROJECTS.length)
@@ -38,11 +38,11 @@ export function ProjectsSection({ locale, label, copy }: ProjectsSectionProps) {
       id="projetos"
       className="overflow-hidden border-b border-dashed border-line py-24 lg:py-28"
     >
-      <div className="mx-auto mb-11 max-w-[1180px] px-6 lg:px-10">
+      <div className="mx-auto mb-11 max-w-[73.75rem] px-6 lg:px-10">
         <SectionHeading label={label} />
       </div>
 
-      <div className="relative h-[520px]">
+      <div className="relative h-[32.5rem]">
         {PROJECTS.map((project, index) => (
           <ProjectCard
             key={project.id}
@@ -73,7 +73,7 @@ export function ProjectsSection({ locale, label, copy }: ProjectsSectionProps) {
         </button>
       </div>
 
-      <p className="mx-auto mt-8 flex max-w-[1180px] justify-center px-6 text-xs text-moss lg:px-10">
+      <p className="mx-auto mt-8 flex max-w-[73.75rem] justify-center px-6 text-xs text-moss lg:px-10">
         {format(copy.counter, {
           current: pad2(carousel.index + 1),
           total: pad2(PROJECTS.length),

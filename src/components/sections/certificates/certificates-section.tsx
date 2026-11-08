@@ -57,8 +57,8 @@ export function CertificatesSection({
       id="certificados"
       className="border-b border-dashed border-line px-6 py-24 lg:px-10 lg:py-28"
     >
-      <div className="mx-auto max-w-[1180px]">
-        <SectionHeading label={label} className="mb-[18px]" />
+      <div className="mx-auto max-w-[73.75rem]">
+        <SectionHeading label={label} className="mb-[1.125rem]" />
 
         <p className="mb-10 text-pretty text-sm leading-[1.8] text-fg-faint">
           {copy.intro}

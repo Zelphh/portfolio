@@ -38,7 +38,7 @@ export function SkillMarquee({
               aria-hidden={position >= skills.length}
               tabIndex={position >= skills.length ? -1 : 0}
               className={cn(
-                'flex items-center gap-3 px-[30px] transition-opacity duration-300',
+                'flex items-center gap-3 px-[1.875rem] transition-opacity duration-300',
                 isActive ? 'opacity-100' : 'opacity-60',
               )}
             >
@@ -51,11 +51,11 @@ export function SkillMarquee({
                 height={34}
                 loading="lazy"
                 decoding="async"
-                className="block h-[34px] w-[34px] flex-none"
+                className="block h-[2.125rem] w-[2.125rem] flex-none"
               />
               <span
                 className={cn(
-                  'whitespace-nowrap text-[13px] uppercase tracking-[0.16em]',
+                  'whitespace-nowrap text-[0.8125rem] uppercase tracking-[0.16em]',
                   isActive ? 'text-accent' : 'text-fg-faint',
                 )}
               >
@@ -63,7 +63,7 @@ export function SkillMarquee({
               </span>
               <span
                 aria-hidden
-                className={cn('h-[5px] w-[5px] flex-none', TIER_DOT[skill.tier])}
+                className={cn('h-[0.3125rem] w-[0.3125rem] flex-none', TIER_DOT[skill.tier])}
               />
             </button>
           )

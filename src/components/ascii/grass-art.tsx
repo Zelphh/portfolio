@@ -53,7 +53,7 @@ export function GrassArt({ label }: GrassArtProps) {
       role="img"
       aria-label={label}
       suppressHydrationWarning
-      className="w-full select-none overflow-hidden whitespace-pre font-mono text-[11px] leading-none"
+      className="w-full select-none overflow-hidden whitespace-pre font-mono text-[0.6875rem] leading-none"
     />
   )
 }

@@ -90,7 +90,7 @@ export function ProjectCover({
   if (!cover) {
     return (
       <div
-        className={`grid place-items-center border border-dashed border-line-strong text-[11px] tracking-[0.24em] text-[#4a4d44] ${className ?? ''}`}
+        className={`grid place-items-center border border-dashed border-line-strong text-[0.6875rem] tracking-[0.24em] text-[#4a4d44] ${className ?? ''}`}
       >
         {placeholder}
       </div>

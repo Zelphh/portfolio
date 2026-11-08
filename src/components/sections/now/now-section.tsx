@@ -36,14 +36,14 @@ export function NowSection({
       id="agora"
       className="border-b border-dashed border-line px-6 py-24 lg:px-10 lg:py-28"
     >
-      <div className="mx-auto max-w-[1180px]">
-        <SectionHeading label={label} className="mb-[18px]" />
+      <div className="mx-auto max-w-[73.75rem]">
+        <SectionHeading label={label} className="mb-[1.125rem]" />
 
         <div className="mb-10 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
           <p className="grow text-pretty text-sm leading-[1.8] text-fg-faint">
             {copy.intro}
           </p>
-          <p className="text-[11px] uppercase tracking-[0.2em] text-moss-light">
+          <p className="text-[0.6875rem] uppercase tracking-[0.2em] text-moss-light">
             {format(copy.updated, { date: NOW_UPDATED[locale] })}
           </p>
         </div>
@@ -52,7 +52,7 @@ export function NowSection({
           {NOW.map((entry) => (
             <li
               key={entry.id}
-              className="group relative grid grid-cols-[auto_1fr] items-center gap-x-5 gap-y-3.5 overflow-hidden rounded-[15px] border border-line bg-surface p-6 transition-colors duration-300 hover:border-accent-dim sm:grid-cols-[auto_150px_1fr] sm:gap-x-7"
+              className="group relative grid grid-cols-[auto_1fr] items-center gap-x-5 gap-y-3.5 overflow-hidden rounded-[0.9375rem] border border-line bg-surface p-6 transition-colors duration-300 hover:border-accent-dim sm:grid-cols-[auto_9.375rem_1fr] sm:gap-x-7"
             >
               <span className="flex size-11 items-center justify-center rounded-xl border border-line-strong bg-surface-raised">
                 {/* eslint-disable-next-line @next/next/no-img-element --
@@ -67,11 +67,11 @@ export function NowSection({
                   height={22}
                   loading="lazy"
                   decoding="async"
-                  className="block size-[22px]"
+                  className="block size-[1.375rem]"
                 />
               </span>
 
-              <span className="text-[10px] uppercase tracking-[0.22em] text-moss-light">
+              <span className="text-[0.625rem] uppercase tracking-[0.22em] text-moss-light">
                 {entry.label[locale]}
               </span>
 
@@ -86,7 +86,7 @@ export function NowSection({
                   {entry.tags.map((tag) => (
                     <li
                       key={tag.label}
-                      className="rounded-full border border-line-strong px-2.5 py-[5px] text-[11px] tracking-[0.12em] text-fg-subtle"
+                      className="rounded-full border border-line-strong px-2.5 py-[0.3125rem] text-[0.6875rem] tracking-[0.12em] text-fg-subtle"
                     >
                       {tag.label}
                     </li>
@@ -102,7 +102,7 @@ export function NowSection({
         {contributions && (
           <div className="mt-14">
             <div className="mb-5 flex flex-wrap items-center justify-between gap-4">
-              <h3 className="text-[11px] uppercase tracking-[0.22em] text-fg-fainter">
+              <h3 className="text-[0.6875rem] uppercase tracking-[0.22em] text-fg-fainter">
                 {copy.githubTitle}
                 <span className="text-line-bright"> · </span>
                 <span className="normal-case tracking-[0.08em] text-fg-subtle">
@@ -113,13 +113,13 @@ export function NowSection({
                 href={`https://github.com/${SITE.github}`}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="text-[13px] text-accent transition-colors hover:text-fg"
+                className="text-[0.8125rem] text-accent transition-colors hover:text-fg"
               >
                 {copy.githubLink}
               </a>
             </div>
 
-            <div className="rounded-[15px] border border-line bg-surface p-6">
+            <div className="rounded-[0.9375rem] border border-line bg-surface p-6">
               <ContributionGraph
                 calendar={contributions}
                 locale={locale}
@@ -187,10 +187,10 @@ function TagPanel({ tags }: { tags: readonly NowTag[] }) {
                 height={18}
                 loading="lazy"
                 decoding="async"
-                className="block size-[18px] flex-none"
+                className="block size-[1.125rem] flex-none"
               />
             )}
-            <span className="text-[11px] uppercase tracking-[0.16em] text-accent">
+            <span className="text-[0.6875rem] uppercase tracking-[0.16em] text-accent">
               {tag.label}
             </span>
           </li>
