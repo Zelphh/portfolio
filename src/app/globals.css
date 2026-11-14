@@ -67,6 +67,39 @@
   --animate-blink: blink 1.1s steps(1, end) infinite;
   --animate-rise: rise 0.28s cubic-bezier(0.2, 0.7, 0.2, 1) both;
   --animate-marquee: marquee 32s linear infinite;
+  --animate-drift: drift 6s ease-in-out infinite;
+  --animate-node-pulse: node-pulse 2.4s ease-in-out infinite;
+}
+
+/* The current job's node on the career tree, breathing. */
+@keyframes node-pulse {
+  0%,
+  100% {
+    text-shadow: 0 0 0 transparent;
+    scale: 1;
+  }
+  50% {
+    text-shadow: 0 0 0.75rem var(--color-accent);
+    scale: 1.2;
+  }
+}
+
+/*
+ * Career tree entries fade up as they scroll in. Only once `TimelineMotion`
+ * has mounted and found motion allowed does it set `data-motion`, so without
+ * JS, or with reduced motion, every entry is simply there.
+ */
+[data-motion='on'] [data-timeline-entry] {
+  opacity: 0;
+  transform: translateY(0.875rem);
+  transition:
+    opacity 0.5s var(--ease-out-soft),
+    transform 0.6s var(--ease-out-soft);
+}
+
+[data-motion='on'] [data-timeline-entry][data-shown] {
+  opacity: 1;
+  transform: none;
 }
 
 @keyframes blink {
@@ -88,6 +121,16 @@
   to {
     opacity: 1;
     transform: none;
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
   }
 }
 

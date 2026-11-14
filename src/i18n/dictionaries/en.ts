@@ -59,6 +59,7 @@ export const en: Dictionary = {
 
   experience: {
     current: 'Current',
+    promoted: 'promotion',
   },
 
   now: {

@@ -7,7 +7,7 @@ interface ContactSectionProps {
 
 export function ContactSection({ label }: ContactSectionProps) {
   return (
-    <section id="contato" className="px-6 pb-30 lg:px-10">
+    <section id="contato" className="px-6 pb-30 pt-24 lg:px-10 lg:pt-28">
       <div className="mx-auto max-w-[73.75rem]">
         <SectionHeading label={label} className="mb-11" />
 

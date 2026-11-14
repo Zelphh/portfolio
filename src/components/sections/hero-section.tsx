@@ -3,6 +3,7 @@ import type { Dictionary } from '@/i18n/types'
 import { HeroActions } from './hero-actions'
 import { HeroField } from './hero-field'
 import { HeroGreeting } from './hero-greeting'
+import { HeroSkills } from './hero-skills'
 
 interface HeroSectionProps {
   copy: Dictionary['hero']
@@ -17,7 +18,7 @@ const CORNER = 'absolute text-sm leading-none text-accent'
  * Only the greeting, the buttons and the field need the browser, so the
  * headline and paragraph are in the initial HTML.
  *
- * The frame and the photo share the same left edge maths but not the same
+ * The frame and the photo share the same horizontal center but not the same
  * box: the photo is taller than the frame, so the head rises out of it.
  */
 export function HeroSection({ copy }: HeroSectionProps) {
@@ -40,7 +41,7 @@ export function HeroSection({ copy }: HeroSectionProps) {
       </div>
 
       <div className="pointer-events-none relative h-[34rem] lg:h-[calc(100svh-var(--header-height))] lg:min-h-[35rem]">
-        <div className="absolute bottom-[10%] left-1/2 h-[64%] w-[min(27.5rem,86%)] -translate-x-[44%]">
+        <div className="absolute bottom-[10%] left-1/2 h-[64%] w-[min(27.5rem,86%)] -translate-x-1/2">
           <div className="absolute inset-0 overflow-hidden border border-dashed border-moss bg-panel">
             <HeroField />
           </div>
@@ -69,6 +70,11 @@ export function HeroSection({ copy }: HeroSectionProps) {
             sizes="(min-width: 64rem) 28rem, 70vw"
             className="block h-auto w-full"
           />
+        </div>
+
+        {/* Same box as the frame, drawn last so the badges sit over the photo. */}
+        <div className="absolute bottom-[10%] left-1/2 h-[64%] w-[min(27.5rem,86%)] -translate-x-1/2">
+          <HeroSkills />
         </div>
       </div>
     </section>

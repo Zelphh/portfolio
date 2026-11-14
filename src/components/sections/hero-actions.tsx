@@ -1,7 +1,7 @@
 'use client'
 
 import type { MouseEvent } from 'react'
-import { useSmoothScroll } from '@/hooks/use-smooth-scroll'
+import { type ScrollAlign, useSmoothScroll } from '@/hooks/use-smooth-scroll'
 import type { Dictionary } from '@/i18n/types'
 
 interface HeroActionsProps {
@@ -16,17 +16,18 @@ interface HeroActionsProps {
 export function HeroActions({ copy }: HeroActionsProps) {
   const scrollTo = useSmoothScroll()
 
-  const glide = (id: string) => (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault()
-    scrollTo(id)
-  }
+  const glide =
+    (id: string, align?: ScrollAlign) => (event: MouseEvent<HTMLAnchorElement>) => {
+      event.preventDefault()
+      scrollTo(id, undefined, align)
+    }
 
   return (
-    <div className="mt-[2.875rem] flex flex-wrap items-center gap-3.5">
+    <div className="mt-[2.875rem] flex flex-wrap items-center gap-3">
       <a
         href="#projetos"
         onClick={glide('projetos')}
-        className="flex items-center gap-3 rounded-full bg-accent px-[1.375rem] py-[0.9375rem] text-[0.8125rem] font-bold uppercase tracking-[0.16em] text-ink transition-[background-color,translate] duration-200 ease-[var(--ease-out-soft)] hover:-translate-y-0.5 hover:bg-fg"
+        className="flex items-center gap-2.5 rounded-full bg-accent px-[1.125rem] py-3 text-xs font-bold uppercase tracking-[0.16em] text-ink transition-[background-color,translate] duration-200 ease-[var(--ease-out-soft)] hover:-translate-y-0.5 hover:bg-fg"
       >
         <span>[ {copy.projects} ]</span>
         <span aria-hidden>-&gt;</span>
@@ -34,8 +35,10 @@ export function HeroActions({ copy }: HeroActionsProps) {
 
       <a
         href="#contato"
-        onClick={glide('contato')}
-        className="flex items-center gap-3 rounded-full border border-dashed border-moss px-[1.375rem] py-3.5 text-[0.8125rem] uppercase tracking-[0.16em] text-fg-muted transition-[border-color,color,translate] duration-200 ease-[var(--ease-out-soft)] hover:-translate-y-0.5 hover:border-accent hover:text-accent"
+        // Contact sits right above the footer, so lining its top up under the
+        // header would leave it at the top with the footer filling the rest.
+        onClick={glide('contato', 'center')}
+        className="flex items-center gap-2.5 rounded-full border border-dashed border-moss px-[1.125rem] py-[0.6875rem] text-xs uppercase tracking-[0.16em] text-fg-muted transition-[border-color,color,translate] duration-200 ease-[var(--ease-out-soft)] hover:-translate-y-0.5 hover:border-accent hover:text-accent"
       >
         <span aria-hidden className="text-accent">
           @

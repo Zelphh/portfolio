@@ -295,8 +295,9 @@ export function CommandDock({ locale, terminal, dock }: CommandDockProps) {
 
 /**
  * Whether the reader has scrolled past the hero. The hero carries its own
- * calls to action, so the dock stays out of the way until its bottom edge
- * rises above 60% of the viewport. Pages without a hero report `true`.
+ * calls to action, so the dock stays out of the way until the hero has left
+ * the screen entirely, its bottom edge tucked under the fixed header. Pages
+ * without a hero report `true`.
  */
 function usePastHero(): boolean {
   const [past, setPast] = useState(false)
@@ -307,9 +308,12 @@ function usePastHero(): boolean {
       setPast(true)
       return
     }
+    // rootMargin only takes px or %, so the header's rem height is resolved here.
+    const header = document.querySelector('header')
+    const headerHeight = Math.round(header?.getBoundingClientRect().height ?? 0)
     const observer = new IntersectionObserver(
       ([entry]) => setPast(!(entry?.isIntersecting ?? false)),
-      { rootMargin: '-60% 0px 0px 0px' },
+      { rootMargin: `-${headerHeight}px 0px 0px 0px` },
     )
     observer.observe(hero)
     return () => observer.disconnect()

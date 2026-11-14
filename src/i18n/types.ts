@@ -40,6 +40,8 @@ export interface Dictionary {
   experience: {
     /** Pill on the job held right now. */
     current: string
+    /** Tag on a role reached by promotion inside the same company. */
+    promoted: string
   }
 
   now: {
