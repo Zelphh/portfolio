@@ -66,13 +66,13 @@ export function CertificateDialog({
         onClose={onClose}
         closeLabel={copy.close}
         path={`~/studies/${certificate.id}.md`}
-        width="680px"
+        width="42.5rem"
         labelledBy="certificate-dialog-title"
       >
         <div
           className={cn(
             'relative grid place-items-center overflow-hidden border-b border-line-soft bg-surface-raised',
-            image ? 'max-h-[60vh] w-full' : 'h-[clamp(170px,30vh,260px)]',
+            image ? 'max-h-[60vh] w-full' : 'h-[clamp(10.625rem,30vh,16.25rem)]',
           )}
           // The hero takes the scan's own proportions, so it fills edge to
           // edge uncropped; only on short viewports does the cap trim it. A
@@ -111,7 +111,7 @@ export function CertificateDialog({
             <>
               <pre
                 aria-hidden
-                className="pointer-events-none absolute inset-0 m-0 select-none overflow-hidden whitespace-pre-wrap break-all px-[18px] py-3.5 text-xs leading-[1.5] text-[#262822]"
+                className="pointer-events-none absolute inset-0 m-0 select-none overflow-hidden whitespace-pre-wrap break-all px-[1.125rem] py-3.5 text-xs leading-[1.5] text-[#262822]"
               >
                 {noise}
               </pre>
@@ -121,7 +121,7 @@ export function CertificateDialog({
                   alt={certificate.issuer}
                   width={614}
                   height={499}
-                  className="relative h-[clamp(120px,21vh,185px)] w-auto rounded-xl shadow-float"
+                  className="relative h-[clamp(7.5rem,21vh,11.5625rem)] w-auto rounded-xl shadow-float"
                 />
               ) : (
                 /* eslint-disable-next-line @next/next/no-img-element --
@@ -137,16 +137,16 @@ export function CertificateDialog({
             </>
           )}
 
-          <span className="absolute right-0 top-0 rounded-bl-[10px] bg-accent px-4 py-2.5 text-[13px] font-bold text-ink">
+          <span className="absolute right-0 top-0 rounded-bl-[0.625rem] bg-accent px-4 py-2.5 text-[0.8125rem] font-bold text-ink">
             {certificate.year}
           </span>
         </div>
 
-        <div className="grid gap-[18px] px-5 pb-7 pt-6 sm:px-8 sm:pt-[30px]">
-          <div className="flex flex-wrap items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-fg-fainter">
+        <div className="grid gap-[1.125rem] px-5 pb-7 pt-6 sm:px-8 sm:pt-[1.875rem]">
+          <div className="flex flex-wrap items-center gap-3 text-[0.6875rem] uppercase tracking-[0.2em] text-fg-fainter">
             <span
               className={cn(
-                'rounded-md border px-2 py-[3px]',
+                'rounded-md border px-2 py-[0.1875rem]',
                 KIND_PILL[certificate.kind],
               )}
             >
@@ -163,12 +163,12 @@ export function CertificateDialog({
 
           <h3
             id="certificate-dialog-title"
-            className="text-balance font-display text-[clamp(28px,4vw,36px)] font-extrabold leading-[1.08] tracking-[-0.02em] text-fg"
+            className="text-balance font-display text-[clamp(1.75rem,4vw,2.25rem)] font-extrabold leading-[1.08] tracking-[-0.02em] text-fg"
           >
             {certificate.name[locale]}
           </h3>
 
-          <div className="grid gap-4 text-pretty text-[15px] leading-[1.9] text-fg-dim">
+          <div className="grid gap-4 text-pretty text-[0.9375rem] leading-[1.9] text-fg-dim">
             {certificate.story[locale].map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
@@ -178,14 +178,14 @@ export function CertificateDialog({
             {certificate.topics[locale].map((topic) => (
               <li
                 key={topic}
-                className="rounded-full border border-line-strong px-2.5 py-[5px] text-[11px] tracking-[0.12em] text-fg-subtle"
+                className="rounded-full border border-line-strong px-2.5 py-[0.3125rem] text-[0.6875rem] tracking-[0.12em] text-fg-subtle"
               >
                 {topic}
               </li>
             ))}
           </ul>
 
-          <div className="mt-1 flex flex-wrap items-center justify-between gap-4 border-t border-dashed border-line pt-[18px]">
+          <div className="mt-1 flex flex-wrap items-center justify-between gap-4 border-t border-dashed border-line pt-[1.125rem]">
             <span className="text-xs text-fg-ghost">
               {certificate.url ? copy.certNote : copy.noCert}
             </span>
@@ -194,7 +194,7 @@ export function CertificateDialog({
                 href={certificate.url}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="text-[13px] text-accent transition-colors hover:text-fg"
+                className="text-[0.8125rem] text-accent transition-colors hover:text-fg"
               >
                 {copy.openCertificate}
               </a>

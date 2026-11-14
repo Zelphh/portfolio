@@ -146,7 +146,7 @@ export function Modal({
       onClick={requestClose}
       aria-label={closeLabel}
       className={cn(
-        'flex flex-none items-center gap-2 rounded-[10px] border border-line-strong text-xs text-fg-dim transition-colors hover:border-accent-dim hover:text-accent',
+        'flex flex-none items-center gap-2 rounded-[0.625rem] border border-line-strong text-xs text-fg-dim transition-colors hover:border-accent-dim hover:text-accent',
         variant === 'panel'
           ? 'px-2 py-1'
           : 'absolute -right-3 -top-3 bg-scrim-soft px-2.5 py-1.5 backdrop-blur-sm',
@@ -154,7 +154,7 @@ export function Modal({
     >
       <kbd
         aria-hidden
-        className="hidden rounded border border-line px-1 font-mono text-[10px] leading-[1.4] text-fg-ghost sm:inline"
+        className="hidden rounded border border-line px-1 font-mono text-[0.625rem] leading-[1.4] text-fg-ghost sm:inline"
       >
         esc
       </kbd>
@@ -200,10 +200,10 @@ export function Modal({
       {variant === 'panel' ? (
         <>
           <div className="flex flex-none items-center gap-2.5 border-b border-line-soft py-2 pl-3.5 pr-2">
-            <span aria-hidden className="h-[9px] w-[9px] flex-none rounded-full bg-accent" />
-            <span aria-hidden className="h-[9px] w-[9px] flex-none rounded-full bg-moss" />
-            <span aria-hidden className="h-[9px] w-[9px] flex-none rounded-full bg-line" />
-            <span className="min-w-0 flex-1 truncate text-center text-[11px] tracking-[0.12em] text-fg-fainter">
+            <span aria-hidden className="h-[0.5625rem] w-[0.5625rem] flex-none rounded-full bg-accent" />
+            <span aria-hidden className="h-[0.5625rem] w-[0.5625rem] flex-none rounded-full bg-moss" />
+            <span aria-hidden className="h-[0.5625rem] w-[0.5625rem] flex-none rounded-full bg-line" />
+            <span className="min-w-0 flex-1 truncate text-center text-[0.6875rem] tracking-[0.12em] text-fg-fainter">
               {path}
             </span>
             {closeButton}

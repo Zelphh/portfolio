@@ -33,10 +33,10 @@ export function ProjectDialog({
       onClose={onClose}
       closeLabel={copy.close}
       path={`~/projects/${project.id}.md`}
-      width="760px"
+      width="47.5rem"
       labelledBy="project-dialog-title"
     >
-      <div className="relative h-[clamp(180px,38vh,400px)] overflow-hidden border-b border-line-soft bg-surface-raised">
+      <div className="relative h-[clamp(11.25rem,38vh,25rem)] overflow-hidden border-b border-line-soft bg-surface-raised">
         <ProjectCover
           cover={project.hero ?? project.cover}
           alt=""
@@ -46,18 +46,18 @@ export function ProjectDialog({
         />
         <div
           aria-hidden
-          className="absolute inset-x-0 bottom-0 h-[120px] bg-gradient-to-b from-transparent to-scrim-soft"
+          className="absolute inset-x-0 bottom-0 h-[7.5rem] bg-gradient-to-b from-transparent to-scrim-soft"
         />
 
-        <div className="absolute bottom-0 left-0 flex max-w-full items-center gap-3 rounded-tr-[10px] bg-surface px-5 py-3">
-          <span className="text-[11px] uppercase tracking-[0.22em] text-fg-fainter">
+        <div className="absolute bottom-0 left-0 flex max-w-full items-center gap-3 rounded-tr-[0.625rem] bg-surface px-5 py-3">
+          <span className="text-[0.6875rem] uppercase tracking-[0.22em] text-fg-fainter">
             {project.stack}
           </span>
           {project.inProgress && <ProjectStatus label={copy.inProgress} />}
           {project.badges && <ProjectBadges labels={project.badges[locale]} />}
         </div>
 
-        <div className="absolute right-0 top-0 rounded-bl-[10px] bg-accent px-4 py-2.5 text-[13px] font-bold text-ink">
+        <div className="absolute right-0 top-0 rounded-bl-[0.625rem] bg-accent px-4 py-2.5 text-[0.8125rem] font-bold text-ink">
           {project.year}
         </div>
       </div>
@@ -65,7 +65,7 @@ export function ProjectDialog({
       <div className="grid gap-4 px-5 pb-7 pt-7 sm:px-9 sm:pb-8 sm:pt-9">
         <h3
           id="project-dialog-title"
-          className="text-balance font-display text-[clamp(28px,5vw,38px)] font-extrabold leading-[1.08] tracking-[-0.02em] text-fg"
+          className="text-balance font-display text-[clamp(1.75rem,5vw,2.375rem)] font-extrabold leading-[1.08] tracking-[-0.02em] text-fg"
         >
           {project.name[locale]}
         </h3>
@@ -76,13 +76,13 @@ export function ProjectDialog({
           ))}
         </div>
 
-        <div className="mt-1 flex flex-wrap items-center justify-between gap-4 border-t border-dashed border-line pt-[18px]">
+        <div className="mt-1 flex flex-wrap items-center justify-between gap-4 border-t border-dashed border-line pt-[1.125rem]">
           <span className="text-xs text-fg-ghost">{copy.openSource}</span>
           <a
             href={project.url}
             target="_blank"
             rel="noreferrer noopener"
-            className="text-[13px] text-accent transition-colors hover:text-fg"
+            className="text-[0.8125rem] text-accent transition-colors hover:text-fg"
           >
             {copy.openGithub}
           </a>

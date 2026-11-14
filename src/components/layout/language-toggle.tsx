@@ -35,7 +35,7 @@ export function LanguageToggle({
       href={`/${target}${path}`}
       onClick={() => rememberLocale(target)}
       aria-label={switchLabel.replace('{language}', otherLanguageName)}
-      className="group flex items-center gap-2 rounded-full border border-line-strong px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-fg-subtle transition-colors hover:border-moss hover:text-accent"
+      className="group flex items-center gap-2 rounded-full border border-line-strong px-3 py-1.5 text-[0.6875rem] uppercase tracking-[0.18em] text-fg-subtle transition-colors hover:border-moss hover:text-accent"
     >
       {LOCALES.map((locale, index) => (
         <span key={locale} className="flex items-center gap-2">
@@ -49,7 +49,7 @@ export function LanguageToggle({
             <Flag
               locale={locale}
               className={cn(
-                'h-2.5 w-3.5 rounded-[2px] transition-[filter,opacity]',
+                'h-2.5 w-3.5 rounded-[0.125rem] transition-[filter,opacity]',
                 locale !== current &&
                   'opacity-50 grayscale group-hover:opacity-90 group-hover:grayscale-0',
               )}

@@ -32,7 +32,7 @@ interface CommandDockProps {
 }
 
 const TRIGGER_CLASS =
-  'flex select-none items-center gap-2.5 rounded-full border border-line-strong bg-dock py-2.5 pl-3 pr-3.5 shadow-[0_8px_24px_rgba(0,0,0,0.5)] transition-[border-color,transform] duration-250 ease-[var(--ease-out-soft)] hover:-translate-y-0.5 hover:border-moss'
+  'flex select-none items-center gap-2 rounded-full border border-line-strong bg-dock py-1.5 pl-1.5 pr-3 shadow-[0_0.5rem_1.5rem_rgba(0,0,0,0.5)] transition-[border-color,transform] duration-250 ease-[var(--ease-out-soft)] hover:-translate-y-0.5 hover:border-moss'
 
 /**
  * The floating bottom-left dock: a console and a short list of actions.
@@ -54,6 +54,11 @@ export function CommandDock({ locale, terminal, dock }: CommandDockProps) {
   const scrollTo = useSmoothScroll()
   const emit = useConsoleEmit()
   const router = useRouter()
+
+  const pastHero = usePastHero()
+  // An open panel keeps the dock up even if the reader scrolls back to the
+  // hero, so a console session is never yanked out from under them.
+  const shown = pastHero || panel !== null
 
   const bootedAtRef = useRef(0)
   const printRef = useRef(output.print)
@@ -221,7 +226,13 @@ export function CommandDock({ locale, terminal, dock }: CommandDockProps) {
   )
 
   return (
-    <div className="fixed bottom-6 left-6 z-[80] flex flex-col items-start gap-3 font-mono">
+    <div
+      inert={!shown}
+      className={cn(
+        'fixed bottom-6 left-6 z-[80] flex flex-col items-start gap-2 font-mono transition-[opacity,translate] duration-300 ease-[var(--ease-out-soft)]',
+        shown ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-3 opacity-0',
+      )}
+    >
       <TerminalPanel
         open={panel === 'terminal'}
         copy={terminal}
@@ -253,11 +264,11 @@ export function CommandDock({ locale, terminal, dock }: CommandDockProps) {
       >
         <span
           aria-hidden
-          className="grid h-[22px] w-[22px] place-items-center rounded-full bg-moss text-xs font-bold leading-none text-accent"
+          className="grid h-[1.125rem] w-[1.125rem] place-items-center rounded-full bg-moss text-[0.625rem] font-bold leading-none text-accent"
         >
           ✦
         </span>
-        <span className="text-xs uppercase tracking-[0.18em] text-fg-dim">
+        <span className="text-[0.625rem] uppercase tracking-[0.18em] text-fg-dim">
           {labels.actions}
         </span>
       </button>
@@ -270,14 +281,43 @@ export function CommandDock({ locale, terminal, dock }: CommandDockProps) {
       >
         <span
           aria-hidden
-          className="grid h-[22px] w-[22px] place-items-center rounded-full bg-accent text-[11px] font-bold leading-none text-ink"
+          className="grid h-[1.125rem] w-[1.125rem] place-items-center rounded-full bg-accent text-[0.5625rem] font-bold leading-none text-ink"
         >
           &gt;_
         </span>
-        <span className="text-xs uppercase tracking-[0.18em] text-fg-dim">
+        <span className="text-[0.625rem] uppercase tracking-[0.18em] text-fg-dim">
           {labels.terminal}
         </span>
       </button>
     </div>
   )
+}
+
+/**
+ * Whether the reader has scrolled past the hero. The hero carries its own
+ * calls to action, so the dock stays out of the way until the hero has left
+ * the screen entirely, its bottom edge tucked under the fixed header. Pages
+ * without a hero report `true`.
+ */
+function usePastHero(): boolean {
+  const [past, setPast] = useState(false)
+
+  useEffect(() => {
+    const hero = document.querySelector('[data-hero]')
+    if (!hero) {
+      setPast(true)
+      return
+    }
+    // rootMargin only takes px or %, so the header's rem height is resolved here.
+    const header = document.querySelector('header')
+    const headerHeight = Math.round(header?.getBoundingClientRect().height ?? 0)
+    const observer = new IntersectionObserver(
+      ([entry]) => setPast(!(entry?.isIntersecting ?? false)),
+      { rootMargin: `-${headerHeight}px 0px 0px 0px` },
+    )
+    observer.observe(hero)
+    return () => observer.disconnect()
+  }, [])
+
+  return past
 }

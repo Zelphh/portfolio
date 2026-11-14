@@ -35,7 +35,8 @@ export const pt: Dictionary = {
     ],
     paragraph:
       'Bem-vindo ao meu site. Aqui eu compartilho o que construo, o que ando aprendendo e quaisquer outras coisas que eu ache interessantes.',
-    scroll: 'Sinta-se à vontade',
+    cta: { projects: 'ver projetos', contact: 'falar comigo' },
+    photoAlt: 'Foto de Matheus Tartari, o Zelph',
   },
 
   sections: {
@@ -58,6 +59,7 @@ export const pt: Dictionary = {
 
   experience: {
     current: 'Atual',
+    promoted: 'promoção',
   },
 
   now: {
@@ -252,7 +254,6 @@ export const pt: Dictionary = {
 
   a11y: {
     switchLanguage: 'Mudar idioma para {language}',
-    bonfire: 'Fogueira em arte ASCII animada',
     grass: 'Grama e árvore em arte ASCII animada',
     coffee: 'Xícara de café em arte ASCII animada, com a fumaça empurrada pelo cursor',
     contributions: '{total} contribuições no GitHub no último ano',

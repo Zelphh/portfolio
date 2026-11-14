@@ -34,12 +34,12 @@ export function SkillsSection({
       id="skills"
       className="border-b border-dashed border-line px-6 py-24 lg:px-10 lg:py-28"
     >
-      <div className="mx-auto max-w-[1180px]">
+      <div className="mx-auto max-w-[73.75rem]">
         <SectionHeading label={label} className="mb-11">
           <TierLegend copy={copy} />
         </SectionHeading>
 
-        <div className="grid min-h-[300px] items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,320px)] lg:gap-15">
+        <div className="grid min-h-[18.75rem] items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,20rem)] lg:gap-15">
           <SkillShowcase
             skill={skill}
             locale={locale}

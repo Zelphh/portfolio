@@ -16,7 +16,7 @@ import { PROJECTS } from '@/content/projects'
 import type { Locale } from '@/i18n/config'
 import { format } from '@/i18n/format'
 import type { Dictionary } from '@/i18n/types'
-import { cn, mod, pad2 } from '@/lib/utils'
+import { cn, mod, pad2, rem, rootScale } from '@/lib/utils'
 
 interface ProjectsExplorerProps {
   locale: Locale
@@ -184,9 +184,10 @@ export function ProjectsExplorer({ locale, copy }: ProjectsExplorerProps) {
     // thumbnail never covers the names it is previewing; it only rides up
     // and down with the pointer.
     const list = event.currentTarget.getBoundingClientRect()
+    const scale = rootScale()
     peekTarget.current = {
-      x: Math.max(list.left - PEEK_WIDTH - PEEK_GAP, 12),
-      y: event.clientY - PEEK_HEIGHT / 2,
+      x: Math.max(list.left - (PEEK_WIDTH + PEEK_GAP) * scale, 12),
+      y: event.clientY - (PEEK_HEIGHT * scale) / 2,
     }
     // First move after entering: appear under the cursor instead of
     // sliding over from wherever the thumbnail was last left.
@@ -220,7 +221,7 @@ export function ProjectsExplorer({ locale, copy }: ProjectsExplorerProps) {
   const showPeek = peeking && hovered !== null && hovered !== selected
 
   return (
-    <div className="mx-auto grid w-full max-w-[1280px] grid-cols-1 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-14 lg:px-10">
+    <div className="mx-auto grid w-full max-w-[80rem] grid-cols-1 lg:grid-cols-[minmax(0,1fr)_22.5rem] lg:gap-14 lg:px-10">
       <aside
         aria-label={copy.listLabel}
         onPointerMove={onListPointerMove}
@@ -228,7 +229,7 @@ export function ProjectsExplorer({ locale, copy }: ProjectsExplorerProps) {
         onKeyDown={onListKeyDown}
         className="sticky top-16 z-10 border-b border-dashed border-line bg-ink/90 backdrop-blur-md lg:order-2 lg:flex lg:h-[calc(100dvh-4rem)] lg:flex-col lg:justify-center lg:border-b-0 lg:bg-transparent lg:backdrop-blur-none"
       >
-        <div className="hidden items-center gap-3 pb-5 text-[11px] uppercase tracking-[0.24em] text-fg-fainter lg:flex">
+        <div className="hidden items-center gap-3 pb-5 text-[0.6875rem] uppercase tracking-[0.24em] text-fg-fainter lg:flex">
           <span>~/projects</span>
           <span aria-hidden className="section-rule text-line-strong">
             {'─'.repeat(40)}
@@ -255,7 +256,7 @@ export function ProjectsExplorer({ locale, copy }: ProjectsExplorerProps) {
                   aria-current={isOpen ? 'true' : undefined}
                   className="group flex w-full items-baseline gap-3 py-1 text-left lg:gap-4 lg:py-1.5"
                 >
-                  <span className="font-mono text-[11px] text-fg-ghost">
+                  <span className="font-mono text-[0.6875rem] text-fg-ghost">
                     {pad2(index + 1)}
                   </span>
                   <span
@@ -263,7 +264,7 @@ export function ProjectsExplorer({ locale, copy }: ProjectsExplorerProps) {
                       nameRefs.current[index] = node
                     }}
                     className={cn(
-                      'whitespace-nowrap font-display text-[17px] font-semibold tracking-[-0.01em] transition-[color,transform] duration-300 ease-[var(--ease-out-soft)] lg:text-[clamp(24px,2.3vw,32px)]',
+                      'whitespace-nowrap font-display text-[1.0625rem] font-semibold tracking-[-0.01em] transition-[color,transform] duration-300 ease-[var(--ease-out-soft)] lg:text-[clamp(1.5rem,2.3vw,2rem)]',
                       isOpen
                         ? 'text-fg-strong'
                         : isHot
@@ -287,7 +288,7 @@ export function ProjectsExplorer({ locale, copy }: ProjectsExplorerProps) {
           })}
         </ul>
 
-        <p className="hidden pt-6 text-[11px] leading-[1.8] text-fg-ghost lg:block">
+        <p className="hidden pt-6 text-[0.6875rem] leading-[1.8] text-fg-ghost lg:block">
           {copy.listHint}
         </p>
       </aside>
@@ -299,10 +300,10 @@ export function ProjectsExplorer({ locale, copy }: ProjectsExplorerProps) {
         ref={peekRef}
         aria-hidden
         className={cn(
-          'pointer-events-none fixed left-0 top-0 z-30 hidden overflow-hidden rounded-[10px] border border-line-strong bg-surface shadow-float transition-opacity duration-200 lg:block',
+          'pointer-events-none fixed left-0 top-0 z-30 hidden overflow-hidden rounded-[0.625rem] border border-line-strong bg-surface shadow-float transition-opacity duration-200 lg:block',
           showPeek ? 'opacity-100' : 'opacity-0',
         )}
-        style={{ width: PEEK_WIDTH, height: PEEK_HEIGHT }}
+        style={{ width: rem(PEEK_WIDTH), height: rem(PEEK_HEIGHT) }}
       >
         {PROJECTS.map((entry, index) => (
           <ProjectCover
@@ -325,7 +326,7 @@ export function ProjectsExplorer({ locale, copy }: ProjectsExplorerProps) {
       >
         {project && selected !== null ? (
           <article key={project.id} className="grid gap-7">
-            <div className="flex flex-wrap items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-fg-fainter">
+            <div className="flex flex-wrap items-center gap-3 font-mono text-[0.6875rem] uppercase tracking-[0.22em] text-fg-fainter">
               <span className="normal-case tracking-normal text-fg-ghost">
                 ~/projects/{project.id}.md
               </span>
@@ -341,7 +342,7 @@ export function ProjectsExplorer({ locale, copy }: ProjectsExplorerProps) {
 
             <h1
               ref={titleRef}
-              className="w-fit text-balance font-display text-[clamp(38px,6vw,72px)] font-extrabold leading-[1] tracking-[-0.03em] text-fg-strong"
+              className="w-fit text-balance font-display text-[clamp(2.375rem,6vw,4.5rem)] font-extrabold leading-[1] tracking-[-0.03em] text-fg-strong"
             >
               {project.name[locale]}
             </h1>
@@ -355,7 +356,7 @@ export function ProjectsExplorer({ locale, copy }: ProjectsExplorerProps) {
 
             <div
               ref={coverRef}
-              className="relative aspect-video w-full overflow-hidden rounded-[12px] border border-line-soft bg-surface"
+              className="relative aspect-video w-full overflow-hidden rounded-[0.75rem] border border-line-soft bg-surface"
             >
               <ProjectCover
                 cover={project.hero ?? project.cover}
@@ -366,13 +367,13 @@ export function ProjectsExplorer({ locale, copy }: ProjectsExplorerProps) {
               />
             </div>
 
-            <div className="grid max-w-[68ch] animate-rise gap-4 text-pretty text-[15px] leading-[1.9] text-fg-dim">
+            <div className="grid max-w-[68ch] animate-rise gap-4 text-pretty text-[0.9375rem] leading-[1.9] text-fg-dim">
               {project.story[locale].map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>
               ))}
             </div>
 
-            <div className="flex flex-wrap items-center justify-between gap-4 border-t border-dashed border-line pt-5 text-[13px]">
+            <div className="flex flex-wrap items-center justify-between gap-4 border-t border-dashed border-line pt-5 text-[0.8125rem]">
               <a
                 href={project.url}
                 target="_blank"

@@ -48,20 +48,20 @@ export default async function HomePage({ params }: PageProps) {
         />
 
         <main>
-          <HeroSection copy={dictionary.hero} bonfireLabel={a11y.bonfire} />
+          <HeroSection copy={dictionary.hero} />
 
           <AboutSection
             copy={dictionary.about}
             label={sections.sobre}
-            grassLabel={a11y.grass}
             coffeeLabel={a11y.coffee}
-          >
-            <ExperienceLog
-              locale={locale}
-              label={sections.experiencia}
-              copy={dictionary.experience}
-            />
-          </AboutSection>
+          />
+
+          <ExperienceLog
+            locale={locale}
+            label={sections.experiencia}
+            copy={dictionary.experience}
+            grassLabel={a11y.grass}
+          />
 
           <SkillsSection
             locale={locale}

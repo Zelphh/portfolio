@@ -26,7 +26,9 @@ export interface Dictionary {
     /** Shown after the greeting one at a time, cycling in this exact order. */
     epithets: readonly [string, ...string[]]
     paragraph: string
-    scroll: string
+    cta: { projects: string; contact: string }
+    /** Alt text for the cut-out photo beside the headline. */
+    photoAlt: string
   }
 
   sections: Readonly<Record<SectionId, string>>
@@ -38,6 +40,8 @@ export interface Dictionary {
   experience: {
     /** Pill on the job held right now. */
     current: string
+    /** Tag on a role reached by promotion inside the same company. */
+    promoted: string
   }
 
   now: {
@@ -231,7 +235,6 @@ export interface Dictionary {
   a11y: {
     /** `{language}` */
     switchLanguage: string
-    bonfire: string
     grass: string
     coffee: string
     /** `{total}` */

@@ -36,18 +36,18 @@ export function NotFoundView() {
 
   return (
     <main className="grid min-h-dvh place-items-center px-4 py-10">
-      <div className="grid w-full max-w-[560px] animate-rise justify-items-center gap-6 text-center">
+      <div className="grid w-full max-w-[35rem] animate-rise justify-items-center gap-6 text-center">
         <Image
           src="/errors/404.jpg"
           alt={`404 — ${copy.title}`}
           width={750}
           height={600}
           priority
-          className="h-auto w-full rounded-[15px] border border-line-strong shadow-modal"
+          className="h-auto w-full rounded-[0.9375rem] border border-line-strong shadow-modal"
         />
 
         <div className="grid gap-2">
-          <h1 className="font-display text-[clamp(24px,5vw,32px)] font-extrabold tracking-[-0.02em] text-fg">
+          <h1 className="font-display text-[clamp(1.5rem,5vw,2rem)] font-extrabold tracking-[-0.02em] text-fg">
             {copy.title}
           </h1>
           <p className="text-pretty text-sm leading-[1.8] text-fg-dim">
@@ -57,7 +57,7 @@ export function NotFoundView() {
 
         <a
           href={`/${locale}/`}
-          className="text-[13px] text-accent transition-colors hover:text-fg"
+          className="text-[0.8125rem] text-accent transition-colors hover:text-fg"
         >
           {copy.back}
         </a>
