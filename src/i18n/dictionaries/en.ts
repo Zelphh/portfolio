@@ -60,6 +60,9 @@ export const en: Dictionary = {
   experience: {
     current: 'Current',
     promoted: 'promotion',
+    blackHole:
+      'ASCII animation of a black hole: a ring of light around a shadow, with a disk of orange gas swirling around it.',
+    blackHoleCredit: 'ASCII black hole by',
   },
 
   now: {
@@ -97,6 +100,8 @@ export const en: Dictionary = {
     close: 'Close',
     counter: '{current} / {total}',
     movedNote: 'Projects I thought were worth sharing.',
+    orbitLabel:
+      'ASCII animation of the projects as planets orbiting a star. Hover a planet to see its name and click to open the project.',
     movedLink: '[ cd ~/projects → ]',
     pageTitle: 'Projects — zelph',
     pageDescription:
@@ -252,7 +257,7 @@ export const en: Dictionary = {
 
   a11y: {
     switchLanguage: 'Switch language to {language}',
-    grass: 'Animated ASCII art grass and tree',
+    grass: 'Animated ASCII landscape: grass bending in the wind, a lone pine on a hill and fireflies',
     coffee: 'Animated ASCII art cup of coffee, its steam pushed by the cursor',
     contributions: '{total} GitHub contributions in the last year',
     logo: '{name} logo in 3D ASCII',

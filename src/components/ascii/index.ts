@@ -22,12 +22,22 @@ export const CoffeeArt = dynamic(
   { ssr: false },
 )
 
-export const GrassArt = dynamic(
-  () => import('./grass-art').then((m) => m.GrassArt),
+export const OrbitArt = dynamic(
+  () => import('./orbit-art').then((m) => m.OrbitArt),
+  { ssr: false },
+)
+
+export const LandscapeArt = dynamic(
+  () => import('./landscape-art').then((m) => m.LandscapeArt),
   { ssr: false },
 )
 
 export const LogoArt = dynamic(
   () => import('./logo-art').then((m) => m.LogoArt),
+  { ssr: false },
+)
+
+export const BlackHoleArt = dynamic(
+  () => import('./black-hole-art').then((m) => m.BlackHoleArt),
   { ssr: false },
 )

@@ -60,6 +60,9 @@ export const pt: Dictionary = {
   experience: {
     current: 'Atual',
     promoted: 'promoção',
+    blackHole:
+      'Animação em ASCII de um buraco negro: um anel de luz em volta de uma sombra, com um disco de gás laranja girando ao redor.',
+    blackHoleCredit: 'buraco negro em ASCII por',
   },
 
   now: {
@@ -98,6 +101,8 @@ export const pt: Dictionary = {
     counter: '{current} / {total}',
     movedNote: 'Projetos que achei interessante compartilhar.',
     movedLink: '[ cd ~/projects → ]',
+    orbitLabel:
+      'Animação em ASCII com os projetos como planetas orbitando uma estrela. Passe o mouse num planeta para ver o nome e clique para abrir o projeto.',
     pageTitle: 'Projetos — zelph',
     pageDescription:
       'Os projetos de zelph: apps de desktop em Rust e Tauri, APIs em Spring Boot e exercícios em C e Python.',
@@ -254,7 +259,7 @@ export const pt: Dictionary = {
 
   a11y: {
     switchLanguage: 'Mudar idioma para {language}',
-    grass: 'Grama e árvore em arte ASCII animada',
+    grass: 'Paisagem em ASCII animada: grama se curvando com o vento, um pinheiro no morro e vaga-lumes',
     coffee: 'Xícara de café em arte ASCII animada, com a fumaça empurrada pelo cursor',
     contributions: '{total} contribuições no GitHub no último ano',
     logo: 'Logo do {name} em ASCII 3D',

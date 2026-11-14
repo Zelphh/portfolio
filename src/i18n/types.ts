@@ -42,6 +42,10 @@ export interface Dictionary {
     current: string
     /** Tag on a role reached by promotion inside the same company. */
     promoted: string
+    /** Screen-reader description of the black hole beside the tree. */
+    blackHole: string
+    /** Credit line under the black hole, before the artist's handle. */
+    blackHoleCredit: string
   }
 
   now: {
@@ -99,6 +103,8 @@ export interface Dictionary {
     idleCount: string
     idlePointer: string
     idleTouch: string
+    /** Screen-reader description of the planets beside the project list. */
+    orbitLabel: string
   }
 
   certificates: {
