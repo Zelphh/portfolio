@@ -3,6 +3,7 @@
 import {
   useCallback,
   useEffect,
+  useId,
   useLayoutEffect,
   useRef,
   useState,
@@ -84,6 +85,50 @@ function Spinner({ spinning }: { spinning: boolean }) {
     <span aria-hidden className="inline-block w-[1ch] font-mono text-moss-light">
       {spinning ? SPINNER[frame % SPINNER.length] : '·'}
     </span>
+  )
+}
+
+/**
+ * A project's write-up: the first paragraph always, the rest behind a toggle.
+ * The stage keys its article by project, so switching projects folds it back.
+ */
+function ProjectStory({
+  paragraphs,
+  moreLabel,
+  lessLabel,
+}: {
+  paragraphs: readonly string[]
+  moreLabel: string
+  lessLabel: string
+}) {
+  const [expanded, setExpanded] = useState(false)
+  const restId = useId()
+  const [first, ...rest] = paragraphs
+
+  return (
+    <div className="grid max-w-[68ch] animate-rise gap-4 text-pretty text-[0.9375rem] leading-[1.9] text-fg-dim">
+      {first && <p>{first}</p>}
+      {rest.length > 0 && (
+        <>
+          <div id={restId} className={expanded ? 'grid gap-4' : 'hidden'}>
+            {rest.map((paragraph, index) => (
+              <p key={index} className={expanded ? 'animate-rise' : undefined}>
+                {paragraph}
+              </p>
+            ))}
+          </div>
+          <button
+            type="button"
+            onClick={() => setExpanded((value) => !value)}
+            aria-expanded={expanded}
+            aria-controls={restId}
+            className="w-fit font-mono text-[0.8125rem] text-accent transition-colors hover:text-fg-strong"
+          >
+            {expanded ? lessLabel : moreLabel}
+          </button>
+        </>
+      )}
+    </div>
   )
 }
 
@@ -367,11 +412,11 @@ export function ProjectsExplorer({ locale, copy }: ProjectsExplorerProps) {
               />
             </div>
 
-            <div className="grid max-w-[68ch] animate-rise gap-4 text-pretty text-[0.9375rem] leading-[1.9] text-fg-dim">
-              {project.story[locale].map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
-              ))}
-            </div>
+            <ProjectStory
+              paragraphs={project.story[locale]}
+              moreLabel={copy.readMore}
+              lessLabel={copy.readLess}
+            />
 
             <div className="flex flex-wrap items-center justify-between gap-4 border-t border-dashed border-line pt-5 text-[0.8125rem]">
               <a

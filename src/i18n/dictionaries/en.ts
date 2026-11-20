@@ -14,7 +14,7 @@ export const en: Dictionary = {
     skills: 'Skills',
     projetos: 'Projects',
     certificados: 'Studies',
-    agora: 'Now',
+    // agora: 'Now', // seção desativada por enquanto
     contato: 'Contact',
   },
 
@@ -45,7 +45,7 @@ export const en: Dictionary = {
     skills: 'Skills',
     projetos: 'Projects',
     certificados: 'Studies',
-    agora: 'Now',
+    // agora: 'Now', // seção desativada por enquanto
     contato: 'Contact',
   },
 
@@ -99,6 +99,8 @@ export const en: Dictionary = {
     next: 'Next project',
     close: 'Close',
     counter: '{current} / {total}',
+    readMore: '[ + read more ]',
+    readLess: '[ − read less ]',
     movedNote: 'Projects I thought were worth sharing.',
     orbitLabel:
       'ASCII animation of the projects as planets orbiting a star. Hover a planet to see its name and click to open the project.',

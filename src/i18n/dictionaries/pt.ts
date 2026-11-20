@@ -14,7 +14,7 @@ export const pt: Dictionary = {
     skills: 'Skills',
     projetos: 'Projetos',
     certificados: 'Estudos',
-    agora: 'Agora',
+    // agora: 'Agora', // seção desativada por enquanto
     contato: 'Contato',
   },
 
@@ -45,7 +45,7 @@ export const pt: Dictionary = {
     skills: 'Skills',
     projetos: 'Projetos',
     certificados: 'Estudos',
-    agora: 'Agora',
+    // agora: 'Agora', // seção desativada por enquanto
     contato: 'Contato',
   },
 
@@ -99,7 +99,9 @@ export const pt: Dictionary = {
     next: 'Próximo projeto',
     close: 'Fechar',
     counter: '{current} / {total}',
-    movedNote: 'Projetos que achei interessante compartilhar.',
+    readMore: '[ + ver mais ]',
+    readLess: '[ − ver menos ]',
+    movedNote: 'Meus projetos.',
     movedLink: '[ cd ~/projects → ]',
     orbitLabel:
       'Animação em ASCII com os projetos como planetas orbitando uma estrela. Passe o mouse num planeta para ver o nome e clique para abrir o projeto.',

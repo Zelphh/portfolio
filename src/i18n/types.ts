@@ -89,6 +89,9 @@ export interface Dictionary {
     close: string
     /** `{current} / {total}` */
     counter: string
+    /** Toggle under a project's first paragraph that unfolds the rest. */
+    readMore: string
+    readLess: string
     /** What the home section says now that the projects have their own page. */
     movedNote: string
     movedLink: string

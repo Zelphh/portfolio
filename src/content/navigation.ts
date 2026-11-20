@@ -8,7 +8,7 @@ export const SECTION_IDS = [
   'skills',
   'projetos',
   'certificados',
-  'agora',
+  // 'agora', // seção desativada por enquanto
   'contato',
 ] as const
 

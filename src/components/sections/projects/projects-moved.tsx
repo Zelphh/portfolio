@@ -36,7 +36,7 @@ interface ProjectsMovedProps {
  */
 export function ProjectsMoved({ locale, label, copy }: ProjectsMovedProps) {
   const href = `/${locale}/projects/`
-  const boxRef = useRef<HTMLAnchorElement>(null)
+  const boxRef = useRef<HTMLDivElement>(null)
   const [started, setStarted] = useState(false)
   const [typed, setTyped] = useState(0)
   const [listed, setListed] = useState(0)
@@ -113,12 +113,8 @@ export function ProjectsMoved({ locale, label, copy }: ProjectsMovedProps) {
       <div className="mx-auto max-w-[73.75rem] px-6 lg:px-10">
         <SectionHeading label={label} />
 
-        <div className="mt-11 grid items-center gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-10">
-          <Link
-            ref={boxRef}
-            href={href}
-            className="group grid gap-5 rounded-[0.9375rem] border border-moss-dim bg-surface/40 p-7 font-mono text-sm transition-[border-color,box-shadow] duration-300 hover:border-moss-light hover:shadow-[0_0_3rem_-0.875rem_var(--color-moss-light)] sm:p-9"
-          >
+        <div className="mt-11 grid items-center gap-8 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] lg:gap-10">
+          <div ref={boxRef} className="grid gap-5 font-mono text-sm">
             <p className="text-fg-faint">
               <span className="text-moss-light">$</span>{' '}
               <span className="sr-only">{COMMAND}</span>
@@ -129,34 +125,44 @@ export function ProjectsMoved({ locale, label, copy }: ProjectsMovedProps) {
                 </span>
               )}
             </p>
-            <p className="flex flex-wrap gap-x-6 gap-y-1 text-fg-dim transition-colors group-hover:text-fg-muted">
-              {PROJECTS.map((project, i) => (
-                <span
-                  key={project.id}
-                  onPointerEnter={() => setListFocus(i)}
-                  onPointerLeave={() => setListFocus(null)}
-                  style={
-                    planetHover === i || listFocus === i
-                      ? { color: planetColor(i) }
-                      : undefined
-                  }
-                  className={`inline-flex items-center gap-2 ${reveal(listed > i)}`}
-                >
-                  {project.id}/
-                  {project.inProgress && (
-                    <span aria-hidden className="relative flex size-1.5">
-                      <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-60" />
-                      <span className="relative inline-flex size-1.5 rounded-full bg-accent" />
-                    </span>
-                  )}
-                </span>
-              ))}
-            </p>
+            <ul className="grid gap-1.5 text-fg-dim">
+              {PROJECTS.map((project, i) => {
+                const lit = planetHover === i || listFocus === i
+                return (
+                  <li key={project.id} className={reveal(listed > i)}>
+                    <Link
+                      href={`${href}#${project.id}`}
+                      onPointerEnter={() => setListFocus(i)}
+                      onPointerLeave={() => setListFocus(null)}
+                      onFocus={() => setListFocus(i)}
+                      onBlur={() => setListFocus(null)}
+                      style={lit ? { color: planetColor(i) } : undefined}
+                      className="relative inline-flex items-center gap-2 transition-colors"
+                    >
+                      <span
+                        aria-hidden
+                        className={`absolute -left-5 transition-opacity ${lit ? 'opacity-100' : 'opacity-0'}`}
+                      >
+                        →
+                      </span>
+                      {project.id}/
+                      {project.inProgress && (
+                        <span aria-hidden className="relative flex size-1.5">
+                          <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-60" />
+                          <span className="relative inline-flex size-1.5 rounded-full bg-accent" />
+                        </span>
+                      )}
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
             <p className={`text-pretty leading-[1.8] text-fg-dim ${reveal(done)}`}>
               {copy.movedNote}
             </p>
-            <span
-              className={`text-[0.8125rem] text-moss-light group-hover:text-fg ${reveal(done)}`}
+            <Link
+              href={href}
+              className={`w-fit text-[0.8125rem] text-moss-light transition-colors hover:text-fg ${reveal(done)}`}
             >
               {copy.movedLink}
               {done && (
@@ -164,8 +170,8 @@ export function ProjectsMoved({ locale, label, copy }: ProjectsMovedProps) {
                   ▌
                 </span>
               )}
-            </span>
-          </Link>
+            </Link>
+          </div>
 
           <OrbitArt
             label={copy.orbitLabel}
@@ -176,7 +182,7 @@ export function ProjectsMoved({ locale, label, copy }: ProjectsMovedProps) {
               const project = PROJECTS[i]
               if (project) window.location.assign(`${href}#${project.id}`)
             }}
-            className="aspect-[4/3] w-full sm:aspect-[16/10]"
+            className="aspect-[4/3] w-full"
           />
         </div>
       </div>

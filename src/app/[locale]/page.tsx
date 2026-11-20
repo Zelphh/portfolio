@@ -5,14 +5,15 @@ import { CertificatesSection } from '@/components/sections/certificates/certific
 import { ContactSection } from '@/components/sections/contact-section'
 import { ExperienceLog } from '@/components/sections/experience-section'
 import { HeroSection } from '@/components/sections/hero-section'
-import { NowSection } from '@/components/sections/now/now-section'
+// Seção "agora" desativada por enquanto.
+// import { NowSection } from '@/components/sections/now/now-section'
 import { ProjectsMoved } from '@/components/sections/projects/projects-moved'
 import { SkillsSection } from '@/components/sections/skills/skills-section'
 import { CommandDock } from '@/components/widgets/command-dock'
 import { ConsoleBusProvider } from '@/components/widgets/console-bus'
 import { getDictionary, otherLocale } from '@/i18n'
 import { toLocale } from '@/i18n/config'
-import { fetchContributions } from '@/lib/github'
+// import { fetchContributions } from '@/lib/github'
 
 interface PageProps {
   params: Promise<{ locale: string }>
@@ -22,10 +23,11 @@ export default async function HomePage({ params }: PageProps) {
   const locale = toLocale((await params).locale)
   const dictionary = getDictionary(locale)
   const { sections, a11y } = dictionary
+  // Seção "agora" desativada por enquanto.
   // Read at build time, once per locale. Deliberately left uncached: CI keeps
   // `.next/cache`, so a cached response would freeze the graph across
   // builds. A failure leaves the graph out instead of failing the build.
-  const contributions = await fetchContributions()
+  // const contributions = await fetchContributions()
 
   return (
     // Console commands reach the carousels, the bonfire and the footer board
@@ -82,6 +84,7 @@ export default async function HomePage({ params }: PageProps) {
             copy={dictionary.certificates}
           />
 
+          {/* Seção "agora" desativada por enquanto.
           <NowSection
             locale={locale}
             label={sections.agora}
@@ -89,6 +92,7 @@ export default async function HomePage({ params }: PageProps) {
             contributions={contributions}
             contributionsLabel={a11y.contributions}
           />
+          */}
 
           <ContactSection label={sections.contato} />
         </main>

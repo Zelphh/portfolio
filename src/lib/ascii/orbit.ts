@@ -57,9 +57,9 @@ const COS_TILT = Math.cos(TILT)
 const SIN_TILT = Math.sin(TILT)
 /** How open the disk looks: 1 is face on, 0 edge on. */
 const INC = 0.55
-const STAR_R = 0.04
+const STAR_R = 0.046
 const FIRST_ORBIT = 0.17
-const ORBIT_GAP = 0.085
+const ORBIT_GAP = 0.082
 /** Base angular speed of the innermost orbit (rad/s). */
 const SPIN = 0.42
 /** Time runs this fast while a planet is hovered or focused. */
@@ -117,7 +117,7 @@ export class OrbitField implements CellField {
     }
     this.radii = planets.map((_, i) => FIRST_ORBIT + i * ORBIT_GAP)
     // Newer projects (listed first) are a little bigger.
-    this.sizes = planets.map((_, i) => 0.05 - i * 0.004)
+    this.sizes = planets.map((_, i) => 0.058 - i * 0.004)
     this.starts = planets.map((_, i) => i * 2.4 + 0.6)
     this.grow = planets.map(() => 0)
   }
