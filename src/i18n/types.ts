@@ -86,6 +86,11 @@ export interface Dictionary {
     openGithub: string
     previous: string
     next: string
+    /** Arrows and dots of a project's screenshot gallery. */
+    mediaPrevious: string
+    mediaNext: string
+    /** `{current} / {total}`, the name of each gallery dot. */
+    mediaGoTo: string
     close: string
     /** `{current} / {total}` */
     counter: string

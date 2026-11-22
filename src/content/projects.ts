@@ -7,6 +7,13 @@ export const PROJECTS: readonly Project[] = [
     stack: 'Rust · Tauri · SQLite',
     url: 'https://github.com/Zelphh/whats-recap',
     cover: { kind: 'video', src: '/projects/whats-recap.mp4' },
+    gallery: [
+      { kind: 'video', src: '/projects/whats-recap.mp4' },
+      { kind: 'image', src: '/projects/whats-recap-import.png' },
+      { kind: 'image', src: '/projects/whats-recap-dashboard.png' },
+      { kind: 'image', src: '/projects/whats-recap-media.png' },
+      { kind: 'image', src: '/projects/whats-recap-chat.png' },
+    ],
     badges: { pt: ['100% local'], en: ['100% local'] },
     inProgress: true,
     name: { pt: 'WhatsRecap', en: 'WhatsRecap' },
@@ -33,7 +40,12 @@ export const PROJECTS: readonly Project[] = [
     stack: 'Tauri · Rust · React',
     url: 'https://github.com/Zelphh/Spatium',
     cover: { kind: 'logo', src: '/projects/spatium-icon.png' },
-    hero: { kind: 'image', src: '/projects/spatium-dashboard.png' },
+    gallery: [
+      { kind: 'image', src: '/projects/spatium-home.png' },
+      { kind: 'image', src: '/projects/spatium-timer.png' },
+      { kind: 'image', src: '/projects/spatium-stats.png' },
+      { kind: 'image', src: '/projects/spatium-settings.png' },
+    ],
     name: { pt: 'Spatium', en: 'Spatium' },
     summary: {
       pt: 'App de desktop para cronometrar e categorizar horas de foco.',

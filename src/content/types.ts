@@ -47,11 +47,12 @@ export interface Project {
   /** Card artwork. Absent while a project has none, which draws a placeholder. */
   readonly cover?: ProjectCover
   /**
-   * Dialog artwork, for when the wide hero wants a different shot than the
-   * card does — an app icon on the card, a full screen inside. Falls back to
-   * `cover`.
+   * Screenshots and recordings shown one at a time in the dialog and on the
+   * projects page, for when the inside wants more (or other) shots than the
+   * card does — an app icon on the card, the full screens inside. Falls back
+   * to `cover` alone.
    */
-  readonly hero?: ProjectCover
+  readonly gallery?: readonly ProjectCover[]
   /** Short claims about how it was built, drawn as pills on the card. */
   readonly badges?: Localized<readonly string[]>
   /**

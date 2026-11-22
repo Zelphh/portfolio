@@ -12,6 +12,8 @@ import {
 } from 'react'
 import { ProjectBadges } from '@/components/sections/projects/project-badges'
 import { ProjectCover } from '@/components/sections/projects/project-cover'
+import { ProjectGallery } from '@/components/sections/projects/project-gallery'
+import { projectMedia } from '@/components/sections/projects/project-media'
 import { ProjectStatus } from '@/components/sections/projects/project-status'
 import { PROJECTS } from '@/content/projects'
 import type { Locale } from '@/i18n/config'
@@ -403,11 +405,14 @@ export function ProjectsExplorer({ locale, copy }: ProjectsExplorerProps) {
               ref={coverRef}
               className="relative aspect-video w-full overflow-hidden rounded-[0.75rem] border border-line-soft bg-surface"
             >
-              <ProjectCover
-                cover={project.hero ?? project.cover}
+              <ProjectGallery
+                items={projectMedia(project)}
                 alt={project.name[locale]}
-                placeholder="PREVIEW"
-                active
+                labels={{
+                  previous: copy.mediaPrevious,
+                  next: copy.mediaNext,
+                  goTo: copy.mediaGoTo,
+                }}
                 className="h-full w-full"
               />
             </div>

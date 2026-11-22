@@ -5,7 +5,8 @@ import { Modal } from '@/components/ui/modal'
 import type { Locale } from '@/i18n/config'
 import type { Dictionary } from '@/i18n/types'
 import { ProjectBadges } from './project-badges'
-import { ProjectCover } from './project-cover'
+import { projectMedia } from './project-media'
+import { ProjectGallery } from './project-gallery'
 import { ProjectStatus } from './project-status'
 
 interface ProjectDialogProps {
@@ -37,16 +38,20 @@ export function ProjectDialog({
       labelledBy="project-dialog-title"
     >
       <div className="relative h-[clamp(11.25rem,38vh,25rem)] overflow-hidden border-b border-line-soft bg-surface-raised">
-        <ProjectCover
-          cover={project.hero ?? project.cover}
+        <ProjectGallery
+          items={projectMedia(project)}
           alt=""
-          placeholder="PREVIEW"
-          active
+          labels={{
+            previous: copy.mediaPrevious,
+            next: copy.mediaNext,
+            goTo: copy.mediaGoTo,
+          }}
+          dotsAt="top"
           className="h-full w-full"
         />
         <div
           aria-hidden
-          className="absolute inset-x-0 bottom-0 h-[7.5rem] bg-gradient-to-b from-transparent to-scrim-soft"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-[7.5rem] bg-gradient-to-b from-transparent to-scrim-soft"
         />
 
         <div className="absolute bottom-0 left-0 flex max-w-full items-center gap-3 rounded-tr-[0.625rem] bg-surface px-5 py-3">
