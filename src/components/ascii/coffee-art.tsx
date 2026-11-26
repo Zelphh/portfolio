@@ -5,8 +5,11 @@ import { AsciiCanvas } from './ascii-canvas'
 
 const GLOWS = ['blur-[2px] opacity-50', 'blur-[10px] opacity-35'] as const
 
-const createField = (cols: number, rows: number, aspect: number) =>
-  new CoffeeField(cols, rows, aspect)
+/** How far the steam may rise above the box: past the heading's rule. */
+const BLEED_TOP = 128
+
+const createField = (cols: number, rows: number, aspect: number, bleedRows: number) =>
+  new CoffeeField(cols, rows, aspect, bleedRows)
 
 interface CoffeeArtProps {
   label: string
@@ -30,6 +33,7 @@ export function CoffeeArt({ label, className }: CoffeeArtProps) {
       trail={0.3}
       stillAt={COFFEE_SETTLED}
       glows={GLOWS}
+      bleedTop={BLEED_TOP}
     />
   )
 }

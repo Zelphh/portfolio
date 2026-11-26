@@ -21,8 +21,17 @@ const MAX_LUM = 1.3
 interface AsciiCanvasProps {
   /** Screen-reader description; the box is `role="img"`. */
   label: string
-  /** Builds the field for a grid; called again whenever the grid changes. */
-  createField: (cols: number, rows: number, aspect: number) => CellField
+  /**
+   * Builds the field for a grid; called again whenever the grid changes.
+   * `rows` includes the `bleedRows` drawn above the box (see `bleedTop`);
+   * `aspect` is the box's own width over height.
+   */
+  createField: (
+    cols: number,
+    rows: number,
+    aspect: number,
+    bleedRows: number,
+  ) => CellField
   /** The field's colour tags, by index. */
   colors: readonly Rgb[]
   fps: number
@@ -36,6 +45,11 @@ interface AsciiCanvasProps {
   stillAt: number
   /** Classes for each blurred copy layered on top as glow (blur, opacity). */
   glows?: readonly string[]
+  /**
+   * Px the drawing spills above the box, over whatever sits there, without
+   * taking layout space or catching the pointer. Rounded up to whole rows.
+   */
+  bleedTop?: number
   className?: string
 }
 
@@ -64,6 +78,7 @@ export function AsciiCanvas({
   trail,
   stillAt,
   glows = [],
+  bleedTop = 0,
   className,
 }: AsciiCanvasProps) {
   const boxRef = useRef<HTMLDivElement>(null)
@@ -160,16 +175,6 @@ export function AsciiCanvas({
     const resize = () => {
       const { width, height } = box.getBoundingClientRect()
       if (!width || !height) return
-      const dpr = Math.min(window.devicePixelRatio || 1, 2)
-      canvas.width = Math.round(width * dpr)
-      canvas.height = Math.round(height * dpr)
-      for (const glow of glowRefs.current) {
-        if (!glow) continue
-        // The glow is blurred anyway, so a quarter of the pixels will do.
-        glow.width = Math.round(width / 2)
-        glow.height = Math.round(height / 2)
-      }
-
       const ctx = canvas.getContext('2d')
       if (!ctx) return
       const px = fixedRows ? height / fixedRows / CELL_HEIGHT : fontPx
@@ -179,10 +184,30 @@ export function AsciiCanvas({
       ctx.font = state.font
       const cellW = ctx.measureText('M').width || px * 0.6
       const cols = Math.max(1, Math.floor(width / cellW))
-      const rows = fixedRows ?? Math.max(1, Math.floor(height / (px * CELL_HEIGHT)))
+      const boxRows = fixedRows ?? Math.max(1, Math.floor(height / (px * CELL_HEIGHT)))
       state.cellW = width / cols
-      state.cellH = height / rows
-      state.field = createRef.current(cols, rows, width / height)
+      state.cellH = height / boxRows
+      const bleedRows = Math.max(0, Math.ceil(bleedTop / state.cellH))
+      const bleed = bleedRows * state.cellH
+      const total = height + bleed
+
+      const dpr = Math.min(window.devicePixelRatio || 1, 2)
+      for (const layer of [canvas, ...glowRefs.current]) {
+        if (!layer) continue
+        layer.style.top = `${-bleed}px`
+        layer.style.height = `${total}px`
+      }
+      canvas.width = Math.round(width * dpr)
+      canvas.height = Math.round(total * dpr)
+      for (const glow of glowRefs.current) {
+        if (!glow) continue
+        // The glow is blurred anyway, so a quarter of the pixels will do.
+        glow.width = Math.round(width / 2)
+        glow.height = Math.round(total / 2)
+      }
+
+      ctx.font = state.font
+      state.field = createRef.current(cols, boxRows + bleedRows, width / height, bleedRows)
 
       const reduced = window.matchMedia(
         '(prefers-reduced-motion: reduce)',
@@ -194,7 +219,7 @@ export function AsciiCanvas({
     const observer = new ResizeObserver(resize)
     observer.observe(box)
     return () => observer.disconnect()
-  }, [draw, fixedRows, fontPx, stillAt])
+  }, [draw, fixedRows, fontPx, stillAt, bleedTop])
 
   useAnimationLoop(
     () => {
@@ -230,7 +255,10 @@ export function AsciiCanvas({
       }}
       className={cn('relative h-full w-full', className)}
     >
-      <canvas ref={artRef} className="absolute inset-0 h-full w-full" />
+      <canvas
+        ref={artRef}
+        className="pointer-events-none absolute inset-x-0 top-0 h-full w-full"
+      />
       {glows.map((look, i) => (
         <canvas
           key={look}
@@ -239,7 +267,7 @@ export function AsciiCanvas({
           }}
           aria-hidden
           className={cn(
-            'pointer-events-none absolute inset-0 h-full w-full mix-blend-screen',
+            'pointer-events-none absolute inset-x-0 top-0 h-full w-full mix-blend-screen',
             look,
           )}
         />

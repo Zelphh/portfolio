@@ -129,6 +129,10 @@ export class CoffeeField implements CellField {
   private readonly random = mulberry32(5)
   /** Puff weight, scaled so the steam looks as thick at any grid size. */
   private readonly puffWeight: number
+  /** Rows of the grid that cover the box itself, below the bleed. */
+  private readonly boxRows: number
+  /** Frame y of the grid's top edge: 0, or above it when the art bleeds up. */
+  private readonly top: number
 
   private clock = 0
   private steps = 0
@@ -143,7 +147,10 @@ export class CoffeeField implements CellField {
     readonly cols: number,
     readonly rows: number,
     private readonly aspect: number,
+    private readonly bleedRows = 0,
   ) {
+    this.boxRows = rows - bleedRows
+    this.top = -bleedRows / this.boxRows
     const n = cols * rows
     this.chars = new Array<string>(n).fill(' ')
     this.tags = new Uint8Array(n)
@@ -153,7 +160,7 @@ export class CoffeeField implements CellField {
     for (let k = 0; k < n; k++) this.hsh[k] = Math.floor(this.random() * 256)
     // Tuned on a 56 × 28 cells-per-frame grid; finer grids spread each puff
     // over more cells, so each one weighs more.
-    this.puffWeight = 0.55 * ((rows * cols) / aspect / (28 * 56))
+    this.puffWeight = 0.55 * ((this.boxRows * cols) / aspect / (28 * 56))
   }
 
   private toFrame({ x, y }: BoxPoint) {
@@ -258,7 +265,7 @@ export class CoffeeField implements CellField {
 
       const gone =
         puff.age > puff.life ||
-        puff.y < 0 ||
+        puff.y < this.top ||
         puff.y > CUP_TOP ||
         Math.abs(puff.x) > halfWidth
       if (gone) puffs.splice(i, 1)
@@ -267,13 +274,17 @@ export class CoffeeField implements CellField {
 
   /** Smears every puff across the four cells it straddles. */
   private splat(): void {
-    const { cols, rows, density, aspect } = this
+    const { cols, rows, boxRows, bleedRows, density, aspect, top } = this
     density.fill(0)
     for (const puff of this.puffs) {
+      // Thinning out towards the top edge, so the plume never ends in a line.
       const weight =
-        (1 - puff.age / puff.life) * Math.min(1, puff.age / 10) * this.puffWeight
+        (1 - puff.age / puff.life) *
+        Math.min(1, puff.age / 10) *
+        smooth((puff.y - top) / 0.18) *
+        this.puffWeight
       const cx = (puff.x / aspect + 0.5) * cols - 0.5
-      const cy = puff.y * rows - 0.5
+      const cy = (puff.y * boxRows + bleedRows) - 0.5
       const col = Math.floor(cx)
       const row = Math.floor(cy)
       const fx = cx - col
@@ -293,7 +304,7 @@ export class CoffeeField implements CellField {
   }
 
   private compose(t: number): void {
-    const { cols, rows, chars, tags, lum, density, hsh, aspect } = this
+    const { cols, rows, boxRows, bleedRows, chars, tags, lum, density, hsh, aspect } = this
     const rimK = smooth((t - 0.2) / 1.4)
     const bodyOn = smooth((t - 0.9) / 1.2)
     const fill = smooth((t - 1.6) / 1.2)
@@ -301,12 +312,12 @@ export class CoffeeField implements CellField {
     // How thick the rim stroke must be, in ellipse units, to cover a cell
     // both across (sides) and down (front and back).
     const cellX = aspect / cols
-    const cellY = 1 / rows
+    const cellY = 1 / boxRows
     const rimAcross = (1.1 * cellX) / CUP_R
     const rimDown = (1.1 * cellY) / CUP_E
 
     for (let j = 0; j < rows; j++) {
-      const y = (j + 0.5) / rows
+      const y = (j - bleedRows + 0.5) / boxRows
       for (let i = 0; i < cols; i++) {
         const k = j * cols + i
         const x = ((i + 0.5) / cols - 0.5) * aspect
